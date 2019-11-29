@@ -10,4 +10,4 @@
     * splitでlist型に出来そうなので意味があるかどうか分からんが勉強用
 * [完了](https://atcoder.jp/contests/abc064/submissions/8697212)
 * 実行時間17ms,メモリ3060kb
-    * これが標準化
+    * これが標準か
