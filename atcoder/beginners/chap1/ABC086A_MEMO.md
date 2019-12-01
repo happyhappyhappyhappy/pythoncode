@@ -18,4 +18,10 @@
 * [完了](https://atcoder.jp/contests/abc086/submissions/8693744)
     * 全部実行時間は17ms,メモリは2940k
 * [pypy3でもやってみた](https://atcoder.jp/contests/abc086/submissions/8693766)が、これは実行時間173ms,メモリは38256 KB
+---
+## 2回目
+# 2019/12/01
 
+* [完了](https://atcoder.jp/contests/abc086/submissions/8722017)
+    * if文でメイン実行の所を書いていることによって、長くはなった
+    * 1回目と実行時間とメモリは同じ
