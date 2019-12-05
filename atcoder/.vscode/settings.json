@@ -1,0 +1,4 @@
+{
+    "python.formatting.yapfPath": "C:\\\\msys\\\\mingw32\\\\bin\\\\yapf.exe",
+    "python.formatting.provider": "yapf"
+}
