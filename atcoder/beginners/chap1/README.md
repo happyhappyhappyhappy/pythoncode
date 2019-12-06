@@ -5,7 +5,7 @@
 ---
 1. [ABC086A Product](https://atcoder.jp/contests/abc086/tasks/abc086_a)→★★★  
 
-1. [ABC064A RGB Cards](https://atcoder.jp/contests/abc064/tasks/abc064_a)→★  
+1. [ABC064A RGB Cards](https://atcoder.jp/contests/abc064/tasks/abc064_a)→★★  
 
 1. [ABC088A Infinite Coins](https://atcoder.jp/contests/abc088/tasks/abc088_a)→  
 
