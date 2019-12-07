@@ -22,3 +22,5 @@
 ---
 ## 3回目
 * 一括型変換はmapでくくるのがポイント
+* [完了](https://atcoder.jp/contests/abc064/submissions/me)
+    * 実行時間とメモリ＋プログラムサイズまで同じ
