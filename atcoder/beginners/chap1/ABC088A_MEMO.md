@@ -15,3 +15,9 @@
     * [参考はこちら](https://qiita.com/iwata-n/items/39dc0e4391277589878b)
 * [完了](https://atcoder.jp/contests/abc088/submissions/8809591)
     * 他の問題と実行時間とメモリは同じ
+---
+## 2回目
+# 2019/12/08
+* 関数を使って単純化を図る
+* [完了](https://atcoder.jp/contests/abc088/submissions/8834221)
+    * 実行時間は+1ms,メモリは同じ
