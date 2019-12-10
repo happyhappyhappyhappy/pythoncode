@@ -3,14 +3,12 @@
 
 
 def onecounter(input_square):
-    strList = list(map(int, input_square.split('')))
-    print(strList)
     result = 0
-    if strList[0] == 1:
+    if input_square[0] == '1':
         result = result + 1
-    if strList[1] == 1:
+    if input_square[1] == '1':
         result = result + 1
-    if strList[2] == 1:
+    if input_square[2] == '1':
         result = result + 1
     return result
 
