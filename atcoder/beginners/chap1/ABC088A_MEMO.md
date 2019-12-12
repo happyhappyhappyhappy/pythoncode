@@ -21,3 +21,12 @@
 * 関数を使って単純化を図る
 * [完了](https://atcoder.jp/contests/abc088/submissions/8834221)
     * 実行時間は+1ms,メモリは同じ
+---
+## 3回目
+# 2019/12/12
+* 2回目と同じ戦略
+* [失敗](https://atcoder.jp/contests/abc088/submissions/8922955)
+* [成功](https://atcoder.jp/contests/abc088/submissions/8922990)
+    * 間違えた原因は前者は500円を`//`(商)、後者は`%`(余り)にしたため。
+    単純な設定のはずだが
+    * 実行時間とメモリは前回と同じ。
