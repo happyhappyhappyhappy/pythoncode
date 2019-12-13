@@ -8,5 +8,5 @@
     ],
     "git.ignoreLimitWarning": true,
     "python.terminal.executeInFileDir": true,
-    "python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe"
+    "python.pythonPath": "C:\\msys\\mingw32\\bin\\python.exe"
 }
