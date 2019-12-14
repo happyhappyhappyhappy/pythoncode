@@ -9,6 +9,6 @@
 
 1. [ABC088A Infinite Coins](https://atcoder.jp/contests/abc088/tasks/abc088_a)→★★★
 
-1. [ABC082A Round Up the Mean](https://atcoder.jp/contests/abc082/tasks/abc082_a)→★
+1. [ABC082A Round Up the Mean](https://atcoder.jp/contests/abc082/tasks/abc082_a)→★★★
 
 ---
