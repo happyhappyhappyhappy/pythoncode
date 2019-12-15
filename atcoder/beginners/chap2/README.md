@@ -3,7 +3,7 @@
 [参考ページ](http://bit.ly/33qBzkr)
 
 ---
-1. [ABC081A-Placing Marbles](https://atcoder.jp/contests/abc081/tasks/abc081_a)→★
+1. [ABC081A-Placing Marbles](https://atcoder.jp/contests/abc081/tasks/abc081_a)→★★
 
 1. [ABC095A-Something on It](https://atcoder.jp/contests/abc095/tasks/abc095_a)→
 
