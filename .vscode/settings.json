@@ -1,12 +1,4 @@
 {
-    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
-    "terminal.integrated.shellArgs.windows":
-    [
-        "/K"
-      , "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat"
-       , "C:\\ProgramData\\Anaconda3"
-    ],
-    "git.ignoreLimitWarning": true,
-    "python.terminal.executeInFileDir": true,
-    "python.pythonPath": "C:\\msys\\mingw32\\bin\\python.exe"
+    "python.pythonPath": "C:\\msys\\mingw32\\bin\\python3.8.exe"
+
 }
