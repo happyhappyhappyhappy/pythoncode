@@ -13,3 +13,9 @@
 
 ---
 ## 2回目
+# 2019/12/20
+* `for`文を使って見る
+  * [参考](https://docs.python.org/ja/3/library/functions.html?highlight=len#len)
+  * `len(str)`で文字列の並び数を返す
+* [完了](https://atcoder.jp/contests/abc095/submissions/9028181)
+  * メモリ若干減る
