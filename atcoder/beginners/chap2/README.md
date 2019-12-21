@@ -7,7 +7,7 @@
 
 1. [ABC095A-Something on It](https://atcoder.jp/contests/abc095/tasks/abc095_a)→★★
 
-1. [ABC085A-Already 2018](https://atcoder.jp/contests/abc085/tasks/abc085_a)→
+1. [ABC085A-Already 2018](https://atcoder.jp/contests/abc085/tasks/abc085_a)→★
 
 1. [ABC069B-i18n](https://atcoder.jp/contests/abc069/tasks/abc069_b)→
 

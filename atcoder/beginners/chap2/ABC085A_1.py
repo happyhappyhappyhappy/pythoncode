@@ -4,6 +4,9 @@
 
 def solver(errorDay):
     result = "2018/01/"
+    day = errorDay[8:]
+    #   print(day)
+    result = result+day
     return result
 
 
