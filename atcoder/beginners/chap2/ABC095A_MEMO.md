@@ -19,3 +19,11 @@
   * `len(str)`で文字列の並び数を返す
 * [完了](https://atcoder.jp/contests/abc095/submissions/9028181)
   * メモリ若干減る
+---
+## 3回目
+# 2019/12/21
+* 1回目と同じコーディング
+* [完了](https://atcoder.jp/contests/abc095/submissions/9040164)
+  * 2回目と同じ感じ
+  * pythonのパスが変わらないのだろうか
+
