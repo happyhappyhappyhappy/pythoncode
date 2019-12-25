@@ -19,5 +19,9 @@
       * [これ](https://docs.python.org/ja/3/library/stdtypes.html#textseq)参照
 * [完了](https://atcoder.jp/contests/abc085/submissions/9047503)
   * ほぼ同じ感じ
-  *
+---
+## 3回目
+* `list`に直して置換して、再結合
+  * 面倒くさいがコピーして4文字目だけを8にする
+  * `for`文で`result`に放り込む
 
