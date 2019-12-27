@@ -11,6 +11,6 @@
 
 1. [ABC069B-i18n](https://atcoder.jp/contests/abc069/tasks/abc069_b)→★★
 
-1. [ABC082B-Two Anagrams](https://atcoder.jp/contests/abc082/tasks/abc082_b)→★
+1. [ABC082B-Two Anagrams](https://atcoder.jp/contests/abc082/tasks/abc082_b)→★★
 
 ---

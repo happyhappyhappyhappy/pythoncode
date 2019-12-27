@@ -8,6 +8,13 @@ no = "No"
 
 def solver(sstr, tstr):
     result = True
+    sfirst_str = ''.join(sorted(list(sstr)))
+    tend_str = ''.join(reversed(sorted(list(tstr))))
+#    print(tend_str)
+    if sfirst_str < tend_str:
+        result = True
+    else:
+        result = False
     return result
 
 

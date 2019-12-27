@@ -23,4 +23,12 @@
 # 2019/12/27
 * 前の武器をそのまま使おうと思ったがTの入れ替えで最も辞書順が大きい所にSが届けなければ良いような気がする
   * つまりは、sortedを使うのはTだけということで
-  *
+  * [失敗](https://atcoder.jp/contests/abc082/submissions/9158934)
+    * `1_05.txt`,`1_07.txt`に穴があるっぽい
+* 結局は1回目と同じ方法へする
+  * [完成](https://atcoder.jp/contests/abc082/submissions/9158984)
+* ちょっと物足りないので短縮版を載せてみる
+  * [これ](https://atcoder.jp/contests/abc082/submissions/4345435)
+    * `s=sorted`てもう関数をオブジェクトとして扱っていることか
+    * あと実は`sorted`で直接文字列ソート(つまりはchar型iterater)として処理しているのか。
+    * 次回要検証
