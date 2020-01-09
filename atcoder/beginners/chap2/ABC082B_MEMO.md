@@ -32,3 +32,12 @@
     * `s=sorted`てもう関数をオブジェクトとして扱っていることか
     * あと実は`sorted`で直接文字列ソート(つまりはchar型iterater)として処理しているのか。
     * 次回要検証
+---
+## 3回目
+### 2020/01/09
+* 三項演算子の使い方[情報源](https://qiita.com/howmuch515/items/bf6d21f603d9736fb4a5)
+    * `(変数) = (条件がTrueのときの値) if (条件) else (条件がFalseのときの値)`
+* [sorted例](http://bit.ly/36ytxb8)
+    * いずれも`join`が必要
+* [完了](https://atcoder.jp/contests/abc082/submissions/9368114)
+    *  `1_08.txt`のみ3060kbになるくらい
