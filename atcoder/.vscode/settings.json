@@ -1,4 +1,5 @@
 {
+    "python.pythonPath": "C:\\msys64\\mingw64\\bin\\python.exe",
     "python.formatting.yapfPath": "C:\\\\msys\\\\mingw32\\\\bin\\\\yapf.exe",
     "python.formatting.provider": "yapf",
     "files.trimTrailingWhitespace": true
