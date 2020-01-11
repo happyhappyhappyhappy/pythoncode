@@ -9,8 +9,8 @@ import sys
 
 if __name__ == "__main__":
     input=sys.stdin.readline
-    N = input().split()
-    Ai = input().split()
-    print(N)
+    N = list(map(int,(input().split())))
+    Ai = list(map(int,input().split()))
+    print(N[0])
     print(Ai)
     print("End")
