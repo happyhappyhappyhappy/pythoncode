@@ -9,3 +9,9 @@
 * おすすめであるという`readline`入力でトライ
 * 入力時に`list(map(int,readline()))`にして配列に入れる必要がある
     * これをしないと少なくとも改行は入れられてしまうので注意
+# 2020/01/13
+* 整数の最大値は`sys.sys.maxsize`。[情報源](https://docs.python.org/ja/3/library/sys.html#sys.maxsize)
+* なかなかすすまない
+
+# 2020/01/17
+* 基本的なfor->if文で引っかかる。忘れたのか。
