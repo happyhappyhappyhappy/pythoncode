@@ -15,3 +15,10 @@
 
 # 2020/01/17
 * 基本的なfor->if文で引っかかる。忘れたのか。
+
+# 2020/01/18
+* 時間ができた
+* ifの問題は基本的にpythonはindentが括弧の指定をするので括弧は余計だった
+* [完了](https://atcoder.jp/contests/abc081/submissions/9557668)
+    * 時間は19ms,メモリは3040kbなので`sys.readline`にするメリットはなし
+

@@ -1,3 +1,10 @@
 {
-    "python.pythonPath": "C:\\msys64\\mingw64\\bin\\python.exe"
+    "python.pythonPath": "C:\\msys64\\mingw64\\bin\\python3.exe",
+    "python.linting.enabled": true,
+    "python.linting.pylintPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylint.exe",
+    "python.linting.pylintCategorySeverity.warning": "Hint",
+    "python.linting.pylintCategorySeverity.fatal": "Hint",
+    "python.linting.pylintCategorySeverity.convention": "Warning",
+    "python.linting.pylintCategorySeverity.error": "Warning",
+    "python.linting.pylamaPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylama.exe"
 }

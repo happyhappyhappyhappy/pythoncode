@@ -4,7 +4,7 @@
 
 ---
 
-1. [ABC081B-Shift only](https://atcoder.jp/contests/abc081/tasks/abc081_b)→
+1. [ABC081B-Shift only](https://atcoder.jp/contests/abc081/tasks/abc081_b)→★
 
 1. [ABC068B-Break Number](https://atcoder.jp/contests/abc068/tasks/abc068_b)→
 
