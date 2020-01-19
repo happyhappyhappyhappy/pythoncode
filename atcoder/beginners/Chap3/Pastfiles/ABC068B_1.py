@@ -24,7 +24,7 @@ def solve(allNumber, eachNum):
 
 
 if __name__ == "__main__":
-    
+
     input = sys.stdin.readline
     N = list(map(int, input().split()))
     Ai = list(map(int, input().split()))

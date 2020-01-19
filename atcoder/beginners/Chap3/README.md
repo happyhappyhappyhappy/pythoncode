@@ -5,7 +5,7 @@
 ---
 
 1. [ABC081B-Shift only](https://atcoder.jp/contests/abc081/tasks/abc081_b)→★
-
+★
 1. [ABC068B-Break Number](https://atcoder.jp/contests/abc068/tasks/abc068_b)→
 
 1. [ABC102B-Maximum Difference](https://atcoder.jp/contests/abc102/tasks/abc102_b)→

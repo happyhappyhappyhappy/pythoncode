@@ -4,7 +4,7 @@ import sys
 
 
 def solve(allNumber, eachNum):
-    
+
     answer = 0
     counter = [0]*allNumber
     for j in range(len(eachNum)):
