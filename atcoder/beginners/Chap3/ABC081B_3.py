@@ -1,10 +1,10 @@
 # Problem https://atcoder.jp/contests/abc081/tasks/abc081_b
 # Python 3rd Try
-import sys
+import math
 
 
 def solve(N, Ai):
-    answer = sys.max
+    answer = int(math.log2(10**9)) + 1
     eachCounter = [0] * N
     for j in range(0, N):
         counter = 0
@@ -15,7 +15,14 @@ def solve(N, Ai):
             else:
                 break
         eachCounter[j] = counter
+    for j in range(0, N):
+        if eachCounter[j] < answer:
+            answer = eachCounter[j]
+
     return answer
 
+
 if __name__ == "__main__":
+    N = int(input())
+    Ai = list(map(int, input().split(' ')))
     print(solve(N, Ai))

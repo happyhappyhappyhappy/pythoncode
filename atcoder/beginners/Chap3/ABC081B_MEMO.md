@@ -32,3 +32,13 @@
 * [完了](https://atcoder.jp/contests/abc081/submissions/9590023)
     * コード長さが短くなった
     * 時間、メモリは変わらないのでそのままやっていく
+
+-----
+## 3回目
+# 2020/01/21
+* 最初の最大値を`log2(10**9)`で求める
+    * [情報源](https://note.nkmk.me/python-math-exp-log/)
+    * できることなら「可能性がある最大数」として全部の数の最大でこれを求めたかった
+* sys.maxintはpython2までの定数。3にはそれはない。
+* [完了](https://atcoder.jp/contests/abc081/submissions/9659154)
+    * パッケージ`math`を入れてみたがメモリ、実行時間変わらず
