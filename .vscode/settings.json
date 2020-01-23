@@ -1,7 +1,5 @@
 {
     "python.pythonPath": "C:\\msys64\\mingw64\\bin\\python.exe",
-    "python.linting.enabled": true,
-    "python.linting.pylintPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylint.exe",
     "python.linting.pylintCategorySeverity.warning": "Hint",
     "python.linting.pylintCategorySeverity.fatal": "Hint",
     "python.linting.pylintCategorySeverity.convention": "Hint",
@@ -9,5 +7,11 @@
     "python.linting.pylamaPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylama.exe",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "python.linting.mypyPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\mypy.exe",
+    "python.linting.pylintPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylint.exe",
+    "python.linting.flake8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\flake8.exe",
+    "python.formatting.yapfPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\yapf.exe",
+    "python.formatting.blackPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\black.exe",
+    "python.formatting.autopep8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\autopep8.exe"
 }
