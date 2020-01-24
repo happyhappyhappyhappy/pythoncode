@@ -3,20 +3,23 @@
 
 
 def solver(givenNumber):
-    answer = 0
+    answer = 1
     counter = 0
+    modCounter = [0] * givenNumber
     for j in range(0, givenNumber):
-        counter = 0
-        modCounter = 0
+        eachCounter = 0
         baseNumber = j + 1
         while True:
             if baseNumber % 2 == 0:
-                modCounter = modCounter + 1
+                eachCounter = eachCounter + 1
                 baseNumber = baseNumber / 2
             else:
                 break
-        if answer <= counter:
-            answer = counter
+        modCounter[j] = eachCounter
+    for j in range(0, givenNumber):
+        if counter <= modCounter[j]:
+            counter = modCounter[j]
+            answer = j+1
     return answer
 
 
