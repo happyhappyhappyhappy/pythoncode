@@ -28,3 +28,9 @@
     * 取りやめ。やはりしらべながら行く
         * 2で何回割れるかを調べる関数を作ってみる
     * 入力に`N = list(map(int, sys.stdin))`を使っているのだが何故かインプットが終わらないため調査したい
+    * 原因は`readline().rsplit()`を使わなかったため
+        * `readline`は一行読み込む,`rsplit`は改行を取り除くため
+        * これでlist型になる
+* [完了](https://atcoder.jp/contests/abc068/submissions/9838607)
+    * 実行時間17or18ms,メモリ2940kb,3060kb
+        * 入力数が大きくなれば変わるかしら
