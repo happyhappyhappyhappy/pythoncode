@@ -5,13 +5,16 @@ import sys
 
 def solver(allN, numberList):
     answer = 0
-# for forを二重回転させる
-#
-#
+    for j in range(0, allN):
+        for k in range(0, allN):
+            nowAbs = (numberList[j] - numberList[k]).__abs__()
+            if answer < nowAbs:
+                answer = nowAbs
     return answer
 
 
 if __name__ == "__main__":
     N = sys.stdin.readline().rsplit()
     Ai = list(map(int, sys.stdin.readline().split()))
-    print(solver(int(N[0])), Ai)
+    answer = solver(int(N[0]), Ai)
+    print(answer)
