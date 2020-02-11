@@ -5,7 +5,8 @@ import sys
 
 def solver(allplace, maxtemp, targettemp, eachheight):
     answer = 0
-    difftemp = maxtemp
+    difftemp = maxtemp # これNG。対策はしょうが無いが素直にfloat変数としての最大値を使う必要あり
+    # sample2にて最大21,0の設定が何時までも続いてしまうため
     for j in range(0, allplace):
         heretemp = abs(targettemp - (maxtemp - eachheight[j]*0.006))
         answer = j if heretemp < difftemp else answer
