@@ -9,7 +9,7 @@
 1. [ABC068B-Break Number](https://atcoder.jp/contests/abc068/tasks/abc068_b)→★★★
 1. [ABC102B-Maximum Difference](https://atcoder.jp/contests/abc102/tasks/abc102_b)→★★★
 
-1. [ABC113B-Palace](https://atcoder.jp/contests/abc113/tasks/abc113_b)→★
+1. [ABC113B-Palace](https://atcoder.jp/contests/abc113/tasks/abc113_b)→★★
 
 1. [ABC072B-OddString](https://atcoder.jp/contests/abc072/tasks/abc072_b)→
 
