@@ -8,12 +8,15 @@ def solver(allplace, maxtemp, targettemp, eachheight):
     difftemp = maxtemp
     for j in range(0, allplace):
         heretemp = abs(targettemp - (maxtemp - eachheight[j]*0.006))
-        answer = j if heretemp < difftemp else answer
+        print(difftemp, heretemp)
+        if heretemp < difftemp:
+            answer = j
+            difftemp = heretemp
     return answer+1
 
 
 if __name__ == "__main__":
-    N = int(sys.stdin.readline().rsplit())
+    N = list(map(int, sys.stdin.readline().split()))
     T, A = map(float, sys.stdin.readline().split(' '))
     HI = list(map(float, sys.stdin.readline().split(' ')))
-    print(solver(N, T, A, HI))
+    print(solver(N[0], T, A, HI))
