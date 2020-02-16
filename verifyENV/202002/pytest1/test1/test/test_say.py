@@ -6,7 +6,7 @@ def test_foo_say():
 
 
 def test_foo_say2():
-    assert Foo().say2() == 'foo'
+    assert Foo().say2() == 'foo2'
 
 
 def test_hoge_say1():
@@ -14,4 +14,4 @@ def test_hoge_say1():
 
 
 def test_hoge_say2():
-    assert Hoge().say() == 'hoge2'
+    assert Hoge().say2() == 'hoge2'
