@@ -5,8 +5,10 @@ import sys
 
 def solver(inputStr):
     answer = ''
+    answerList = []
     for j in range(0, len(inputStr), 2):
-        answer
+        answerList.append(inputStr[j])
+    answer = ''.join(answerList)
     return answer
 
 
