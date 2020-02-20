@@ -15,11 +15,19 @@ class Problem:
         print(self.avepoint)
         print(self.highs)
 
+    def solve(self):
+        maxdiff = 100000.0
+        result = 1
+        for j in range(0, self.allnumber):
+            difftemp = abs(self.avepoint-(self.maxthermo-self.highs[0]*0.006))
+            if difftemp < maxdiff:
+                maxdiff = maxdiff
+                result = j+1
+        return result
+
 
 if __name__ == "__main__":
-    N = 10
-    T = 20
-    A = 30
-    HI = [1, 2, 3, 4]
-#    print(Problem(N, T, A, HI).solve())
-    Problem(N, T, A, HI).problemprint()
+    N = int(input())
+    T, A = map(float, input().split(' '))
+    HI = list(map(float, input().split(' ')))
+    print(Problem(N, T, A, HI).solve())
