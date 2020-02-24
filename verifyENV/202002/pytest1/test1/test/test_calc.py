@@ -1,3 +1,8 @@
+import os
+import sys
+from os.path import join
+sys.path.append(join(os.path.dirname(os.path.abspath(__file__),'..//main//'))
+
 from main.calc import Calc
 
 
