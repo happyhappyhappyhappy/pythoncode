@@ -15,3 +15,6 @@
 * 間が空いた
 * ABC113Bと同じくクラスを使って行う
 * Using EditorConfig core...{}が気になる
+* 3項演算子の利用はせず
+* [完了](https://atcoder.jp/contests/abc072/submissions/me)
+    * 処理時間は30ms,メモリは変わらず

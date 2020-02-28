@@ -9,12 +9,20 @@ class Problem:
 
     def solve(self):
         result = ''
-        analyzestr = self.problemstring
-        for j in range(0, self.length, +2):
-            result = result.join(analyzestr[j])
+        resultlist = []
+        for j in range(0, self.length):
+            if j % 2 == 0:
+                resultlist.append(self.problemstring[j])
+        result = ''.join(resultlist)
         return result
 
 
 if __name__ == "__main__":
+    #    S = "atcoder"
+    #    print("{} => {}".format(S, Problem(S).solve()))
+    #    S = "aaaa"
+    #    print("{} => {}".format(S, Problem(S).solve()))
+    #    S = "z"
+    #    print("{} => {}".format(S, Problem(S).solve()))
     S = input()
     print(Problem(S).solve())
