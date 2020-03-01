@@ -1,5 +1,6 @@
 # Problem https://atcoder.jp/contests/abc053/tasks/abc053_b
 # Python 1st Try
+import copy
 
 
 class Problem:
@@ -7,14 +8,29 @@ class Problem:
         self.stringdata = stringdata
 
     def solver(self):
+        strcont = copy.copy(self.stringdata)
         result = 0
+        rightposition = 0
+        leftposition = len(strcont)
+        j = 0
+        while True:
+            if strcont[j] == 'A':
+                rightposition = j
+                break
+            else:
+                j = j + 1
+        j = leftposition - 1
+        while True:
+            if strcont[j] == 'Z':
+                leftposition = j
+                break
+            else:
+                j = j - 1
+
+        result = leftposition - rightposition + 1
         return result
 
 
 if __name__ == "__main__":
-    s = "QWERTYASDFZXCV"
-    print('{} => {} =? 5'.format(s, Problem(s).solver()))
-    s = "ZABCZ"
-    print('{} => {} =? 4'.format(s, Problem(s).solver()))
-    s = "HASFJGHOGAKZZFEGA"
-    print('{} => {} =? 12'.format(s, Problem(s).solver()))
+    s = input()
+    print("{}".format(Problem(s).solver()))
