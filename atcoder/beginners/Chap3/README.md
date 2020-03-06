@@ -11,7 +11,7 @@
 
 1. [ABC113B-Palace](https://atcoder.jp/contests/abc113/tasks/abc113_b)→★★★
 
-1. [ABC072B-OddString](https://atcoder.jp/contests/abc072/tasks/abc072_b)→★★
+1. [ABC072B-OddString](https://atcoder.jp/contests/abc072/tasks/abc072_b)→★★★
 
 1. [ABC053B-A to Z String](https://atcoder.jp/contests/abc053/tasks/abc053_b)→★
 

@@ -18,3 +18,19 @@
 * 3項演算子の利用はせず
 * [完了](https://atcoder.jp/contests/abc072/submissions/me)
     * 処理時間は30ms,メモリは変わらず
+---
+## 3回目
+# 2020/03/07
+* また間が空いた
+* 今度は`class`のメソッド関数に`__str__`を試しに使って見た
+* とりあえずtestdataの確認に使ったが上手くいった
+    * object を直接していたい時だけ`print(object)`で表示する文字列を求める
+* [完了](https://atcoder.jp/contests/abc072/submissions/10557434)
+    * 実行時間は22ms,メモリは3044kbと若干増えた
+
+* 次回以降、この課題をやる目的はアルゴリズムの習得なので、直接の解法は外部関数にするがクラスの設定はしない
+    * デバッグで使える物としよう
+
+* なお、今回の`__str__`関連は[ここ](https://note.nkmk.me/python-union-find/)を参照
+* `while` 文ははまり防止の為一応、print文をまずはめておきたい
+* `copy.copy(オブジェクト)`ね

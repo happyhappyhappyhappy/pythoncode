@@ -9,3 +9,6 @@
 * あまり変わらないかもしれないが問題の文字列オブジェクトをそのまま使わずコピーをして、そちらを利用して起動することにした。[参考](https://docs.python.org/ja/3/library/copy.html)
 * [完了](https://atcoder.jp/contests/abc053/submissions/10423791)
     * 長くて36ms,メモリ大きくて4012kb
+---
+## 2回目
+# 2020/03/06
