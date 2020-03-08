@@ -15,6 +15,6 @@
 
 1. [ABC053B-A to Z String](https://atcoder.jp/contests/abc053/tasks/abc053_b)→★★★
 
-1. [ABC095B-Bitter Alchemy](https://atcoder.jp/contests/abc095/tasks/abc095_b)→★
+1. [ABC095B-Bitter Alchemy](https://atcoder.jp/contests/abc095/tasks/abc095_b)→★★
 
 ---
