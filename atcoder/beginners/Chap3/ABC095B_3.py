@@ -5,14 +5,14 @@
 def solver(donuskind, maxpowder, eachpowder):
     result = donuskind  # mindonuts
     sumpowder = 0
-    minpowder = 100000
-    for j in range(0, donuskind, +1):
-        sumpowder = sumpowder + eachpowder[j]
-        if eachpowder[j] <= eachpowder:
-            minpowder = eachpowder[j]
-
-
-
+    minpowder = 10**5
+    # print(eachpowder)
+    for j in eachpowder:
+        sumpowder = sumpowder + j
+        if j <= minpowder:
+            minpowder = j
+    # print(minpowder, sumpowder)
+    result = result + (maxpowder - sumpowder) // minpowder
     return result
 
 

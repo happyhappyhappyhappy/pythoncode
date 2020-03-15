@@ -20,3 +20,12 @@
 * [完了](https://atcoder.jp/contests/abc095/submissions/10666393)
     * 単純化出来たのは良かったかも
     * 機械的な情報は前回と同じかな
+
+## 3回目
+# 2020/03/15
+* readlinesはダメっぽい、readline()がinput()と同じようだ
+* for文回すとき各ドーナツのリストでやってみた
+    * env環境で確認済み。
+        * 今まで上手くいかなかったのは他の処理に問題があったくさい
+* [完了](https://atcoder.jp/contests/abc095/submissions/10916250)
+    * 機械的な時間などはあまり替わらない
