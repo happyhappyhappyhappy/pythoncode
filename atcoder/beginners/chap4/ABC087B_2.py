@@ -8,7 +8,9 @@ def solver(yen500, yen100, yen050, sumX):
     for j in range(0, yen500+1, +1):
         for k in range(0, yen100+1, +1):
             for m in range(0, yen050+1, +1):
-                pass
+                totalsum = j*500+k*100+m*50
+                if sumX == totalsum:
+                    result = result + 1
     return result
 
 

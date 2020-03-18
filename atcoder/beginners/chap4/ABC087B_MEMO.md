@@ -10,3 +10,9 @@
 * [完了](https://atcoder.jp/contests/abc087/submissions/10797639)
     * 実行時間高いと46ms,メモリは3060k
         * 依然とあまり替わらないかも
+-----
+## 2回目
+# 2020/3/18
+* 全然for文の結果が同じ値になっておかしいと思ったら、関数引数を足していたことが判明
+* [完了](https://atcoder.jp/contests/abc087/submissions/10983825)
+    * 時間、メモリなどは同じ
