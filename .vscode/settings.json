@@ -5,6 +5,7 @@
     "python.linting.pylintCategorySeverity.convention": "Hint",
     "python.linting.pylintCategorySeverity.error": "Hint",
     "python.linting.pylamaPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylama.exe",
+    "python.linting.pylintArgs": ["--disable=E731,E302"],
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "diffEditor.ignoreTrimWhitespace": false,
@@ -14,5 +15,6 @@
     "python.formatting.yapfPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\yapf.exe",
     "python.formatting.blackPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\black.exe",
     "python.formatting.autopep8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\autopep8.exe",
-    "python.linting.pylintUseMinimalCheckers": false
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.pylamaEnabled": true
 }

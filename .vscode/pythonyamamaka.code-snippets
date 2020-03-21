@@ -27,6 +27,8 @@
 			"# import heapq,copy",
 			"# from collections import deque",
 			"int1 = lambda x: int(x) - 1",
+//			"chmax = lambda x,y: y = x if x < y else x = y",
+//			"chmin = lambda x,y: y = x if y < x else x = y",
 			"p2D = lambda x: print(*x, sep=\"\\n\")",
 			"def II(): return int(sys.stdin.readline())",
 			"def MI(): return map(int, sys.stdin.readline().split())",
@@ -35,8 +37,15 @@
 			"def LLI(rows_number): return [LI() for _ in range(rows_number)]",
 			"",
 			"",
+			"def solver():",
+			"\tresult = 0",
+			"\t# algorithm",
+			"\treturn result",
+			"",
+			"",
 			"if __name__ == \"__main__\":",
-			"    print(\"\".format(solver()))"
+			"    print(\"\".format(solver()))",
+			""
 		],
 		"description": "Atcoderに使えそうな表現"
 	}
