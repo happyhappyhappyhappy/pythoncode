@@ -16,12 +16,14 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 
 def solver(yen500, yen100, yen050, objectSum):
-    result = "Yes"
+    result = 0
     # algorithm
-    for j in range(0, intp1(yen500), +1):
-        for k in range(0, intp1(yen100), +1):
-            pass
-        pass
+    for yen500v in range(0, intp1(yen500)):
+        for yen100v in range(0, intp1(yen100)):
+            for yen050v in range(0, intp1(yen050)):
+                nowtotal = yen500v*500+yen100v*100+yen050v*50
+                if nowtotal == objectSum:
+                    result = intp1(result)
     return result
 
 
@@ -30,4 +32,4 @@ if __name__ == "__main__":
     B = II()
     C = II()
     X = II()
-    print("".format(solver(A, B, C, X)))
+    print("{}".format(solver(A, B, C, X)))
