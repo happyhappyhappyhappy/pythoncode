@@ -44,7 +44,7 @@
 			"",
 			"",
 			"if __name__ == \"__main__\":",
-			"    print(\"\".format(solver()))",
+			"    print(\"{}\".format(solver()))",
 			""
 		],
 		"description": "Atcoderに使えそうな表現"
