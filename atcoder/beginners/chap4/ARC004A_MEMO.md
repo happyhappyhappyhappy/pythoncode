@@ -8,3 +8,11 @@
     * 落ち着けば分かった
 * [完了](https://atcoder.jp/contests/arc004/submissions/11229171)
     * python3は29ms,3572kbで完了のまき
+-----
+## 2回目
+# 2020/3/28
+* 2次元配列使って見る
+* 確か無造作に宣言するとidが同じ故に一部の更新が全体の更新になることを考慮する
+* [参考リンク](https://note.nkmk.me/python-list-initialize/)
+    * 上手くいった
+        * [復習](https://note.nkmk.me/python-list-comprehension/)
