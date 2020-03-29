@@ -22,6 +22,7 @@
     [参考リンク](https://note.nkmk.me/python-list-comprehension/)
 * [完了](https://atcoder.jp/contests/arc004/submissions/11343213)
     * 実行時の長さは少し長くなった。メモリは同じ。
+* `import math`でpylink警告が出るのはどうしてか
 -----
 ## 3回目
 # 2020/X/X

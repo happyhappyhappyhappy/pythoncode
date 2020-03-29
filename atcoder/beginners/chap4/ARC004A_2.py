@@ -1,6 +1,5 @@
 # Problem: https://atcoder.jp/contests/arc004/tasks/arc004_1
 # Python 2nd Try
-
 import sys
 import math
 import pprint
