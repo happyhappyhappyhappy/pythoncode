@@ -1,4 +1,4 @@
-# ARC104A-2点間距離の最大値
+# ARC004A-2点間距離の最大値
 [Problem](https://atcoder.jp/contests/arc004/tasks/arc004_1)
 -----
 ## 1回目
@@ -16,3 +16,12 @@
 * [参考リンク](https://note.nkmk.me/python-list-initialize/)
     * 上手くいった
         * [復習](https://note.nkmk.me/python-list-comprehension/)
+    * 内包表記だけできてしまったぽい(2020/3/29)
+        * 誤った例`[ [0] * 2 ] * 3`
+* 次はzipでやってみよう
+    [参考リンク](https://note.nkmk.me/python-list-comprehension/)
+* [完了](https://atcoder.jp/contests/arc004/submissions/11343213)
+    * 実行時の長さは少し長くなった。メモリは同じ。
+-----
+## 3回目
+# 2020/X/X
