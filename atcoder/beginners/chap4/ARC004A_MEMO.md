@@ -29,3 +29,5 @@
 * zipの動きを試してみたところで完了
     * きちんと`list()`を利用しないと値として取り出せないことに注意(多分)
         * [参考](https://cutt.us/kzd0D)
+* [完了](https://atcoder.jp/contests/arc004/submissions/11391856)
+    * 実行時の長さは短く、メモリも少なめになった
