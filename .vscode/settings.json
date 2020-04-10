@@ -15,9 +15,5 @@
     "python.formatting.yapfPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\yapf.exe",
     "python.formatting.blackPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\black.exe",
     "python.formatting.autopep8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\autopep8.exe",
-    "python.linting.pylintUseMinimalCheckers": false,
-    "python.linting.pylamaEnabled": true,
-    "python.linting.pylamaArgs": [
-        "--disable=E731,E302"
-    ]
+    "python.linting.pylamaEnabled": true
 }

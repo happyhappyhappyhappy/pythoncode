@@ -19,7 +19,7 @@
 		"scope":"python",
 		"prefix": "atdtmp",
 		"body":[
-			"# Problem: ",
+			"# Problem: $2",
 			"# Python $1 Try",
 			"",
 			"import sys",
