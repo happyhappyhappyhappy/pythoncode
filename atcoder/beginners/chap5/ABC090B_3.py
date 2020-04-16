@@ -34,9 +34,8 @@ def checkParin(checkNum):
 
 def solver(fromNum, toNum):
     result = 0
-    # algorithm
     j = fromNum
-    while ((j <= fromNum) and (j <= toNum)):
+    while ((fromNum <= j) and (j <= toNum)):
         if checkParin(j):
             result = result + 1
         j = j + 1
@@ -44,4 +43,5 @@ def solver(fromNum, toNum):
 
 
 if __name__ == "__main__":
-    print("{}".format(solver()))
+    A, B = MI()
+    print("{}".format(solver(A, B)))
