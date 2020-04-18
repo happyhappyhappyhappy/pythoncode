@@ -1,0 +1,9 @@
+# ARC090B-Card Game for Two
+[Problem](https://atcoder.jp/contests/abc088/tasks/abc088_b)
+-----
+#1回目
+## 2020/4/18
+* [sortの基礎リンク](https://note.nkmk.me/python-list-sort-sorted/)
+* 並べ替えてしまったら後は要なしなのでsortメソッド利用
+* [完了](https://atcoder.jp/contests/abc088/submissions/12035384)
+    * 実行時間18ms,メモリ3064。大体基本的か。
