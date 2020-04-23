@@ -4,7 +4,7 @@
 
 ---
 
-1. [ABC088B-Card Game for Two](https://atcoder.jp/contests/abc088/tasks/abc088_b)→★★
+1. [ABC088B-Card Game for Two](https://atcoder.jp/contests/abc088/tasks/abc088_b)→★★★
 1. [ABC067B-Snake Toy](https://atcoder.jp/contests/abc067/tasks/abc067_b)→★
 1. [ABC042B-Iroha Loves Strings](https://atcoder.jp/contests/abc042/tasks/abc042_b)→
 1. [AGC027A-Candy Distribution Again](https://atcoder.jp/contests/agc027/tasks/agc027_a)→
