@@ -19,3 +19,8 @@
     * reverseとvとsが逆
 * [完了](https://atcoder.jp/contests/abc067/submissions/12269559)
     * 1回目と変わらない
+-----
+# 3回目
+## 2020/4/29
+* あえてsortedを使い元をそのままにする
+* [完了](https://atcoder.jp/contests/abc067/submissions/12473127)

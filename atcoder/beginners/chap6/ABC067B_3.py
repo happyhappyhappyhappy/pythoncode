@@ -22,10 +22,14 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 def solver(allNumber, selectNum, eachLength):
     result = 0
     # algorithm
+    sortedStickLength = sorted(eachLength, reverse=True)
+    #    print("{}:{}".format(sortedStickLength, eachLength))
+    for j in range(0, selectNum, +1):
+        result = result + sortedStickLength[j]
     return result
 
 
 if __name__ == "__main__":
     N, K = MI()
-    BowList = LI()
-    print("{}".format(solver(N, K, BowList)))
+    StickList = LI()
+    print("{}".format(solver(N, K, StickList)))
