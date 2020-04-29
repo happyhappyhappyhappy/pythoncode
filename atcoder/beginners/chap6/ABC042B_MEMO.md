@@ -15,3 +15,10 @@
 * [完了](https://atcoder.jp/contests/abc042/submissions/12452936)
     * 以前にやったよりはメモリも実行時間も少なめ
         * 時計を動かした後がある
+-----
+# 2回目
+## 2020/4/29
+
+* `tmpList , _ = map(str, sys.stdin.readline().split())`でサクッと行きたかったがエラー
+* LSというLIを改良した関数を作成する
+* [完了](https://atcoder.jp/contests/abc042/submissions/12474025)
