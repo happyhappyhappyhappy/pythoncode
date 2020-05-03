@@ -22,3 +22,8 @@
 * `tmpList , _ = map(str, sys.stdin.readline().split())`でサクッと行きたかったがエラー
 * LSというLIを改良した関数を作成する
 * [完了](https://atcoder.jp/contests/abc042/submissions/12474025)
+-----
+# 3回目
+## 2020/5/3
+* Stringクラスのjoinメソッドは元のStringをセパレーター、間に挟む文字なのでfor文に意味は無い
+* [完了](https://atcoder.jp/contests/abc042/submissions/12700935)
