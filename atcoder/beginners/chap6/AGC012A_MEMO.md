@@ -1,3 +1,4 @@
+(テンプレート)
 # AGC027A-Candy Distribution Again
 [Problem](https://atcoder.jp/contests/agc027/tasks/agc027_a)
 -----
