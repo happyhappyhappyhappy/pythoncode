@@ -19,11 +19,21 @@ def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 
-def solver():
+def solver(eachPoints):
     result = 0
+    group = len(eachPoints) // 3
+    grouping = [[0] * 3 for _ in range(group)]
+    eachPoints.sort(reverse=False)
+#    for mi in range(group):
+#        tmpgroup = mi // group
+#        tmpposition = mi % 3
+
+    print(grouping)
     # algorithm
     return result
 
 
 if __name__ == "__main__":
-    print("{}".format(solver()))
+    _ = II()
+    AI = LI()
+    print("{}".format(solver(AI)))
