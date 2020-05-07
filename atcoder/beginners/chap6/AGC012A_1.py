@@ -21,15 +21,22 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 def solver(eachPoints):
     result = 0
-    group = len(eachPoints) // 3
-    grouping = [[0] * 3 for _ in range(group)]
+    menbers = len(eachPoints)
+    group = menbers // 3
     eachPoints.sort(reverse=False)
-#    for mi in range(group):
-#        tmpgroup = mi // group
-#        tmpposition = mi % 3
-
-    print(grouping)
+#    print(eachPoints)
+    useSkillList = []
+    #  最初のグループ個だけカットしたリストを新規作成[0,1,2,3,4,5]->[2,3,4,5]
+    for ui in range(group, menbers, +1):
+        useSkillList.append(eachPoints[ui])
+#    print("UseListOnly {}".format(useSkillList))
+    # for pi in range(0, menbers):
+    #    if pi // group == 1:
+    #        print("Get Position -> {}={}".format(pi, eachPoints[pi]))
+    #        result = result + eachPoints[pi]
     # algorithm
+    for sum2pos in range(0, len(useSkillList), +2):
+        result = useSkillList[sum2pos] + result
     return result
 
 
