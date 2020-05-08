@@ -19,3 +19,8 @@
 # 2回目
 ## 2020/05/03
 * [完了](https://atcoder.jp/contests/agc027/submissions/12702340)
+-----
+# 3回目
+## 2020/05/08
+* サンプルだけで無く自分もテストケースを作ってみた
+* [完了](https://atcoder.jp/contests/agc027/submissions/12952757)

@@ -23,15 +23,14 @@ def solver(childs, candies, happyNumber):
     result = 0
     happyNumber.sort()
     for ch_i in range(0, childs, +1):
-        tmpCaI = candies - happyNumber[ch_i]
-        if 0 <= tmpCaI:  # まだまだお菓子には余裕があります
+        candies = candies - happyNumber[ch_i]
+        if 0 <= candies:  # まだまだお菓子には余裕があります
             result = result + 1
-            candies = tmpCaI
         else:  # これ以上菓子が配れない
-            break
+            return result
     # 全部終わってキッカリで無ければ最後の一人が不満
-    if 0 < candies:
-        result = result - 1
+    if 0 != candies:
+        return result - 1
     return result
 
 
