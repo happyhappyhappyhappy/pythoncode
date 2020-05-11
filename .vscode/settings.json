@@ -15,5 +15,10 @@
     "python.formatting.yapfPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\yapf.exe",
     "python.formatting.blackPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\black.exe",
     "python.formatting.autopep8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\autopep8.exe",
-    "python.linting.pylamaEnabled": true
+    "python.linting.pylamaEnabled": true,
+    "cSpell.words": [
+        "Iroha",
+        "deque",
+        "heapq"
+    ]
 }
