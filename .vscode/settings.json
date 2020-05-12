@@ -18,7 +18,10 @@
     "python.linting.pylamaEnabled": true,
     "cSpell.words": [
         "Iroha",
+        "Kagami",
+        "Snuke's",
         "deque",
-        "heapq"
+        "heapq",
+        "mochi"
     ]
 }
