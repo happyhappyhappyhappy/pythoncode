@@ -23,5 +23,8 @@
         "deque",
         "heapq",
         "mochi"
+    ],
+    "python.linting.pylamaArgs": [
+        "--disable=E731,E302"
     ]
 }

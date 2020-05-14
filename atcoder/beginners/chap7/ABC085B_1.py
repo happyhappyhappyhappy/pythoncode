@@ -8,18 +8,21 @@ def II(): return int(sys.stdin.readline())
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number): return [LI() for _ in range(rows_number)]
-
-
-def solver(riseSet):
+def solver(cakeTotal, riseSet):
+    RISE_MAXSIZE = 100
     result = 0
-    print("riseset={}".format(riseSet))
-    # algorithm
+    # print("riseset={}".format(riseSet))
+    bucketList = [0] * RISE_MAXSIZE
+    for p in range(0,cakeTotal, +1): # p = position
+        weigh = riseSet[p]
+        bucketList[weigh-1] = bucketList[weigh-1] + 1
+    for p in range(RISE_MAXSIZE):
+        if 0 < bucketList[p]:
+            result = result + 1
     return result
-
-
 if __name__ == "__main__":
     N = II()
     DI = list()
     for _ in range(0, N):
         DI.append(II())
-    print("{}".format(solver(DI)))
+    print("{}".format(solver(N, DI)))
