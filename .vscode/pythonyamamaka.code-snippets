@@ -39,5 +39,22 @@
 			""
 		],
 		"description": "Atcoderに使えそうな表現"
+	},
+	"print two variables":{
+		"scope":"python",
+		"prefix": "p2",
+		"body": [
+			"print(\"{}{}\".format($1,$2))"
+		],
+		"description": "print 2変数"
+	},
+	"print one variables":{
+		"scope":"python",
+		"prefix": "p1",
+		"body": [
+			"print(\"{}\".format($1))"
+		],
+		"description": "print 1変数"
 	}
+
 }
