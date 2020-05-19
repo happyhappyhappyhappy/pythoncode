@@ -6,3 +6,6 @@
 -----
 * しばらく`print("{}".format(valuable))`を使う時は`"{}"`を記述することを忘れない
 * でないなぁと思っていたら眠い証拠なので素直に`print(valuable)`を使うべし
+* set型に変換するとすっきり行く
+* 2回目完了
+    * [詳細](https://atcoder.jp/contests/abc085/submissions/13401168)
