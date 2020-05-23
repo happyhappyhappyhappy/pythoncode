@@ -4,18 +4,17 @@
     "python.linting.pylintCategorySeverity.fatal": "Hint",
     "python.linting.pylintCategorySeverity.convention": "Hint",
     "python.linting.pylintCategorySeverity.error": "Hint",
-    "python.linting.pylamaPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylama.exe",
     "python.linting.pylintArgs": ["--disable=E731,E302"],
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "python.linting.mypyPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\mypy.exe",
     "python.linting.pylintPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\pylint.exe",
-    "python.linting.flake8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\flake8.exe",
+    "python.linting.flake8Path": "C:\\\\msys64\\\\usr\\\\bin\\\\flake8",
     "python.formatting.yapfPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\yapf.exe",
     "python.formatting.blackPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\black.exe",
     "python.formatting.autopep8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\autopep8.exe",
-    "python.linting.pylamaEnabled": true,
+    "python.linting.pylamaEnabled": false,
     "cSpell.words": [
         "Iroha",
         "Kagami",
@@ -26,5 +25,8 @@
     ],
     "python.linting.pylamaArgs": [
         "--disable=E731,E302"
-    ]
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false
 }
