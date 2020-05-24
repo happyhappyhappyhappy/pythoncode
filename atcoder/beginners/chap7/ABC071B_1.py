@@ -19,13 +19,13 @@ def initSet():
 def solver(inputString,allCharSet):
     result = ''
     inputSet = set(inputString)
-    print("INPUT={}".format(inputSet))
-    print("ALL={}".format(allCharSet))
+    # print("INPUT={}".format(inputSet))
+    # print("ALL={}".format(allCharSet))
     diffset = allCharSet - inputSet
-    print("DIFF={}".format(diffset))
+    # print("DIFF={}".format(diffset))
     difflist = list(diffset)
     difflist.sort()
-    print("{}".format(difflist))
+    # print("{}".format(difflist))
     if len(difflist) == 0:
         result = "None"
     else:
