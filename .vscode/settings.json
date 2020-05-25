@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "c:\\msys64\\mingw64\\bin\\python3.exe",
+    "python.pythonPath": "C:\\msys64\\mingw64\\bin\\python.exe",
     "python.linting.pylintCategorySeverity.warning": "Hint",
     "python.linting.pylintCategorySeverity.fatal": "Hint",
     "python.linting.pylintCategorySeverity.convention": "Hint",
