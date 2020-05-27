@@ -11,9 +11,8 @@ def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number): return [LI() for _ in range(rows_number)]
 def solver(riseSetQue):
     result = 0
-    print("RICELEN={}".format(len(riseSetQue)))
-
-    # algorithm
+    riseCounter = Counter(riseSetQue)
+    result = len(riseCounter)
     return result
 if __name__ == "__main__":
     N = II()
