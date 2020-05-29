@@ -7,3 +7,9 @@
 * [完了](https://atcoder.jp/contests/abc071/submissions/13569556)
     以前作ったものよりは全体的に実行時間が少ない
 * 次はCollectionライブラリ使って見る
+* 2回目
+* 基本に返ってバケット法を使う
+* IME利用時はコンソールを替えられないか、せめてvscodeだけ
+* やはりsplitを使わないと改行が文字列に入ってしまう
+* [完了](https://atcoder.jp/contests/abc071/submissions/13677690)
+    * 全集合から取り除くに比べてみると確かに実行時間が増える
