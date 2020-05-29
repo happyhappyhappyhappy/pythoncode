@@ -14,7 +14,8 @@
     "python.formatting.yapfPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\yapf.exe",
     "python.formatting.blackPath": "C:\\\\msys64\\\\mingw64\\\\bin\\\\black.exe",
     "python.formatting.autopep8Path": "C:\\\\msys64\\\\mingw64\\\\bin\\\\autopep8.exe",
-    "python.linting.pylamaEnabled": false,
+    "python.formatting.pylamapath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe",
+    "python.linting.pylamaEnabled": true,
     "cSpell.words": [
         "Iroha",
         "Kagami",
