@@ -9,6 +9,8 @@ def II(): return int(sys.stdin.readline())
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number): return [LI() for _ in range(rows_number)]
+
+
 def solver(inputStr):
     # print("STR={}".format(inputStr))
     # バケツを用意する
@@ -24,6 +26,8 @@ def solver(inputStr):
             break
     # algorithm
     return result
+
+
 if __name__ == "__main__":
     S = sys.stdin.readline().split()
     print("{}".format(solver(S[0])))
