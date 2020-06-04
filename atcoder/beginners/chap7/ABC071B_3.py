@@ -18,11 +18,18 @@ def solver(inputString):
         full_set.add(chr(j))
     for j in range(0, len(inputString), +1):
         input_set.add(inputString[j])
-    print("FULLSET:{}".format(full_set))
-    print("INPUT:{}".format(input_set))
+    # print("FULLSET:{}".format(full_set))
+    # print("INPUT:{}".format(input_set))
     # set -= other
-    result = 0
-    # algorithm
+    full_set -= input_set
+    # print("NOTFOUND:{}".format(full_set))
+    fullset_list = list(full_set)
+    fullset_list.sort()
+    # print("NOT in STRING:{}".format(fullset_list))
+    if 0 == len(fullset_list):
+        result = "None"
+    else:
+        result = fullset_list[0]
     return result
 
 

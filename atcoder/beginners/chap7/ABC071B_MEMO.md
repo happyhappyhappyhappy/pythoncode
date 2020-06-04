@@ -16,3 +16,5 @@
 * 3回目
 1. 基本集合型の取り扱い
 1. `set -= other`で取り除く
+1.[完了](https://atcoder.jp/contests/abc071/submissions/14002562)
+    1. 1回目に近い実行環境
