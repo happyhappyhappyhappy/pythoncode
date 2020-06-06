@@ -12,14 +12,17 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 
 def solver(CITY_NUM, CITY_LIST):
-    result = ""
+    # result = ""
     resultList = [0] * CITY_NUM
     for j in range(0, len(CITY_LIST), +1):
         now_city = CITY_LIST[j]
         resultList[now_city-1] = resultList[now_city-1]+1
-    for j in range(0, CITY_NUM, +1):
-        print("CITY:{} ROAD:{}".format(j, resultList[j]))
-    return result
+    # for j in range(0, CITY_NUM, +1):
+        # print("CITY:{} ROAD:{}".format(j, resultList[j]))
+    resultListStr = [str(j) for j in resultList]
+    return '\n'.join(resultListStr)
+    # print("{}".format(strReturn))
+    # return result
 
 
 if __name__ == "__main__":
