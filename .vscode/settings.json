@@ -21,7 +21,8 @@
         "Snuke's",
         "deque",
         "heapq",
-        "mochi"
+        "mochi",
+        "pprint"
     ],
     "python.linting.pylamaArgs": [
         "--disable=E731,E302"
