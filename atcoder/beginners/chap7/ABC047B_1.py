@@ -18,10 +18,16 @@ def solver(Width, Height, x_position, y_position, control_id):
     # algorithm
     # pprint.pprint(surface)
     if control_id[0] == 1:
-        for x in range(x_position[0]+1, Width+1):
-            for y in range(0, Height+1, +1):
-                surface[x][y] = 1
-                print("x:{} and y:{}".format(x, y))
+        for x in range(0, Width):
+            for y in range(0, Height):
+                if x < x_position[0]:
+                    surface[x][y] = 1
+    elif control_id[0] == 2:
+        pass
+    elif control_id[0] == 3:
+        pass
+    else: # control_id[X] == 4
+        pass
     pprint.pprint(surface)
     return result
 
