@@ -40,6 +40,10 @@ def solver(Width, Height, Point, x_position, y_position, control_id):
                     if y_position[j] <= y:
                         surface[y][x] = 1
     pprint.pprint(surface)
+    for x in range(0, Width+1, +1):
+        for y in range(0, Height+1, +1):
+            if surface[y][x] == 0:
+                result = result + 1
     return result
 
 
