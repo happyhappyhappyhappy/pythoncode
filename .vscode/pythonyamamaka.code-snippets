@@ -30,11 +30,11 @@
 			"def MI(): return map(int, sys.stdin.readline().split())",
 			"def LI(): return list(map(int, sys.stdin.readline().split()))",
 			"def LLI(rows_number): return [LI() for _ in range(rows_number)]",
-			"def solver():",
+			"\n\ndef solver():",
 			"\tresult = 0",
 			"\t# algorithm",
 			"\treturn result",
-			"if __name__ == \"__main__\":",
+			"\n\nif __name__ == \"__main__\":",
 			"    print(\"{}\".format(solver()))",
 			""
 		],
