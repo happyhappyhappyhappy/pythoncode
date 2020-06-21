@@ -11,3 +11,7 @@
 * 折角作ったのでこのまま返り値にする
 * [完了](https://atcoder.jp/contests/abc061/submissions/14064087)
     * 1回目と同じ
+* 3回目
+    * 返し値をスライス表現化する
+    * [完了](https://atcoder.jp/contests/abc061/submissions/14064087)
+    * 時間が掛かるしメモリが多いと思ったら単純にリスト作ってしまっただけだった
