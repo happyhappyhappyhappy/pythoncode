@@ -2,7 +2,7 @@
 # Python 2nd Try
 
 import sys
-# from collections import defaultdict
+from collections import defaultdict
 # import heapq,copy
 # from collections import deque
 def II(): return int(sys.stdin.readline())
@@ -13,6 +13,12 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 def solver(blueCard, redCard):
     result = 0
+    cardDict = defaultdict(int)
+    for j in range(0, len(blueCard), +1):
+        cardDict[blueCard[j]] += 1
+    for j in range(0, len(redCard), +1):
+        cardDict[redCard[j]] -= 1
+    print("{}".format(cardDict))
     # algorithm
     return result
 
