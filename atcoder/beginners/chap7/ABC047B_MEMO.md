@@ -24,3 +24,6 @@
     * [完了](https://atcoder.jp/contests/abc047/submissions/14489276)
         * 今回はnumpyを使ったためメモリも実行時間も長い
         * [単なるリストを使った方法](https://atcoder.jp/contests/abc047/submissions/3961977)より長い。ただわかりやすいからこれで良し。
+* 2回目
+    * 図面のシミュレーションではなく長さで表現
+    * はまりました
