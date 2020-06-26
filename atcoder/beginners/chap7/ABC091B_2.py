@@ -18,7 +18,12 @@ def solver(blueCard, redCard):
         cardDict[blueCard[j]] += 1
     for j in range(0, len(redCard), +1):
         cardDict[redCard[j]] -= 1
-    print("{}".format(cardDict))
+    # print("{}".format(list(cardDict.keys())))
+    cardList = list(cardDict.keys())
+    for j in range(0, len(cardList), +1):
+        if result < cardDict[cardList[j]]:
+            result = cardDict[cardList[j]]
+
     # algorithm
     return result
 
@@ -34,6 +39,6 @@ if __name__ == "__main__":
     for _ in range(0, M, +1):
         strings = sys.stdin.readline().strip('\n')
         redCard.append(strings)
-    print("Blue:{}".format(blueCard))
-    print("Red {}".format(redCard))
+#    print("Blue:{}".format(blueCard))
+#    print("Red {}".format(redCard))
     print("{}".format(solver(blueCard, redCard)))
