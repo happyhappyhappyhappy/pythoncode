@@ -27,3 +27,9 @@
 * 2回目
     * 図面のシミュレーションではなく長さで表現
     * はまりました
+        * サンプルは出来たが、サーバーに渡すといくつか失敗する
+            * `x_label_min = x_list[j]`の様に即座に入れてはダメ
+                * 大小を確認してから入れる入れる
+    * [完了](https://atcoder.jp/contests/abc047/submissions/14715241)
+        * numpyと同じくらい
+    * 次回は[これ](https://atcoder.jp/contests/abc047/submissions/14683985)を参考にして、逐一三つのリストを使わないようにする

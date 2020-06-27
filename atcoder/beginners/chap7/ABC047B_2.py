@@ -20,13 +20,13 @@ def solver(Width, Height, op_count, x_list, y_list, op_list):
     for j in range(0, op_count):
         real_ope = op_list[j]
         if real_ope == 1:
-            x_label_min = x_list[j]
+            x_label_min = max(x_list[j], x_label_min)
         if real_ope == 2:
-            x_label_max = x_list[j]
+            x_label_max = min(x_list[j], x_label_max)
         if real_ope == 3:
-            y_label_min = y_list[j]
+            y_label_min = max(y_list[j], y_label_min)
         if real_ope == 4:
-            y_label_max = y_list[j]
+            y_label_max = min(y_list[j], y_label_max)
     resultWidth = x_label_max - x_label_min
     resultHeight = y_label_max - y_label_min
     if resultWidth < 0:
