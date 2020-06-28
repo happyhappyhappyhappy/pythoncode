@@ -18,11 +18,13 @@
         "Iroha",
         "Kagami",
         "Snuke's",
+        "ballno",
         "deque",
         "dtype",
         "heapq",
         "mochi",
-        "pprint"
+        "pprint",
+        "prprint"
     ],
     "python.linting.pylamaArgs": [
         "--disable=E731,E302"
