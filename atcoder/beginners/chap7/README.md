@@ -9,3 +9,4 @@
 3. [ABC047B-Snuke's Coloring 2](https://atcoder.jp/contests/abc047/tasks/abc047_b)→×★★
 4. [ABC091B-Two Colors Card Game](https://atcoder.jp/contests/abc091/tasks/abc091_b)→★★
 5. [ABC081C-Not so Diverse](https://atcoder.jp/contests/abc081/tasks/arc086_a)→
+★
