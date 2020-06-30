@@ -33,6 +33,9 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe",
-    "python.linting.pycodestylePath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pycodestyle.exe"
+    "python.linting.pycodestylePath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pycodestyle.exe",
+    "cSpell.ignoreWords": [
+        "felmer"
+    ]
     // "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe"
 }

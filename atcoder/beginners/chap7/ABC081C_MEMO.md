@@ -5,3 +5,8 @@
     * dict型のソートには`key=lambda x:x[1]`を付けておくこと
     * [完了](https://atcoder.jp/contests/abc081/submissions/14805278)
         * collectionライブラリの導入でメモリは多めになってしまった
+* 2回目実行メモ
+    * ライブラリからCounterクラスを呼び出す
+    * 辞書型のクラスには値だけ抜き出すvalues()メソッドがあるのでこれとlistの抱き合わせで楽にする
+    * [完了](https://atcoder.jp/contests/abc081/submissions/14863948)
+        * Counterだけ呼び出したためメモリは減少した
