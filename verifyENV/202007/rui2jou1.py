@@ -8,7 +8,9 @@ def accumu(base, j):
         if (j & 1):
             result = base * result
         base = base * base
+        # print("{}".format(j))
         j = j >> 1
+        # print("{}".format(j))
     return result
 
 
