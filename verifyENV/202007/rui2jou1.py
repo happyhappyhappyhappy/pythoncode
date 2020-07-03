@@ -1,19 +1,19 @@
-BASE = 2
+BASE = 3
 
 
 def accumu(base, j):
     result = 1
-    a = 1
-    while 0 < j:
-        if j & 1:
-            result = result  * a
-        a = base * base
+    # a = 1
+    while (0 < j):
+        if (j & 1):
+            result = base * result
+        base = base * base
         j = j >> 1
     return result
 
 
 if __name__ == "__main__":
     N = int(input())
-    for j in range(0, N, +1):
+    for j in range(1, N, +1):
         res = accumu(BASE, j)
-        print("{} no {} jou {}".format(BASE, j, res))
+        print("{} の {} 乗は {}".format(BASE, j, res))
