@@ -6,7 +6,7 @@ def accumu(base, j):
     a = 1
     while 0 < j:
         if j & 1:
-            result = base * a
+            result = result  * a
         a = base * base
         j = j >> 1
     return result
