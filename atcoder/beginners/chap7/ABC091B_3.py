@@ -3,6 +3,7 @@
 
 import sys
 from collections import defaultdict
+# import pprint
 # import heapq,copy
 # from collections import deque
 def II(): return int(sys.stdin.readline())
@@ -13,8 +14,17 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 def solver(blue_count, blue_list, red_count, red_list):
     result = 0
-    allDict = defaultDict(int)
+    allDict = defaultdict(int)
+    for j in range(0, blue_count, +1):
+        allDict[blue_list[j]] += 1
+    for j in range(0, red_count, +1):
+        allDict[red_list[j]] -= 1
     # algorithm
+    # print("{}".format(allDict))
+    dictList = list(allDict.values()) + [0]
+    dictList.sort(reverse=True)
+    # pprint.pprint("{}".format(dictList))
+    result = dictList[0]
     return result
 
 
@@ -27,4 +37,4 @@ if __name__ == "__main__":
     ti = []
     for _ in range(0, M, 1):
         ti.append(input())
-    print("{}".format(solver(N, si , M, ti)))
+    print("{}".format(solver(N, si, M, ti)))
