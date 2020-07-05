@@ -33,3 +33,8 @@
     * [完了](https://atcoder.jp/contests/abc047/submissions/14715241)
         * numpyと同じくらい
     * 次回は[これ](https://atcoder.jp/contests/abc047/submissions/14683985)を参考にして、逐一三つのリストを使わないようにする
+* 3回目
+    * 長さで判断その2
+    * 今回はx,y,操作のリストを二次元リストとして入れた
+    * [完了](https://atcoder.jp/contests/abc047/submissions/14958377)
+        * 前回との違いはmin,maxを使っていること

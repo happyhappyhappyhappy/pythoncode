@@ -25,6 +25,7 @@
 			"import sys",
 			"# from collections import defaultdict",
 			"# import heapq,copy",
+			"import pprint as pp",
 			"# from collections import deque",
 			"def II(): return int(sys.stdin.readline())",
 			"def MI(): return map(int, sys.stdin.readline().split())",
@@ -44,7 +45,7 @@
 		"scope":"python",
 		"prefix": "p2",
 		"body": [
-			"print(\"{}{}\".format($1,$2))"
+			"pprint.pprint(\"{}{}\".format($1,$2))"
 		],
 		"description": "print 2変数"
 	},
@@ -52,7 +53,7 @@
 		"scope":"python",
 		"prefix": "p1",
 		"body": [
-			"print(\"{}\".format($1))"
+			"pprint.pprint(\"{}\".format($1))"
 		],
 		"description": "print 1変数"
 	}
