@@ -4,7 +4,7 @@
 import sys
 from collections import Counter
 # import heapq,copy
-import pprint
+# import pprint
 # from collections import deque
 def II(): return int(sys.stdin.readline())
 def MI(): return map(int, sys.stdin.readline().split())
@@ -16,14 +16,10 @@ def solver(ball_count, limit_num, ball_write_nums):
     result = 0
     total_count = Counter(ball_write_nums)
     count_list = list(total_count.values())
-    pprint.pprint("{}".format(total_count))
-    pprint.pprint("{}".format(count_list))
     count_list.sort()
-    pprint.pprint("{}".format(count_list))
-    pprint.pprint("{}".format(ball_count-limit_num))
-    for j in range(0, ball_count-limit_num, +1):
+    change_num = len(count_list) - limit_num
+    for j in range(0, change_num, +1):
         result += count_list[j]
-    # algorithm
     return result
 
 
