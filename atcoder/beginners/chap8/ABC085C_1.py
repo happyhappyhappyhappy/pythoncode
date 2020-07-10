@@ -15,11 +15,14 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 def solver(givenPieces, total_sum):
     #   result = 0
     # algorithm
-    for x in range(0, givenPieces, +1):
-        for y in range(0, givenPieces, +1):
-            remained_money = total_sum - x * 10000 + y * 5000
-            remained_pieces = givenPieces - x - y
-            if (remained_money / 1000) <= remained_pieces:
+    for x in range(0, givenPieces+1, +1):
+        for y in range(0, givenPieces+1-x, +1):
+            remained_money = total_sum - (x * 10000 + y * 5000)
+#            remained_pieces = givenPieces - x - y
+#            if remained_pieces < 0:
+            z = givenPieces - (x + y)
+            total = x * 10000 + y * 5000 + z * 1000
+            if total_sum == total:
                 return [x, y, (remained_money // 1000)]
     return [-1, -1, -1]
 
