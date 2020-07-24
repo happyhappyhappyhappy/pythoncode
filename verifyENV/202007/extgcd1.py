@@ -13,6 +13,7 @@ def run_gcd(a, b):
         return b, 0, 1
     else:
         g, y, x = run_gcd(b % a, a)
+        pp.pprint("g={},x={},y={}".format(g, y, x))
         x = x - (b // a) * y
         return g, x, y
 
