@@ -13,11 +13,16 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 yes = "Yes"
 no = "No"
 
+
 def solver(c_grid):
     result = no
-    b_list = [c_grid[0][0], c_grid[0][1], c_grid[0][2]]
-    # a_lis
-    # algorithm
+    a_list=[0, c_grid[1][0] - c_grid[0][0], c_grid[2][0] - c_grid[0][0]]
+    b_list=[c_grid[0][0], c_grid[0][1], c_grid[0][2]]
+    if (c_grid[1][1] == a_list[1] + b_list[1]) and \
+        (c_grid[1][2] == a_list[1] + b_list[2]) and \
+            ( c_grid[2][1] == a_list[2] + b_list[1]) and \
+                ( c_grid[2][2] == a_list[2] + b_list[2]):
+                    result = yes
     return result
 
 
