@@ -14,6 +14,7 @@ def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 def solver(number, allList):
     result = ""
+    resultList = []
     # algorithm
     # set_list = set(allList)
     # print(set_list)
@@ -23,10 +24,14 @@ def solver(number, allList):
     # print(box)
     # box[1] = 1
     # print(box)
-    for j in allList:
+    for j in range(0,len(allList)):
         num = allList[j]
         if box[num] == 0:
-            # num => str => result = " ".join(result,num)
+            # print("box[{}] = {}".format(num, box[num]))
+            resultList.append(str(num))
+            box[num] = 1
+    # print(resultList)
+    result = " ".join(resultList)
     return result
 
 
