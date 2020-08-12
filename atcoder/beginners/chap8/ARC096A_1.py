@@ -12,9 +12,14 @@ def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 
+# CONST
+MAXSIZE = ( 1 << 31 ) -1
+MINSIZE = -( 1 << 31) + 1
+
 def solver(a_price, b_price, c_price, target_x, target_y):
-    result = 10000000
-    for mix_i in range(0, 2 * 10^5+1, +1):
+    result = MAXSIZE
+    # for mix_i in range(0, 2 * 10^5+1, +1):
+    for mix_i in range(0, 2*(10**5)+1, +2):
         a_i = target_x - mix_i//2
         b_i = target_y - mix_i//2
         totalPrice = max(a_i, 0) * a_price + max(b_i,0) * b_price + mix_i * c_price
