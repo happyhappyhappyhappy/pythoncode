@@ -31,7 +31,7 @@
 			"def MI(): return map(int, sys.stdin.readline().split())",
 			"def LI(): return list(map(int, sys.stdin.readline().split()))",
 			"def LLI(rows_number): return [LI() for _ in range(rows_number)]",
-			"\n\n Const",
+			"\n\n# Const",
 			"MAXSIZE = ( 1 << 31 ) -1",
     		"MINSIZE = -( 1 << 31) + 1",
 			"\n\ndef solver():",
@@ -48,7 +48,7 @@
 		"scope":"python",
 		"prefix": "p2",
 		"body": [
-			"pprint.pprint(\"{}{}\".format($1,$2))"
+			"print(\"{}{}\".format($1,$2))"
 		],
 		"description": "print 2変数"
 	},
@@ -56,7 +56,7 @@
 		"scope":"python",
 		"prefix": "p1",
 		"body": [
-			"pprint.pprint(\"{}\".format($1))"
+			"print(\"{}\".format($1))"
 		],
 		"description": "print 1変数"
 	}
