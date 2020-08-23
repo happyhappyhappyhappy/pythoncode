@@ -1,0 +1,18 @@
+Script started on 2020-08-23 18:24:51+09:00 [TERM="xterm-256color" TTY="/dev/pty0" COLUMNS="80" LINES="24"]
+]0;~/python/verifyENV/installlog
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV/installlog[0m
+$ pacman -Ss cffi
+mingw32/mingw-w64-i686-python-argon2_cffi 19.2.0-2
+    CFFI-based Argon2 Bindings for Python (mingw-w64)
+mingw32/mingw-w64-i686-python-cffi 1.14.0-2
+    Foreign Function Interface for Python calling C code (mingw-w64)
+mingw64/mingw-w64-x86_64-python-argon2_cffi 19.2.0-2
+    CFFI-based Argon2 Bindings for Python (mingw-w64)
+mingw64/mingw-w64-x86_64-python-cffi 1.14.0-2 [インストール済み]
+    Foreign Function Interface for Python calling C code (mingw-w64)
+]0;~/python/verifyENV/installlog
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV/installlog[0m
+$ exit
+exit
+
+Script done on 2020-08-23 18:27:38+09:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,69 @@
+Script started on 2020-08-23 18:32:50+09:00 [TERM="xterm-256color" TTY="/dev/pty0" COLUMNS="80" LINES="24"]
+]0;~/python/verifyENV/installlog
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV/installlog[0m
+$ pip list
+Package           Version
+----------------- ---------------------
+astroid           2.4.1
+backcall          0.2.0
+decorator         4.4.2
+flake8            3.8.2
+gdb               0.0.1
+install           1.3.3
+ipython           7.17.0
+ipython-genutils  0.2.0
+isort             4.3.21
+jedi              0.17.2
+lazy-object-proxy 1.4.3
+libfdt            1.6.0-gf90bf1e5-dirty
+mccabe            0.6.1
+mypy-extensions   0.4.3
+parso             0.7.1
+pexpect           4.8.0
+pickleshare       0.7.5
+pip               20.2.2
+prompt-toolkit    3.0.6
+ptyprocess        0.6.0
+pycodestyle       2.6.0
+pycparser         2.20
+pydocstyle        5.0.2
+pyflakes          2.2.0
+Pygments          2.6.1
+pylama            7.7.1
+pylint            2.5.2
+scons             3.1.2
+setuptools        47.1.1
+six               1.15.0
+snowballstemmer   2.0.0
+toml              0.10.1
+traitlets         4.3.3
+typing-extensions 3.7.4.2
+wcwidth           0.2.5
+wrapt             1.12.1
+yapf              0.30.0
+]0;~/python/verifyENV/installlog
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV/installlog[0m
+$ pacman -Rs mingw-w64-i686-python-argon2_cffi
+エラー: 対象が見つかりませんでした: mingw-w64-i686-python-argon2_cffi
+]0;~/python/verifyENV/installlog
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV/installlog[0m
+$ pacman -Rs mingw-w64-i686-python-argon2_cffi[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kmingw-w64-x86_64-python-cffi
+依存関係を確認しています...
+
+パッケージ (3) mingw-w64-x86_64-python-ply-3.11-1
+               mingw-w64-x86_64-python-pycparser-2.20-1
+               mingw-w64-x86_64-python-cffi-1.14.0-2
+
+合計削除容量:  2.17 MiB
+
+:: 以上のパッケージを削除しますか？ [Y/n] y
+:: パッケージの変更を処理しています...
+(1/3) 削除 mingw-w64-x86_64-python-cffi            [---------------------]   0%(1/3) 削除 mingw-w64-x86_64-python-cffi            [---------------------]   0%(1/3) 削除 mingw-w64-x86_64-python-cffi            [---------------------]   1%(1/3) 削除 mingw-w64-x86_64-python-cffi            [#####################] 100%
+(2/3) 削除 mingw-w64-x86_64-python-pycparser       [---------------------]   0%(2/3) 削除 mingw-w64-x86_64-python-pycparser       [---------------------]   0%(2/3) 削除 mingw-w64-x86_64-python-pycparser       [#####################] 100%
+(3/3) 削除 mingw-w64-x86_64-python-ply             [---------------------]   0%(3/3) 削除 mingw-w64-x86_64-python-ply             [---------------------]   0%(3/3) 削除 mingw-w64-x86_64-python-ply             [#####################] 100%
+]0;~/python/verifyENV/installlog
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV/installlog[0m
+$ exit
+exit
+
+Script done on 2020-08-23 18:36:26+09:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,175 @@
+Script started on 2020-08-20 19:44:17+09:00 [TERM="xterm-256color" TTY="/dev/pty0" COLUMNS="80" LINES="24"]
+]0;~/python/verifyENV
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV[0m
+$ pip install -U jupyter
+Collecting jupyter
+  Using cached jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting notebook
+  Using cached notebook-6.1.3-py3-none-any.whl (9.4 MB)
+Collecting ipywidgets
+  Using cached ipywidgets-7.5.1-py2.py3-none-any.whl (121 kB)
+Collecting nbconvert
+  Using cached nbconvert-5.6.1-py2.py3-none-any.whl (455 kB)
+Collecting jupyter-console
+  Using cached jupyter_console-6.1.0-py2.py3-none-any.whl (21 kB)
+Collecting ipykernel
+  Using cached ipykernel-5.3.4-py3-none-any.whl (120 kB)
+Collecting qtconsole
+  Using cached qtconsole-4.7.6-py2.py3-none-any.whl (118 kB)
+Collecting terminado>=0.8.3
+  Using cached terminado-0.8.3-py2.py3-none-any.whl (33 kB)
+Collecting argon2-cffi
+  Using cached argon2-cffi-20.1.0.tar.gz (1.8 MB)
+  Installing build dependencies ... [?25l- \ | / - \ | error
+[31m  ERROR: Command errored out with exit status 1:
+   command: /usr/bin/python3.exe /usr/lib/python3.8/site-packages/pip install --ignore-installed --no-user --prefix /tmp/pip-build-env-xmdk4_0y/overlay --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- 'setuptools>=40.6.0' wheel 'cffi>=1.0'
+       cwd: None
+  Complete output (140 lines):
+  Collecting setuptools>=40.6.0
+    Using cached setuptools-49.6.0-py3-none-any.whl (803 kB)
+  Collecting wheel
+    Using cached wheel-0.35.1-py2.py3-none-any.whl (33 kB)
+  Collecting cffi>=1.0
+    Using cached cffi-1.14.2.tar.gz (470 kB)
+  Collecting pycparser
+    Using cached pycparser-2.20-py2.py3-none-any.whl (112 kB)
+  Using legacy 'setup.py install' for cffi, since package 'wheel' is not installed.
+  Installing collected packages: setuptools, wheel, pycparser, cffi
+      Running setup.py install for cffi: started
+      Running setup.py install for cffi: finished with status 'error'
+      ERROR: Command errored out with exit status 1:
+       command: /usr/bin/python3.exe -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-vptm3l1t/cffi/setup.py'"'"'; __file__='"'"'/tmp/pip-install-vptm3l1t/cffi/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-t1gtwr5d/install-record.txt --single-version-externally-managed --prefix /tmp/pip-build-env-xmdk4_0y/overlay --compile --install-headers /tmp/pip-build-env-xmdk4_0y/overlay/include/python3.8/cffi
+           cwd: /tmp/pip-install-vptm3l1t/cffi/
+      Complete output (122 lines):
+      running install
+      running build
+      running build_py
+      creating build
+      creating build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8
+      creating build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/api.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/backend_ctypes.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/cffi_opcode.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/commontypes.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/cparser.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/error.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/ffiplatform.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/lock.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/model.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/pkgconfig.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/recompiler.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/setuptools_ext.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/vengine_cpy.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/vengine_gen.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/verifier.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/__init__.py -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/_cffi_include.h -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/parse_c_type.h -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/_embedding.h -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      copying cffi/_cffi_errors.h -> build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/cffi
+      running build_ext
+      building '_cffi_backend' extension
+      creating build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8
+      creating build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c
+      x86_64-pc-msys-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -march=x86-64 -mtune=generic -O2 -pipe -march=x86-64 -mtune=generic -O2 -pipe -march=x86-64 -mtune=generic -O2 -pipe -DUSE__THREAD -DHAVE_SYNC_SYNCHRONIZE -IC:/msys64/mingw64/include -I/usr/include/python3.8 -c c/_cffi_backend.c -o build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o
+      c/_cffi_backend.c: 関数 ‘b_callback’ 内:
+      c/_cffi_backend.c:6302:5: 警告: ‘ffi_prep_closure’ is deprecated: use ffi_prep_closure_loc instead [-Wdeprecated-declarations]
+       6302 |     if (ffi_prep_closure(closure, &cif_descr->cif,
+            |     ^~
+      In file included from c/_cffi_backend.c:15:
+      /mingw64/include/ffi.h:334:1: 備考: ここで宣言されています
+        334 | ffi_prep_closure (ffi_closure*,
+            | ^~~~~~~~~~~~~~~~
+      In file included from /usr/include/python3.8/unicodeobject.h:58,
+                       from /usr/include/python3.8/Python.h:97,
+                       from c/_cffi_backend.c:2:
+      c/ffi_obj.c: 関数 ‘ffi_getctype’ 内:
+      c/ffi_obj.c:635:56: 警告: 配列の添字が ‘char’ 型です [-Wchar-subscripts]
+        635 |     while (replace_with[0] != 0 && isspace(replace_with[0]))
+            |                                            ~~~~~~~~~~~~^~~
+      c/ffi_obj.c:638:56: 警告: 配列の添字が ‘char’ 型です [-Wchar-subscripts]
+        638 |     while (replace_with_len > 0 && isspace(replace_with[replace_with_len - 1]))
+            |                                            ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+      gcc -shared -Wl,--enable-auto-image-base -pipe -L. -pipe -L. build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o -LC:/msys64/mingw64/lib/../lib -L/usr/lib/python3.8/config -L/usr/lib -lffi -lpython3.8 -o build/lib.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/_cffi_backend.cpython-38-x86_64-msys.dll
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `_realize_name':
+      /tmp/pip-install-vptm3l1t/cffi/c/realize_c_type.c:290: undefined reference to `stpcpy'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `_testfunc5':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:7302: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:7302: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `cdlopen_close_ignore_errors':
+      /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:27: undefined reference to `dlclose'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `dl_close_lib':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4360: undefined reference to `dlclose'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `dl_dealloc':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4244: undefined reference to `dlclose'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `b_do_dlopen':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4509: undefined reference to `dlopen'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4515: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `cdlopen_close':
+      /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:32: undefined reference to `dlclose'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:33: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `cdlopen_close_ignore_errors':
+      /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:27: undefined reference to `dlclose'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `b_load_library':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4537: undefined reference to `dlclose'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `dl_load_function':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4284: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4285: undefined reference to `dlsym'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4287: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `cdlopen_fetch':
+      /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:14: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:15: undefined reference to `dlsym'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/cdlopen.c:17: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `restore_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:278: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `save_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:277: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `b_set_errno':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:6946: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `save_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:277: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `b_set_errno':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:6948: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o:/tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:278: more undefined references to `__errno' follow
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `dl_read_variable':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4313: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4314: undefined reference to `dlsym'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4316: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `ffi_getctype':
+      /tmp/pip-install-vptm3l1t/cffi/c/ffi_obj.c:635: undefined reference to `__locale_ctype_ptr'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/ffi_obj.c:638: undefined reference to `__locale_ctype_ptr'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `restore_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:278: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `save_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:277: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `dl_write_variable':
+      /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4341: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4342: undefined reference to `dlsym'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/_cffi_backend.c:4344: undefined reference to `dlerror'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `save_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:277: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `restore_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:278: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `save_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:277: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `restore_errno_only':
+      /tmp/pip-install-vptm3l1t/cffi/c/misc_thread_common.h:278: undefined reference to `__errno'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: build/temp.mingw64_nt-10.0-19041-3.1.6-340.x86_64-x86_64-3.8/c/_cffi_backend.o: in function `more_core':
+      /tmp/pip-install-vptm3l1t/cffi/c/malloc_closure.h:132: undefined reference to `mmap'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: /tmp/pip-install-vptm3l1t/cffi/c/malloc_closure.h:103: undefined reference to `sysconf'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:/msys64/usr/lib/libpthread.a(t-d000035.o):fake:(.text+0x2): undefined reference to `__imp___getreent'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:/msys64/usr/lib/libpthread.a(t-d001105.o):fake:(.text+0x2): undefined reference to `__imp_pthread_getspecific'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:/msys64/usr/lib/libpthread.a(t-d001107.o):fake:(.text+0x2): undefined reference to `__imp_pthread_key_create'
+      C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:/msys64/usr/lib/libpthread.a(t-d001150.o):fake:(.text+0x2): undefined reference to `__imp_pthread_setspecific'
+      collect2.exe: error: ld returned 1 exit status
+      error: command 'gcc' failed with exit status 1
+      ----------------------------------------
+  ERROR: Command errored out with exit status 1: /usr/bin/python3.exe -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-vptm3l1t/cffi/setup.py'"'"'; __file__='"'"'/tmp/pip-install-vptm3l1t/cffi/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-t1gtwr5d/install-record.txt --single-version-externally-managed --prefix /tmp/pip-build-env-xmdk4_0y/overlay --compile --install-headers /tmp/pip-build-env-xmdk4_0y/overlay/include/python3.8/cffi Check the logs for full command output.
+  ----------------------------------------[0m
+[31mERROR: Command errored out with exit status 1: /usr/bin/python3.exe /usr/lib/python3.8/site-packages/pip install --ignore-installed --no-user --prefix /tmp/pip-build-env-xmdk4_0y/overlay --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- 'setuptools>=40.6.0' wheel 'cffi>=1.0' Check the logs for full command output.[0m
+[?25h]0;~/python/verifyENV
+[32myamanaka@sakura [35mMINGW64[0m [33m~/python/verifyENV[0m
+$ exit
+exit
+
+Script done on 2020-08-20 19:45:46+09:00 [COMMAND_EXIT_CODE="1"]
