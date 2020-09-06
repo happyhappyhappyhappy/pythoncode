@@ -5,7 +5,6 @@ import sys
 # from collections import defaultdict
 # import heapq,copy
 import pprint as pp
-from turtle import xcor
 # from collections import deque
 def II(): return int(sys.stdin.readline())
 def MI(): return map(int, sys.stdin.readline().split())
@@ -37,7 +36,7 @@ def solver(line00,line01,line02,
 
 
 if __name__ == "__main__":
-    line00 , line01, line03 = MI()
+    line00 , line01, line02 = MI()
     line10 , line11, line12 = MI()
     line20 , line21, line22 = MI()
     print("{}".format(solver(line00, line01, line02,
