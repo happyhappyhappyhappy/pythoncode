@@ -29,8 +29,8 @@ def solver(line00,line01,line02,
     b2 = line02 - a0
     a1 = line10 -line00
     a2 = line20 - line00
-    if (( a1 + b1 ) == line11) :
-        # 他の3座標もチェック
+    if (( a1 + b1 ) == line11) and (( a1 + b2 ) == line12
+    ) and (( a2 + b1 ) == line21) and (( a2 + b2 ) == line22):
         result = yes
     return result
 
