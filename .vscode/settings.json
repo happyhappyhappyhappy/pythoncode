@@ -39,7 +39,8 @@
     "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe",
     "python.linting.pycodestylePath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pycodestyle.exe",
     "cSpell.ignoreWords": [
-        "felmer"
+        "felmer",
+        "readline"
     ]
     // "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe"
 }
