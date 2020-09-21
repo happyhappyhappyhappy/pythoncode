@@ -19,13 +19,15 @@ MAXSHEET = 10**5
 
 def solver(a_price, b_price, ab_price, x_sheet , y_sheet):
     result = MAXSHEET*a_price+MAXSHEET*b_price
-    for j in range(0, 2*MAXSHEET, 2):
-        total = ((x_sheet-j//2)*a_price + (y_sheet-j//2)*b_price +
-                                         j*ab_price)
-        print("total={}".format(total))
+    for j in range(0, 2*MAXSHEET+1, 2):
+        a_buy_sheet = max(x_sheet-j//2,0)
+        b_buy_sheet = max(y_sheet - j//2, 0 )
+        total = ( a_buy_sheet*a_price + b_buy_sheet*b_price +
+                                         j*ab_price )
+#       print("total={}".format(total))
         check = ( total < result )
         if check:
-            print("値は{}に".format(total))
+#           print("値は{}に".format(total))
             result = total
     return result
 
