@@ -1,4 +1,4 @@
-# Problem: 
+# Problem: https://atcoder.jp/contests/arc096/tasks/arc096_a
 # Python 3rd Try
 
 import sys
@@ -17,11 +17,14 @@ MAXSIZE = ( 1 << 31 ) -1
 MINSIZE = -( 1 << 31) + 1
 
 
-def solver():
-    result = 0
+def solver(a_price, b_price, half_price, need_a, need_b):
+    result = MAXSIZE
+    for half_get in range(0, 2*(10**5)+1, +2):
+        pass
     # algorithm
     return result
 
 
 if __name__ == "__main__":
-    print("{}".format(solver()))
+    A, B, C, X, Y = MI()
+    print("{}".format(solver(A, B, C, X, Y)))
