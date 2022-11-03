@@ -1,54 +1,30 @@
-# Problem:
-# Python  Try
+def isExit(p,cSet):
+    return p in cSet
 
-import sys
-import numpy as np
-# from collections import defaultdict
-# import heapq,copy
-import pprint as pp
-# from collections import deque
-def II(): return int(sys.stdin.readline())
-def MI(): return map(int, sys.stdin.readline().split())
-def LI(): return list(map(int, sys.stdin.readline().split()))
-def LLI(rows_number): return [LI() for _ in range(rows_number)]
+def sqcheck(p1,p2,cSet):
+    length=0
+    (x1,y1) = p1
+    (x2,y2) = p2
+    p3 = (x2+y1-y2,y2+x2-x1)
+    p4 = (x1+y1-y2,y1+x2-x1)
+    if isExit(p3,cSet) and isExit(p4,cSet):
+        length = pow(x2-x1,2)+pow(y2-y1,2)
+    return length
 
-
-# Const
-MAXSIZE = ( 1 << 31 ) -1
-MINSIZE = -( 1 << 31) + 1
-PLOTSIZE = 10
-
-# PLOT : 方眼変数 出力しないこと
-PLOT=np.array([[False for j in range(PLOTSIZE)] for k in range(PLOTSIZE)])
-
-def get_area(p1,p2):
-    [x1,y1] = p1
-    [x2,y2] = p2
-    x3 = x2 + y1 - y2 ## TODO: y3からスタート
-    return 0
-
-def solver(n,point):
-    ans_area=0
-    point.sort()
-    for j in range(n):
-        [x,y] = point[j]
-        PLOT[x][y]=True
+def solver(n,tuples):
+    result = 0
+    tuples.sort()
+    columnSet = set(tuples)
     for j in range(n):
         for k in range(j+1,n):
-            p1 = point[j]
-            p2 = point[k]
-            ans_area = max(ans_area,get_area(p1,p2))
-    return ans_area
-
+            result = max(result,sqcheck(tuples[j],tuples[k],columnSet))
+    # algorithm
+    return result
 
 if __name__ == "__main__":
-
-    PointCnt = II()
-    Point = LLI(PointCnt)
-    print(Point)
-    print("{}".format(solver(PointCnt,Point)))
-'''
-    [x,y] = Point[1]
-    print("x = {}".format(x))
-    print("y = {}".format(y))
-'''
+    Pnt = int(input())
+    columnT = [None for j in range(Pnt)] # 箱を作っておく
+    for j in range(Pnt):
+        columnT[j] = tuple(map(int,input().split()))
+    columnT.sort()
+    print("{}".format(solver(Pnt,columnT)))
