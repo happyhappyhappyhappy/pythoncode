@@ -17,11 +17,8 @@
 	// }
 	"atcoder templete":{
 		"scope":"python",
-		"prefix": "atdtmp",
+		"prefix": "yamasimple",
 		"body":[
-			"# Problem: $2",
-			"# Python $1 Try",
-			"",
 			"import sys",
 			"# from collections import defaultdict",
 			"# import heapq,copy",
@@ -42,6 +39,6 @@
 			"    print(\"{}\".format(solver()))",
 			""
 		],
-		"description": "Atcoderに使えそうな表現"
+		"description": "Atcoderに使えそうな表現_シンプル版"
 	}
 }
