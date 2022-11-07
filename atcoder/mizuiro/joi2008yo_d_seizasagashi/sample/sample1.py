@@ -1,5 +1,5 @@
 import sys
-# from collections import defaultdict
+from collections import Counter
 # import heapq,copy
 import pprint as pp
 # from collections import deque
@@ -16,20 +16,21 @@ MINSIZE = -( 1 << 31) + 1
 
 
 def solver(figI,figL,realI,realL):
-    moveDict = dict()
+    result = 0
+    diffList = []
     for j in range(figI):
         for k in range(realI):
             (figx,figy) = figL[j]
             (realx,realy) = realL[k]
             diffx = realx-figx
             diffy = realy-figy
-            print("x軸 {} へ移動+y軸 {} へ移動".format(diffx,diffy))
-            difftuple = tuple(diffx,diffy)
-            # TODO: ここから確認 C++と同じように行ければ良いのだが
-            moveDict[difftuple] = moveDict[difftuple]+1
-
-    result = 0
-    # algorithm
+            tuplediff = (diffx,diffy)
+            diffList.append(tuplediff)
+    diffCounter = Counter(diffList)
+    for x,y in diffCounter.items():
+        if y == figI:
+            result = x
+            break
     return result
 
 
@@ -44,10 +45,5 @@ if __name__ == "__main__":
     for j in range(realInt):
         tuple1 = TI()
         realList.append(tuple1)
-    print("-----星座の図鑑一覧-----")
-    for j in range(figureInt):
-        print("{} => {}".format(j,figureList[j]))
-    print("-----実際の空の一覧-----\n")
-    for j in range(realInt):
-        print("{} => {}".format(j,realList[j]))
-    print("{}".format(solver(figureInt,figureList,realInt,realList)))
+    (x,y)=solver(figureInt,figureList,realInt,realList)
+    print("{} {}".format(x,y))
