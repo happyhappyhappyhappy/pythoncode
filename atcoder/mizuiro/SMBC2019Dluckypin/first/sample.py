@@ -1,27 +1,45 @@
 import sys
-# from collections import defaultdict
-# import heapq,copy
-import pprint as pp
-# from collections import deque
-def II(): return int(sys.stdin.readline())
-def MI(): return map(int, sys.stdin.readline().split())
-def LI(): return list(map(int, sys.stdin.readline().split()))
-def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
+# TODO: ここの挙動の確認
+def testing(luckynum,testpin):
+    firstChar = testpin[0]
+    secondChar = testpin[1]
+    thirdChar = testpin[2]
+    # 一文字目検索
+    resultind1 = luchynum.find(firstChar)
+    if resultind1 == -1:
+        return False
+    resultind2 = luchynum.find(secondChar,resultind1+1)
+    if resultind2 == -1:
+        return False
+    resultind3 = luckynum.find(thirdChar,resultind2+1)
+    if resultind3 == -1:
+        return False
+    return True
 
-# Const
-MAXSIZE = ( 1 << 31 ) -1
-MINSIZE = -( 1 << 31) + 1
-
+def int2strprt(num):
+    realstr = "{}".format(num)
+    if num < 10:
+        strs = "00"+realstr
+    else:
+        if num < 100:
+            strs = "0"+realstr
+        else:
+            strs = realstr
+    return strs
 
 def solver(Lucky):
     result = 0
-    # algorithm
-    print("LuckyNumber is {}".format(Lucky))
+    for luckynumber in range(0,1000):
+        checkStrs=int2strprt(luckynumber)
+        # print(checkStrs)
+        # print("{}-{}-{}".format(checkStrs[0],checkStrs[1],checkStrs[2]))
+        if testing(Lucky,checkStrs):
+            result = result + 1
     return result
 
 
 if __name__ == "__main__":
-    II()
+    tmp=input()
     L = sys.stdin.readline()
     print("{}".format(solver(L)))
