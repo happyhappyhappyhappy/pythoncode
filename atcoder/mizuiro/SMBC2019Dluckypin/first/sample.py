@@ -1,6 +1,5 @@
 import sys
 
-# TODO: ここの挙動の確認
 def testing(luckynum,testpin):
     firstChar = testpin[0]
     secondChar = testpin[1]
@@ -35,6 +34,7 @@ def solver(Lucky):
         # print(checkStrs)
         # print("{}-{}-{}".format(checkStrs[0],checkStrs[1],checkStrs[2]))
         if testing(Lucky,checkStrs):
+            print("おめでとうございます {} をPINとして作成出来ます".format(checkStrs))
             result = result + 1
     return result
 
