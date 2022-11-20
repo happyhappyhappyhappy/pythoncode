@@ -5,3 +5,7 @@
 [問題解説](https://blog.hamayanhamayan.com/entry/2019/12/03/225048)
 
 [他の解答例](https://atcoder.jp/contests/sumitrust2019/submissions?f.Task=sumitb2019_d&f.LanguageName=Python3&f.Status=AC&f.User=)
+
+**自作解**
+
+* [2回目pypy3正解](https://atcoder.jp/contests/sumitrust2019/submissions/36660314)
