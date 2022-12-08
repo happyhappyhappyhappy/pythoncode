@@ -1,7 +1,6 @@
 import sys
 input2 = sys.stdin.readline
 from collections import deque
-# TODO: ハンドコピペをもう一回見ながら行う
 N = int(input2())
 graph = [deque([]) for _ in range(N+1)]
 for _ in range(N):
@@ -11,7 +10,7 @@ for _ in range(N):
     for j in v:
         # print("j={} u={}".format(j,u))
         graph[u].append(j)
-
+# print("GRAPH={}".format(graph))
 time=0
 arrive_time = [-1] * (N+1)
 finish_time = [-1] * (N+1)
@@ -22,17 +21,20 @@ def dfs(x):
     stack = [x]
     arrive_time[x] = time
     while stack:
+        print("while stack...stack={}".format(stack))
         y = stack[-1]
         if graph[y]:
-            w = graph[y].popleft()
-            if arrive_time[y] < 0:
+            z = graph[y].popleft()
+            if arrive_time[z] < 0:
                 time = time+1
-                arrive_time[y] = time
-                stack.append(w)
+                arrive_time[z] = time
+                stack.append(z)
+                print("stack.append({})...stack={}".format(z,stack))
         else:
             time=time+1
             finish_time[y] = time
             stack.pop()
+            print("stack.pop()...stack={}".format(stack))
     return [arrive_time,finish_time]
 
 for j in range(N):
