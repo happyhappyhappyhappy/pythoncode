@@ -1,7 +1,7 @@
 import sys
 input2 = sys.stdin.readline
 from collections import deque
-
+# TODO: ハンドコピペをもう一回見ながら行う
 N = int(input2())
 graph = [deque([]) for _ in range(N+1)]
 for _ in range(N):
