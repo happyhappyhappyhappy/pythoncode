@@ -36,9 +36,8 @@ def dfs(x):
     time = time+1
     stack = [x]
     arrival_times[x] = time
-    while not len(stack) > 1: # stack変数に何も残っていなければ終了
-        y = stack[len(stack)-1] # 最後の値
-        print(G[y])
+    while stack:
+        y = stack[-1]
         if G[y]:
             z = G[y].popleft()
             if arrival_times[z] < 0:
@@ -50,4 +49,11 @@ def dfs(x):
             finish_times[y]=time
             stack.pop()
     return [arrival_times,finish_times]
-# TODO:ここから始める 2022年12月8日
+
+for j in range(N):
+    if arrival_times[j+1] < 0:
+        ans = dfs(j+1)
+
+for j in range(N):
+    temp = [j+1,ans[0][j+1],ans[1][j+1]]
+    print(*temp)
