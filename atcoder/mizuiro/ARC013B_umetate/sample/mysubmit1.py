@@ -24,6 +24,7 @@ surroundings=[]
 for coord in mapdict:
     if mapdict[coord] == 'o':
         surroundings.append(set(dfs(coord)))
+        print("周囲 {}".format(surroundings))
 
 print("チェックする内容 : {}".format(reduce(and_, surroundings)))
 if(len(reduce(and_, surroundings))):
