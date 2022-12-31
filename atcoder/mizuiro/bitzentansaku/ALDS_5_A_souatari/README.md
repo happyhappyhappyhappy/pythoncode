@@ -6,7 +6,11 @@
 
 ---
 
-ヒント
+## 回答履歴
+
+* [1回目正解](https://onlinejudge.u-aizu.ac.jp/solutions/problem/ALDS1_5_A)
+
+
 
 | 回数 | 達成日 | 言語 |
 | --- | ----- | ---- |
