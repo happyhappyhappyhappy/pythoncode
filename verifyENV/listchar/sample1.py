@@ -13,5 +13,7 @@ MINSIZE = -( 1 << 31) + 1
 
 
 if __name__ == "__main__":
-    x = 1
-    print("{}".format(x))
+    # get_str = sys.stdin.readline().rsplit()
+
+    
+    print("{}".format(one_list))
