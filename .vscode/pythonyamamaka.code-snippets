@@ -85,7 +85,7 @@
 		"description": "各問題ごとのREADMEを作成する"
 		},
 		"yamapythonsimple": {
-			"prefix": "yamapythonsimple",
+			"prefix": "yamapythonsimpleold2",
 			"body": [
 			  "import sys",
 			  "import pprint as pp",

@@ -17,7 +17,7 @@
 	// }
 	"atcoder templete":{
 		"scope":"python",
-		"prefix": "yamasimple",
+		"prefix": "yamasimpleold1",
 		"body":[
 			"import sys",
 			"# from collections import defaultdict",
@@ -40,5 +40,18 @@
 			""
 		],
 		"description": "Atcoderに使えそうな表現_シンプル版"
-	}
+	},
+	"スクリプト用のシンプル": {
+		"prefix": "yamasimple",
+		"body": [
+		  "import sys",
+		  "import pprint as pp",
+		  "def II(): return int(sys.stdin.readline())",
+		  "def MI(): return map(int, sys.stdin.readline().split())",
+		  "def LI(): return list(map(int, sys.stdin.readline().split()))",
+		  "def LLI(rows_number): return [LI() for _ in range(rows_number)]",
+		  ""
+		],
+		"description": "スクリプト用のシンプル"
+	  }
 }
