@@ -20,10 +20,10 @@ def solver(Switch,Lamp,G,Echeck):
         pushedSwitch = 0
         for shift in range(Switch):
             if ( sw_pat >> shift) & 1:
-                swlist.append(1)
+                swlist.append(True)
                 pushedSwitch = pushedSwitch+1
             else:
-                swlist.append(0)
+                swlist.append(False)
         checkOddEven = pushedSwitch % 2
         print("{} の場合の 押されるスイッチ列 {}".format(sw_pat,swlist))
         print("偶奇合わせ : {}".format(checkOddEven))
@@ -31,9 +31,20 @@ def solver(Switch,Lamp,G,Echeck):
         lamp_counter=0
         for lamps in range(Lamp):
             check_counter=0
+            print("ランプ {} について".format(lamps))
             use_switch = len(grid[lamps])
+            print("関連のあるスイッチは {}".format(grid[lamps]))
+            nowLampCheck = True
             for x in range(use_switch):
                 # 各ランプで使うスイッチが今ONになっているか確認する
+                print("grid[{}][{}] = {}".format(lamps,x,grid[lamps][x]))
+                # TODO: 多分下の式のgridの値をswitchlistの要素にすれば良いと思う
+                if grid[lamps][x] != True:
+                    print(" {} のスイッチが押されていないので終了".format(grid[lamps][x]))
+                    nowLampCheck = False
+                    break
+            if nowLampCheck and ( checkOddEven == Echeck[lamps]):
+                print("ランプ {} は点灯する".format(lamps))
     # for nowlamp in range(Lamp)
     #     for x in range(2**Switch):
     #         print("bit列 {} の場合".format(x))
