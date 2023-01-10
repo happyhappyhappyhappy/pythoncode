@@ -17,4 +17,15 @@ G = list()
 for x in range(M):
     G.append(LI())
 ODDCHECK = LI()
+
+# 加工
+# 各行先頭を削る
+for x in range(M):
+    G[x]=G[x][1:]
+    # 他に G[x].pop(0)
+    # del G[x][0]
 print(G)
+for x in range(M):
+    x_Length = len(G[x])
+    for y in range(x_Length):
+        G[x][y] = G[x][y]-1
