@@ -38,7 +38,7 @@ def solver(Switch,Lamp,G,Echeck):
             for x in range(use_switch):
                 # 各ランプで使うスイッチが今ONになっているか確認する
                 print("grid[{}][{}] = {}".format(lamps,x,grid[lamps][x]))
-                # TODO: 多分下の式のgridの値をswitchlistの要素にすれば良いと思う
+                # 多分下の式のgridの値をswitchlistの要素にすれば良いと思う
                 if grid[lamps][x] != True:
                     print(" {} のスイッチが押されていないので終了".format(grid[lamps][x]))
                     nowLampCheck = False
