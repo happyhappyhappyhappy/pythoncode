@@ -6,4 +6,7 @@
 
 ## [この問題の結果](https://atcoder.jp/contests/abc128/submissions?f.Task=abc128_c&f.LanguageName=Python3&f.Status=AC&f.User=)
 
+## 写経したいサンプル
+
+* [37901532](https://atcoder.jp/contests/abc128/submissions/37901532)
 ## 回答実績
