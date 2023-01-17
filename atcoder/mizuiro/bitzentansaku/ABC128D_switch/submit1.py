@@ -33,6 +33,28 @@ logger.debug(G)
 
 # Gの内容を0-indexへ
 for x in range(M):
-    for y in range(G[x]):
+    for y in range(len(G[x])):
         G[x][y] = G[x][y]-1
-# TODO: 次はここから
+
+# 全検索開始
+logger.debug(G)
+result = 0
+for pat in range(2**N):
+    # logger.debug("{} -> {}".format(pat,bin(pat)))
+    all_lamp_on=True
+    for j in range(M):
+        for pos in range(len(G[j])):
+            total_switch_ok=0
+            logger.debug("pat = {},checkpos ={}".format(pat,bin(pat>>G[j][pos])))
+            if ((pat>>G[j][pos]) & 1) == 1:
+                logger.debug("この時付く")
+                total_switch_ok=total_switch_ok+1
+        logger.debug("奇遇数: {}".format(Odd))
+        if Odd[j] != (total_switch_ok%2):
+            logger.debug("ランプ {} は 奇遇数が一致しないので付かない".format(j))
+            all_lamp_on = False
+        else:
+            logger.debug("ランプ {} は問題なく付く".format(j))
+    if all_lamp_on == True:
+        result = result + 1
+print(result)
