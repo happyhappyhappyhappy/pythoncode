@@ -10,3 +10,5 @@
 
 * [37901532](https://atcoder.jp/contests/abc128/submissions/37901532)
 ## 回答実績
+
+* [1回目OK](https://atcoder.jp/contests/abc128/submissions/38153167)
