@@ -7,6 +7,13 @@
 
 ## [この問題の結果](https://atcoder.jp/contests/abc002/submissions?f.Task=abc002_4&f.LanguageName=Python3&f.Status=AC&f.User=)
 
+## 参考にしたページ
+
+* [Pythonのリスト（配列）を任意の値・要素数で初期化](https://note.nkmk.me/python-list-initialize/)
+  * [Pythonリスト内包表記の使い方](https://note.nkmk.me/python-list-comprehension/)
+    * [本家ドキュメント](https://docs.python.org/ja/3.11/tutorial/datastructures.html#list-comprehensions)
+* [pprint](https://docs.python.org/ja/3.11/library/pprint.html?highlight=pprint#pprint.pprint)
+
 ---
 
 ヒント

@@ -2,7 +2,7 @@ import sys
 # from collections import defaultdict
 # import heapq,copy
 from logging import getLogger, StreamHandler, DEBUG
-# import pprint as pp
+import pprint as pp
 # from collections import deque
 def II(): return int(sys.stdin.readline())
 def MI(): return map(int, sys.stdin.readline().split())
@@ -16,6 +16,21 @@ logger.setLevel(DEBUG)
 logger.addHandler(handler)
 logger.propagate = False
 xdebug=logger.debug
-
+pppp=pp.pprint
 N,M = MI()
 xdebug("N={} M={}".format(N,M))
+G = [ [False] * N for _ in range(N)]
+# pppp(G)
+for _ in range(M):
+    x,y = MI()
+    x = x-1
+    y = y-1
+    # xdebug("x={},y={}".format(x,y))
+    G[x][y]=True
+    G[y][x]=True
+for x in range(N):
+    G[x-1][x-1]=True # 自分自身に対しては一応True
+#pppp(G)
+# bit全探索
+for bit_p in range(1<<N):
+    # TODO: この情報からチェーンを作ってください
