@@ -13,8 +13,8 @@ def solve(allNumber, eachNum):
 #    print(counter)
 
 
-#   TODO: ここに最大値を設定してcounter配列を回す
-#   NOTE: 最小値はどこか→Python3で整数型の最大値はsys.maxsizeとして定義
+#   ここに最大値を設定してcounter配列を回す
+#   最小値はどこか→Python3で整数型の最大値はsys.maxsizeとして定義
 
     answer = sys.maxsize
     for j in range(0, allNumber):
