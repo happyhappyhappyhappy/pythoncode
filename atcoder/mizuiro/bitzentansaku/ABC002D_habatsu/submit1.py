@@ -32,5 +32,10 @@ for x in range(N):
     G[x-1][x-1]=True # 自分自身に対しては一応True
 #pppp(G)
 # bit全探索
-for bit_p in range(1<<N):
-    # TODO: この情報からチェーンを作ってください
+for bit_p in range(1,1<<N):
+    chainList=list()
+    for j in range(N):
+        if ((bit_p>>j) & 1) == 1:
+            chainList.append(j)
+    # TODO: この情報からチェーンを確認する
+    xdebug("{} の時の 派閥リスト: {}".format(bit_p,chainList))
