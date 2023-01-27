@@ -14,12 +14,12 @@
     * [本家ドキュメント](https://docs.python.org/ja/3.11/tutorial/datastructures.html#list-comprehensions)
 * [pprint](https://docs.python.org/ja/3.11/library/pprint.html?highlight=pprint#pprint.pprint)
 
----
+## 解答結果
 
-ヒント
+* [1回目NG](https://atcoder.jp/contests/abc002/submissions/38353471)→MLE(メモリエラー)
 
-| 回数 | 達成日 | 言語 |
-| --- | ----- | ---- |
-| 1回目 |  |  |
-| 2回目 |  |  |
-| 3回目 |  |  |
+尚、色々見たところpypy3ではpython3には無い意外なデメリットがあるため、念のためpythonで実行したときに
+
+* [3回目OK](https://atcoder.jp/contests/abc002/submissions/38353805)
+
+
