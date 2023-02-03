@@ -53,9 +53,12 @@ for bit in range(0,2**H):
             else:
                 zero = zero + 1
         if one < zero:
-            nowok = nowok+zero
-        else:
-            nowok = nowok + one
+            for h in range(H):
+                G[h][w] = (G[h][w]+1)%2
+    for h in range(H):
+        for w in range(W):
+            if G[h][w] == 1:
+                nowok=nowok+1
 #    print("bit = {} の最終結果枚数は {}".format(bit,nowok))
 #    pp.pprint(G)
     if maxok < nowok:
