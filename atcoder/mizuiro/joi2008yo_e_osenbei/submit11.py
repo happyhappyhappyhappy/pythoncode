@@ -19,37 +19,43 @@ def showG(R,C,G):
     for j in range(0,R):
         print(G[j])
 
+def mymax(x,y):
+    if x < y:
+        x = y
+    return x
+
+
 def solver(R,C,bit,G):
     result = 0
-    print("bit = {} 変更前".format(bit))
-    showG(R,C,G)
+#    print("bit = {} 変更前".format(bit))
+#    showG(R,C,G)
     for j in range(0,R):
         if bit[j] == 1:
             for k in range(0,C):
                 G[j][k] = (G[j][k]+1)%2
     # algorithm
-    print("bit = {} 変更後".format(bit))
-    showG(R,C,G)
-    # TODO: 各列に対して1になっている個数を数え、ここからRを使って0の値を求める
-    # 最大をresultに足す
+#    print("bit = {} 変更後".format(bit))
+#    showG(R,C,G)
+    result=0
+    for j in range(0,C):
+        figure1 = 0
+        for k in range(0,R):
+            if G[k][j]==1:
+                figure1 = figure1 + 1
+        result = result + mymax(figure1,R-figure1)
     return result
-
-def chmax(x,y):
-    if x < y:
-        x = y
-    return x
 
 if __name__ == "__main__":
     R,C = MI()
     Gorg = list()
-    print("R = {} , C = {}".format(R,C))
+#    print("R = {} , C = {}".format(R,C))
     for j in range(0,R):
         Gorg.append(LI())
-    xprint(Gorg)
+#    xprint(Gorg)
     bits = product((0,1),repeat=R)
     answer = 0
     for bit in bits:
         G = copy.deepcopy(Gorg)
         subans = solver(R,C,bit,G)
-        chmax(answer,subans)
+        answer=mymax(answer,subans)
     print("{}".format(answer))
