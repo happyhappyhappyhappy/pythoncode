@@ -1,9 +1,8 @@
 # ライブラリのインポート
 import sys
-# from collections import defaultdict
-# import heapq,copy
 import pprint as pp
-# from collections import deque
+from collections import Counter
+from itertools import product
 from logging import getLogger, StreamHandler, DEBUG
 
 # 入力のマクロ
@@ -27,12 +26,26 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+# 上から下へと行ってみる
 
-def solver():
-    result = 0
-    # algorithm
-    return result
+N,K = MI()
+A = LI()
 
-
-if __name__ == "__main__":
-    print("{}".format(solver()))
+answer = MAXSIZE
+for SL in product([0,1] , repeat=N):
+    cnt=Counter(SL)
+    if cnt[1] != K:
+        continue
+    if SL[0] != 1:
+        continue
+    costmin=0
+    maxbuild=A[0]
+    for x in range(1,N):
+        if SL[x] == 1:
+            if A[x] <= maxbuild:
+                nowcost = maxbuild+1-A[x]
+                costmin = costmin+nowcost
+                maxbuild=maxbuild+1
+        maxbuild=max(maxbuild,A[x])
+    answer=min(costmin,answer)
+print(answer)
