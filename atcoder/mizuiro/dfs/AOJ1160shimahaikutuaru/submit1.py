@@ -26,15 +26,50 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
+
+# 探索変数:上から時計回り
+dh = [-1,-1,0,1,1, 1, 0,-1]
+dw = [ 0, 1,1,1,0,-1,-1,-1]
+
+def dfs(M,nh,nw):
+        M[nh][nw]=3 # 探索済みのマスを3にする
+        # 次の探索値を決める
+        for j in range(0,8):
+            nexth = nh+dh[j]
+            nextw = nw+dw[j]
+            cont = M[nexth][nextw]
+            if cont != 1:
+                xdebug("({},{})の 土質は {} なので探索しない".\
+                    format(nexth,nextw,cont))
+                continue
+            else:
+                # TODO: ここを次に探索することからスタート
+                dfs(M,nexth,nextw)
+
+
+
+
 while 1:
     W , H = MI()
     if W == 0 and H == 0:
         break
-    # 壁有りの背景作成
-    M = [[2 for _ in range(W)] for _ in range(H)]
-    # 地図情報を得る
-    MT = list()
-    for _ in range(H):
-        MT.append(LI())
-    # 重ね合わせる
-    for h in range(H): # TODO: MTの中身をMに重ね合わせる
+    else: # 壁有りの背景作成
+        M = [[2 for _ in range(W+2)] for _ in range(H+2)]
+        # 地図情報を得る
+        MT = list()
+        for _ in range(H):
+            MT.append(LI())
+        # 重ね合わせる
+        for h in range(H):
+            for w in range(W):
+                M[h+1][w+1]=MT[h][w]
+        # チェック
+        # for h in range(H+2):
+        #    xdebug(M[h])
+        land_count=0
+        for h in range(0,H+2):
+            for w in range(0,W+2):
+                if M[h][w] == 1:
+                    dfs(M,h,w);
+                    landcount=landcount+1
+        print(land_count)
