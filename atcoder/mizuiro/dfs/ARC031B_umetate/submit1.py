@@ -9,7 +9,7 @@ from logging import getLogger, StreamHandler, DEBUG
 # 入力のマクロ
 def II(): return int(sys.stdin.readline())
 def MI(): return map(int, sys.stdin.readline().split())
-def LI(): return list(map(int, sys.stdin.readline().split()))
+def LI(): return list(map(int, sys.stdin.readline().split('')))
 def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 # デバッグ出力の作成
@@ -27,9 +27,6 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-
-
-
 def solver():
     result = 0
     # algorithm
@@ -37,5 +34,6 @@ def solver():
 
 
 if __name__ == "__main__":
-
+    G=[list(input()) for _ in range(10)]
+    print(G)
     print("{}".format(solver()))
