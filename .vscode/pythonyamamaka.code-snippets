@@ -153,7 +153,13 @@
 			  "MAXSIZE = ( 1 << 59 ) -1",
 			  "MINSIZE = -( 1 << 59) + 1",
 			  "",
-			  "  "
+			  "  ",
+			  "\n\ndef solver():",
+			  "\tresult = 0",
+			  "\t# algorithm",
+			  "\treturn result",
+			  "\n\nif __name__ == \"__main__\":",
+			  "    print(\"{}\".format(solver()))"
 			],
 			"description": "pythonスニペット202301"
 		  }
