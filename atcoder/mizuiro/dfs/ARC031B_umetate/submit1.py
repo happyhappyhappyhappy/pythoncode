@@ -27,13 +27,19 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def solver():
-    result = 0
+def solver(G):
+    result = "NO"
+    for h in range(0,10):
+        for w in range(0,10):
+            if G[h][w] == 'x':
+
+                break
+
     # algorithm
     return result
 
 
 if __name__ == "__main__":
     G=[list(input()) for _ in range(10)]
-    print(G)
-    print("{}".format(solver()))
+    # print(G)
+    print("{}".format(solver(G)))
