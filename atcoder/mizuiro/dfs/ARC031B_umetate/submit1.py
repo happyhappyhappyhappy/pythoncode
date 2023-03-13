@@ -3,7 +3,7 @@ import sys
 # from collections import defaultdict
 # import heapq,copy
 import pprint as pp
-# from collections import deque
+from collections import deque
 from logging import getLogger, StreamHandler, DEBUG
 
 # 入力のマクロ
@@ -32,6 +32,7 @@ def solver(G):
     for h in range(0,10):
         for w in range(0,10):
             if G[h][w] == 'x':
+                G[h][w] = 'v' # 探索済みを入れてしまう
 
                 break
 
