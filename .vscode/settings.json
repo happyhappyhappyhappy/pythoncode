@@ -41,6 +41,7 @@
     "cSpell.ignoreWords": [
         "felmer",
         "readline"
-    ]
+    ],
+    "editor.fontFamily": "Fira Code,'UDEV Gothic JPDOC',Ricty Diminished"
     // "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe"
 }
