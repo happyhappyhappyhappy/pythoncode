@@ -43,16 +43,18 @@ def solver(G):
         for w in range(0,10):
             if G[h][w] == 'x':
                 G_c=copy.deepcopy(G)
+# これをdfsとして外出し
+
                 G_c[h][w] = 'v' # 探索済みを入れてしまう
                 dh = [1,0,-1,0]
                 dw = [0,1,0,-1]
                 dq = deque([h,w])
                 while len(dq) != 0:
-                    [posh,posw] = dq.pop()
+                    posl = dq.pop()
                     for x in range(0,4):
-                        next_h = posh + dh[x]
-                        next_w = posw + dw[x]
-
+                        next_h = posl[0] + dh[x]
+                        next_w = posl[1] + dw[x]
+# 全くoが見つからない埋め立てがあったら抜ける
                 break
 
     # algorithm
