@@ -35,11 +35,22 @@ def isgo(G,posh,posw):
     # 海である
     # return false
     return true
-    
+
+def showM(M):
+    xdebug("現在の島の地図の状態")
+
 def dfs(M,nh,nw):
-# Mのnh,nwにvと書き込む
-# xdebug(M)
-# 今はここまで
+    M[h][w] = 'v' # 探索済みを入れてしまう
+    allv = False
+    # dh = [1,0,-1,0]
+    # dw = [0,1,0,-1]
+    # dq = deque((h,w))
+    # while len(dq) != 0:
+    #     posh,posw = dq.pop()
+    #         for x in range(0,4):
+    #             next_h = posh + dh[x]
+    #             next_w = posw + dw[x]
+    return allv
 
 def solver(G):
     result = "NO"
@@ -48,26 +59,12 @@ def solver(G):
         for w in range(0,10):
             if G[h][w] == 'x':
                 G_c=copy.deepcopy(G)
-# これをdfsとして外出し
-dfs(G_c,h,w)
-# ここ何行かはdfsのロジックへ転換
-
-                G_c[h][w] = 'v' # 探索済みを入れてしまう
-                dh = [1,0,-1,0]
-                dw = [0,1,0,-1]
-                dq = deque([h,w])
-                while len(dq) != 0:
-                    posl = dq.pop()
-                    for x in range(0,4):
-                        next_h = posl[0] + dh[x]
-                        next_w = posl[1] + dw[x]
-
-# 全くoが見つからない埋め立てがあったら抜ける
-                break
-
+                allv = dfs(G_c,h,w)
+                if allv:
+                    result = "YES"
+                    break
     # algorithm
     return result
-
 
 if __name__ == "__main__":
     G=[list(input()) for _ in range(10)]
