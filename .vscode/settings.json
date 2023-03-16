@@ -42,6 +42,6 @@
         "felmer",
         "readline"
     ],
-    "editor.fontFamily": "Fira Code,'UDEV Gothic JPDOC',Ricty Diminished"
+    "editor.fontFamily": "JetBrains Mono,'UDEV Gothic JPDOC',Fira Code,Ricty Diminished"
     // "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe"
 }
