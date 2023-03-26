@@ -41,7 +41,7 @@
     "cSpell.ignoreWords": [
         "felmer",
         "readline"
-    ],
-    "editor.fontFamily": "JetBrains Mono,'UDEV Gothic JPDOC',Fira Code,Ricty Diminished,'PlemolJP HS'"
+    ]
+    //"editor.fontFamily": "JetBrains Mono,'UDEV Gothic JPDOC',Fira Code,Ricty Diminished,'PlemolJP HS'"
     // "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe"
 }

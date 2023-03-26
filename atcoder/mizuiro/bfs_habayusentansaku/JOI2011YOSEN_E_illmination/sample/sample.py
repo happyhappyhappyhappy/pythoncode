@@ -3,7 +3,6 @@ import sys
 import copy
 import pprint as pp
 from collections import deque
-import queue # 出来るのか？？
 # pypy3用
 import pypyjit
 # 再帰制御解放
@@ -64,8 +63,40 @@ if __name__ == "__main__":
     G.append([0]*(W+2))
     for h in range(0,H):
         S = list(LI())
-        xdebug("{} 行目に {} を入れたい".format(h,S))
+        # xdebug("{} 行目に {} を入れたい".format(h,S))
         G.append([0]+S+[0])
     G.append([0]*(W+2))
     ShowG(G,H+2)
-    print("{}".format(solver()))
+    # print("{}".format(solver()))
+    V = [[0] * (W+2) for h in range(H+2) ]
+    for h in range(H+2):
+        xdebug(V[h])
+    answer =0
+#    Q = deque()
+    Q = deque([])
+    Q.append([0,0])
+    while len(Q)!= 0 :
+        DQ = Q.popleft()
+        h = DQ[0]
+        w = DQ[1]
+        if V[h][w] == 1:
+            continue
+        else :
+            xdebug("({},{})に訪問済みのフラグを立てました".format(h,w))
+            V[h][w] = 1
+            if h%2 == 1:
+                dwdh = dwdh_odd
+            else :
+                dwdh = dwdh_even
+            for dw,dh in dwdh:
+                nextw = w+dw
+                nexth = h+dh
+                if (0 <= nextw < W+2 )and (0 <= nexth < H+2):
+                    if G[nexth][nextw] == 1:
+                        xdebug("({},{})に衝突しました".format(nexth,nextw))
+                        answer = answer+1
+                        xdebug(answer)
+                    else:
+                        if V[nexth][nextw] == 0:
+                            Q.append([nexth,nextw])
+    print(answer)
