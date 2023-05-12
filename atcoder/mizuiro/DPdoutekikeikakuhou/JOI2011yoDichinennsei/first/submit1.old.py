@@ -31,30 +31,22 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def showDP(X):
-    lenX = len(X)
-    for j in range(0,lenX):
-        xdebug("{}".format(X[j]))
-    xdebug("\n")
+def solver():
+    result = 0
+    nums = II()
+    # dpの初期化
+    a = LI()
+    alen = len(a)
+    for x in range(alen):
+        xdebug("a[{}] = {}".format(x,a[x]))
+    dp=[[0 for _ in range(nums)] for _ in range(21)]
+    dp[0][a[0]]=1
+    for x in range(0,nums-1):
+        for B in range(0,19):
 
-def solver(N,A):
-    dp=[[0 for _ in range(21)] for _ in range(N-1)]
-    dp[0][A[0]]=1
-    for j in range(N-1):
-        aj=A[j]
-        for k in range(21):
-            if 0 <= k+aj <= 20:
-                dp[j][k+aj]=dp[j][k+aj]+dp[j-1][k]
-            if 0 <= k-aj <= 20:
-                dp[j][k-aj]=dp[j][k-aj]+dp[j-1][k]
-        showDP(dp)
-    result = dp[N-2][A[N-1]]
     # algorithm
     return result
 
 
 if __name__ == "__main__":
-
-    N = II()
-    A = LI()
-    print("{}".format(solver(N,A)))
+    print("{}".format(solver()))

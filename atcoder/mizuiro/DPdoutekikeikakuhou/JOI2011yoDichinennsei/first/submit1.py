@@ -31,22 +31,24 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def solver():
-    result = 0
-    nums = II()
-    # dpの初期化
-    a = LI()
-    alen = len(a)
-    for x in range(alen):
-        xdebug("a[{}] = {}".format(x,a[x]))
-    dp=[[0 for _ in range(nums)] for _ in range(21)]
-    dp[0][a[0]]=1
-    for x in range(0,nums-1):
-        for B in range(0,19):
 
+
+
+def solver(N,AI):
+    target = AI[N-1]
+    dp=[[0 for _ in range(20+1)] for _ in range(0,N-1)]
+    dp[0][AI[0]]=1
+    for p in range(1,N-1):
+        for s in range(0,21):
+            plus = dp[s][p]+AI[p]
+            minus = dp[s][p]-AI[p]
+            if plus <= 21:
+                dp[s+1]
     # algorithm
-    return result
+    return dp[N-2][target]
 
 
 if __name__ == "__main__":
-    print("{}".format(solver()))
+    N = II()
+    AI = LI()
+    print("{}".format(solver(N,AI)))
