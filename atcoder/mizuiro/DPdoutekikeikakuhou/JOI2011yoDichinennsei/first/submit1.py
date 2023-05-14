@@ -31,24 +31,28 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+# def showDP(DP):
+#     for k in range(len(DP)):
+#         xdebug(DP[k])
+#     xdebug("\n")
 
-
-
-def solver(N,AI):
-    target = AI[N-1]
-    dp=[[0 for _ in range(20+1)] for _ in range(0,N-1)]
-    dp[0][AI[0]]=1
-    for p in range(1,N-1):
-        for s in range(0,21):
-            plus = dp[s][p]+AI[p]
-            minus = dp[s][p]-AI[p]
-            if plus <= 21:
-                dp[s+1]
-    # algorithm
-    return dp[N-2][target]
+def solver(RAN,LA,RES):
+    dp = [[ 0 for _ in range(0,21)] for _ in range(RAN)]
+    dp[0][LA[0]]=1
+    for j in range(0,RAN-1):
+        for k in range(0,21):
+            if 0 <= k-LA[j+1]:
+                dp[j+1][k-LA[j+1]]=dp[j+1][k-LA[j+1]]+dp[j][k]
+            if k+LA[j+1] <= 20:
+                dp[j+1][k+LA[j+1]]=dp[j+1][k+LA[j+1]]+dp[j][k]
+#        showDP(dp)
+    return dp[RAN-1][RES]
 
 
 if __name__ == "__main__":
     N = II()
     AI = LI()
-    print("{}".format(solver(N,AI)))
+    ANS = AI[N-1]
+    RAN=N-1
+    AI = AI[:-1]
+    print("{}".format(solver(RAN,AI,ANS)))
