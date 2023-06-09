@@ -38,15 +38,37 @@ MINSIZE = -( 1 << 59) + 1
 N = int(input())
 A=list(map(int,input().split()))
 ANS = MAXSIZE
-def f(m1,m2,i):
-    global ANS
-    if i==N:
-        ANS=min(ANS,c^x)
-    else:
-        xdebug("A[{}]")
-        f(A[i],c^x,i+1)
-        f(c|A[i],x,i+1)
+nowSize=(1<<(N-1))-1
 
-# ここにあれこれ書く
-f(0,0,0)
+# for j in range(0,1<<(N-1)):
+for j in range(0,nowSize):
+    binnum = bin(j)
+    xdebug("---{} の場合---".format(binnum))
+    OR=A[0] # 値
+    ORL=[0]
+    XOR=[] # リスト
+    XORL=[]
+    for k in range(0,N-1): #正確には「N-1」個目の区切りは最後の数字の右になる
+        chain_no=j>>k
+        if(chain_no & 1):
+            # 1->区切りを入れない
+            xdebug("NO={} -> 左に A[{}]={}を加えます".format(k,k+1,A[k+1]))
+            ORL.append(k+1)
+            OR = OR|A[k+1]
+        else:
+            # 0->区切りを入れる
+            xdebug("NO={} -> 区切ります ORにA[{}]={}を入れます".format(k,k+1,A[k+1]))
+            XORL.append(ORL)
+            XOR.append(OR)
+            OR=A[k+1]
+            ORL=[k+1]
+    XOR.append(OR) # 最後のORをXORの位置処理の為に追加する
+    XORL.append(ORL)
+    xdebug("XOR={}".format(XOR))
+    xdebug("XORL={}".format(XORL))
+    calc=XOR[0]
+    for k in range(1,len(XOR)):
+        calc=calc^XOR[k]
+    xdebug("Now solver case = {}".format(calc))
+    ANS=min(ANS,calc)
 print(ANS)
