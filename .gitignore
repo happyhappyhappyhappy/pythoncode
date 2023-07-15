@@ -4,3 +4,4 @@ testdir
 *.tar
 testcase
 *.pyc
+*.ng
