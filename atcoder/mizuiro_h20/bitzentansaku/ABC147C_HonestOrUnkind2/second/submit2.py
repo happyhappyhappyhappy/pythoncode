@@ -52,8 +52,8 @@ def solver():
     ans = 0
     for bit in range(1,1<<N):
         xdebug("---ただ今 コード {} の検証---".format(bit))
-        honestCL=list()
-        liarCL=list()
+        honestCL=[]
+        liarCL=[]
         for s in range(0,N):
             HF = (bit >> s) & 1
             if HF == 1:
@@ -62,19 +62,32 @@ def solver():
                 liarCL.append(s)
         xdebug("検証 正直物のパターン {}".format(honestCL))
         xdebug("    ウソつきのパターン {}".format(liarCL))
-        ok = True
-        for j in range(0,len(honestCL)):
-            per = honestCL[j]
-            nowHonest = KIND[per]
-            nowLiar = LIAR[per]
-            xdebug("正直者 {}について".format(per))
-            xdebug("正 = {} , うそつき = {}の妥当性を調べる".format(nowHonest,nowLiar))
-            # TODO:2023-07-17 19:30:29
-            # とりあえず言っていることを元に、実データとの妥当性を見る
-            # 例えば A 氏は B氏のことを 正直者と発言しているが
-            # honestCLに含まれていなければ矛盾ということでok変数をFalseとしたり
-            # for k in range(0,nowHonest):
 
+        ok = True
+        for j in honestCL:
+            per = j
+            sayHonest = KIND[per]
+            sayLiar = LIAR[per]
+            xdebug("正直者 {}について".format(per))
+            xdebug("正 = {} , うそつき = {}の妥当性を調べる".
+                    format(sayHonest,sayLiar))
+
+            for sH in sayHonest:
+                if (sH in liarCL):
+                    xdebug("{} が正直だという {} は うそつきリスト {}に含まれるのでダメ"
+                           .format(j,sH,liarCL))
+                    ok=False
+            for sL in sayLiar:
+                if (sL in honestCL):
+                    xdebug("{} がウソつきだという {} は 正直リスト{}に含まれるのでダメ"
+                           .format(j,sL,honestCL))
+                    ok=False
+        if ok:
+            if ans < len(honestCL):
+                ans = len(honestCL)
+            xdebug("このパターンには矛盾がない")
+        else:
+            xdebug("このパターンには矛盾がある")
     return ans
 
 mx = solver()
