@@ -75,7 +75,24 @@ def solver():
                 ans = gets
         else:
             xdebug("この時 合計 {} 点 / {} 問: 合格点に満たない".format(total,gets))
-
+            xdebug("未選択のうち1問あたりの成果が高い {} 問目を解いてみる".format(unselect[0]+1))
+            unsel = unselectP[0]
+            okflag=false
+            for count in range(0,bcount[unsel]):
+                total = total+bPoint[unsel]
+                gets = gets+1
+                if G <= total:
+                    xdebug("この時 合計 {} 点 / {} 問 : 合格点に満たす".format(total,gets))
+                    if gets < ans:
+                        ans = gets
+                        okflag=True
+                    break
+                else:
+                    xdebug("まだ 合計 {} 点(目標 {}点)/ {}問 で合格点ではないのでもう一巡してみる".format(total,G,gets))
+            if okflag:
+                xdebug("この方法で解に見つかった")
+            else :
+                xdebug("全解き {},部分稼ぎ {}で解は見つからない".format(selectP,unselect[0]))
     return ans
 
 minCount = solver()
