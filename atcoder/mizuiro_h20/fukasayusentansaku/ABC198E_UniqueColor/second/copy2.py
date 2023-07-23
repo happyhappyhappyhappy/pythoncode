@@ -40,9 +40,9 @@ for _ in range(0,N-1):
     L[f].append(t)
     L[t].append(f)
 
-xdebug("N = {}".format(N))
-xdebug("C = {}".format(C))
-xdebug(L)
+# xdebug("N = {}".format(N))
+# xdebug("C = {}".format(C))
+# xdebug(L)
 
 # 正しいか間違っているか確認するリスト
 ANS = [True]*(N+1)
@@ -55,19 +55,19 @@ VISITED = [False]*(N+1)
 
 def dfs(POS):
     posCol=C[POS]
+    # xdebug("ColorD = {}".format(ColorD))
     if 0 < ColorD[posCol]:
+        # xdebug("もう色 {} は利用済みです".format(posCol))
         ANS[POS]=False
     ColorD[posCol]=ColorD[posCol]+1
-    xdebug("現在の {} の到着段階 {}".format(POS,VISITED[POS]))
+#    xdebug("現在の {} の到着段階 {}".format(POS,VISITED[POS]))
     VISITED[POS] = True
     nextPosL=L[POS]
-    xdebug("{} -> {} ".format(POS,nextPosL))
+#    xdebug("{} -> {} ".format(POS,nextPosL))
     for j in range(0,len(nextPosL)):
         nextPos = L[POS][j]
         if VISITED[nextPos] == False:
             dfs(nextPos)
-        else:
-            xdebug("もう {} は行っているので行かない".format(nextPos))
     ColorD[posCol]=ColorD[posCol]-1
 
 dfs(1)
