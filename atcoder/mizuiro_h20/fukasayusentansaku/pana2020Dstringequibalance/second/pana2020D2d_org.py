@@ -4,10 +4,10 @@ import sys
 import pprint as pp
 # from collections import deque
 # pypy3用
-import pypyjit
+# import pypyjit
 # 再帰制御解放
-pypyjit.set_param('max_unroll_recursion=-1')
-sys.setrecursionlimit(10**6)
+# pypyjit.set_param('max_unroll_recursion=-1')
+# sys.setrecursionlimit(10**6)
 from logging import getLogger, StreamHandler, DEBUG
 
 # 入力のマクロ
@@ -33,18 +33,14 @@ MINSIZE = -( 1 << 59) + 1
 
 N = II()
 
-def dfs(L):
-    if len(L) == N:
-        S = ''.join(L)
-        print(S)
+def dfs(X):
+    if len(X) == N:
+        print(X)
     else:
-        maxChar = max(L)
-        for j in range(ord('a'),ord(maxChar)+2):
-            xdebug("現在の L->{}".format(L))
-            L.append(chr(j))
-            xdebug("dfs突入前の L->{}".format(L))
-            dfs(L)
-            L.pop()
-            xdebug("dfs突入後の L->{}".format(L))
+        mc = max(X)
+        mc_ascii = ord(mc)
+        for j in range(ord('a'),mc_ascii+2): # 最後が+2になっているのは閉空間の為
+            dfs(X.append(chr(j)))
 
-dfs(list('a'))
+S = ['a']
+dfs(S)
