@@ -34,11 +34,26 @@ MINSIZE = -( 1 << 59) + 1
 H,W,A,B = MI()
 ans = 0
 def dfs(j,bit,A,B):
-    if j == H * W:
+    xdebug("ただいま,dfs({},{},{},{})に入りました"
+           .format(j,bit,A,B))
+    if j == H*W:
         global ans
         ans = ans+1
+        xdebug("条件{}=={}*{}になったので回答を一つ加えて再帰終了"
+               .format(j,H,W))
         return
-    return 0
-
+    if bit >> j & 1:
+        xdebug("{} >> {} & 1 を満たすので".format(bit,j))
+        xdebug("dfs({},{},{},{})の再帰実行".format
+               (j+1,bit,A,B))
+        dfs(j+1,bit,A,B)
+        return
+    if B:
+        dfs(j+1,bit|1<<j,A,B-1)
+    if A:
+        if j % W != W - 1 and not bit & 1 << (j+1):
+            dfs(j+1,bit|1<<j|1<<(j+1),A-1,B)
+        if (j + W) < (H * W):
+            dfs(j+1,bit|1<<j|1<<(j+W),A-1,B)
 dfs(0,0,A,B)
 print(ans)
