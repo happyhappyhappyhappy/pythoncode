@@ -46,7 +46,6 @@ def dfs(A,N,M,Q,a,b,c,d,result):
                 score = score + d[j]
         chmax(result,score)
         return
-# TODO:2023-06-26 19:31:55 ここで打ち切り
 def solver(A,N,M,Q,a,b,c,d):
     result = 0
     dfs(A,N,M,Q,a,b,c,d,result)

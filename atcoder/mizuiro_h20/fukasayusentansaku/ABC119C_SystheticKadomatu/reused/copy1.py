@@ -50,7 +50,6 @@ def dfs(pos,a,b,c):
         else:
             xdebug("どこかに0のデータがありそうなのでMAXで返却")
             return INF
-    # TODO:2023-07-07 19:30:52
     # 4通りの選択検索を行う
     retMin=min(0,0,0,0)
     xdebug("この値を返します {}".format(retMin))
