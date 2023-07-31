@@ -30,4 +30,22 @@ class UnionFind():
         return ans
     def group_count(self):
         return len(self.roots())
-    def all_group_members(self): # TODO: ここから2023-07-28 19:29:08
+    def all_group_members(self):
+        group_members = defaunltdist(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+
+def __str__(self):
+    return '\n'.join(f'{r}: {m}' for r,m
+                     in self.all_group_members().items())
+N,M = map(int,input().split())
+uf = UnionFind(N)
+for j in range(0,M):
+    x,y=map(int,input().split())
+    uf.union(x-1,y-1)
+ans = 0
+for j in range(0,N):
+    ans = max(ans,uf.size(j))
+
+print(ans)
