@@ -46,9 +46,16 @@ def dfs(n,a,b,c):
         # 達成する場合の増減魔法の量
         # 最後の10*3は最初の1本目に0->X に付ける際だけ合成魔法は
         # 要らないのでこれを削る
-        # TODO:2023-07-30 19:30:09 ここから
         magP = abs(a-A)+abs(b-B)+abs(c-C)-(10*3)
         return magP
-
+    # n番目の竹をAに使う場合
+    resA = dfs(n+1,a+BanbuList[n],b,c)+10
+    # n番目の竹をBに使う場合
+    resB = dfs(n+1,a,b+BanbuList[n],c)+10
+    # n番目の竹をCに使う場合
+    resC = dfs(n+1,a,b,c+BanbuList[n])+10
+    # n番目の竹は使わない場合
+    res0 = dfs(n+1,a,b,c)
+    return min(resA,resB,resC,res0)
 
 print(dfs(0,0,0,0))
