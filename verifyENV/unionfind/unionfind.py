@@ -31,10 +31,11 @@ class UnionFind():
         return [j for j in range(self.n) if self.find(j) == root ]
     def roots(self):
         return [ j for j,x in enumerate(self.parents) if x < 0]
-    def group_cound(self):
+    def group_count(self):
         return len(self.roots())
     def all_group_members(self):
-        group_members=defaultdict(list)
+        group_members = defaultdict(list)
+        # group_members=defaultdict(list)
         for member in range(self.n):
             group_members[self.find(member)].append(member)
         return group_members
@@ -56,8 +57,21 @@ print(uf)
 uf.union(1,4)
 print(uf.parents)
 print(uf)
+print("find(0),find(5)")
 print(uf.find(0))
 print(uf.find(5))
+print("size(0),size(4)")
 print(uf.size(0))
 print(uf.size(4))
+print("same(0,2),same(2,3)")
 print(uf.same(0,2))
+print(uf.same(2,3))
+print("members(0),members(5)")
+print(uf.members(0))
+print(uf.members(5))
+print("roots()")
+print(uf.roots())
+print("group_count")
+print(uf.group_count())
+print("uf.all_group_members()")
+print(uf.all_group_members())
