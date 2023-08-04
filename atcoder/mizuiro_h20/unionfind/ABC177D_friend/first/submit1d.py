@@ -30,7 +30,7 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-# 以下Unionfind構造のテンプレ
+
 class UnionFind():
     def __init__(self,n):
         self.n=n
@@ -80,9 +80,12 @@ uf = UnionFind(N)
 for j in range(0,M):
     x,y = MI()
     uf.union(x-1,y-1)
+xdebug(uf)
+xdebug(uf.parents)
 ans = 0
 for j in range(0,N):
     x = uf.size(j)
     if ans < x:
         ans = x
 print(ans)
+# TODO: これのデバッグを消して提出2023-08-03 19:25:41
