@@ -33,13 +33,13 @@ MAXSIZE = 3234566668 # 100000個目の値を最大値にする
 # MINSIZE = -( 1 << 59) + 1
 LunNum = []
 def dfs(x):
-    xdebug(f"{ x } に入りました。終了")
+    # xdebug(f"{ x } に入りました。終了")
     global LunNum
     if x > MAXSIZE:
         # 調べ終わったので即終了
         return
     # まずこの値は入れる
-    xdebug(f"{ x } をLunNumに入れる。")
+    # xdebug(f"{ x } をLunNumに入れる。")
     LunNum.append(x)
     unit_point = x % 10
     # まず隣通し同じ値
