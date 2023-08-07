@@ -44,10 +44,32 @@ class UnionFind():
         res = '\n'.join(f'{r} : {m}' for r,m in self.all_group_members().items())
         return res
 
-N,M = MI()
-A = list(MI())
-B = list(MI())
+N,M = map(int,input().split())
+A = list(map(int,input().split()))
+B = list(map(int,input().split()))
+print(f"A = {A}")
+print(f"B = {B}")
 
 uf = UnionFind(N)
 for j in range(0,M):
-# TODO: 2023-08-06 19:37:08 ここから
+    c,d = map(int,input().split())
+    print(f"c = { c-1 } <=> { d-1 } = d")
+    uf.union(c-1,d-1)
+    print(f"---- プロセス { j+1 } での結果 ----")
+    print(uf)
+
+
+ans = True
+GM = uf.all_group_members()
+for v in GM.values():
+    print(f" { v } で考える")
+    temp = 0
+    for j in v:
+        temp = temp + (A[j]-B[j])
+    if (ans and (temp == 0)):
+        ans = True
+
+if ans:
+    print("Yes")
+else:
+    print("No")
