@@ -85,13 +85,21 @@ for j in range(0,M):
     c = cp1-1
     d = dp1-1
     uf.union(c,d)
-print(uf)
+# print(uf)
 bList = [0]*N
 for j in range(0,N):
     x = uf.find(j)
+    diff = A[j]-B[j]
+#   xdebug(f" {j}  の  A,Bの差は { diff } これを { x } に反映")
     bList[x]=bList[x]+(A[j]-B[j])
+#    xdebug(f" 今のbList[ {x} ] は { bList[x] }")
 ok = True
 for j in range(0,N):
-    if bList != 0:
-        # TODO: もしbListに0以外が入っていたらNo,そのまま行ったらYesを出す
-        # 2023-08-07 19:32:48
+    if bList[j] != 0:
+#        xdebug(f"{ j } のグループで0にならない")
+        ok = False
+        break
+if ok :
+    print("Yes")
+else :
+    print("No")
