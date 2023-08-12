@@ -78,4 +78,10 @@ uf = UnionFind(N)
 TO_VALUE = LI()
 for j in range(0,N):
     uf.union(j,TO_VALUE[j]-1)
-print(uf)
+MOD = 998244353
+p = [1]
+for n in range(0,N+1):
+    p.append((p[-1]*2)%MOD)
+ans = (p[uf.group_count()]-1)%MOD
+print(ans)
+## print(uf)
