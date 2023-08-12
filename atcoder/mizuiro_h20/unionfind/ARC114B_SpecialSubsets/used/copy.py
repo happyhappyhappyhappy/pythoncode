@@ -31,9 +31,10 @@ class UnionFind():
         return m_l
     def roots(self):
         r_l = [j for j,x in enumerate(self.parents) if x < 0]
+        return r_l
     def group_count(self):
-        x = self.roots()
-        return len(x)
+        x = len(self.roots())
+        return x
     def all_group_members(self):
         group_members = defaultdict(list)
         for member in range(0,self.n):
@@ -42,5 +43,14 @@ class UnionFind():
     def __str__(self):
         res_str="\n".join(f"{r}: {m}" for r,m in self.all_group_members().items())
         return res_str
-# TODO: ここから 2023-08-11 19:34:12
-# TODO データをUnionFindにどうセットするか、どう表示するかを見ておく
+
+N = int(input())
+A = list(map(int,input().split()))
+
+uf = UnionFind(N)
+for j in range(0,N):
+    uf.union(j,A[j]-1)
+
+print(uf)
+gc = uf.group_count()
+print(f"グループの数-> {gc}")
