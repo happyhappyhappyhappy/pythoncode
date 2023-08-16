@@ -39,7 +39,7 @@ class UnionFind():
     def all_group_members(self):
         group_members=defaultdict(list)
         for member in range(0,self.n):
-            group_members[self.find(member)].append(members)
+            group_members[self.find(member)].append(member)
         return group_members
     def __str__(self):
         res_str="\n".join(f"{r}:{m}" for r,m in self.all_group_members().items())
@@ -59,7 +59,12 @@ for j in range(0,K):
     if uf.same(c-1,d-1): # 同一グループに存在する
         B[c-1]=B[c-1]+1
         B[d-1]=B[d-1]+1
+# res_li=[]
+# for j in range(0,N):
+#     res_li.append(uf.size(j)-1-F[j]-B[j])
+# ans = " ".join(res_li)
+# print(ans)
+print(uf)
 for j in range(0,N):
-#    ans = uf.size(j)-1-F[j]-B[j]
-#    print(ans)
-    print(uf.size(j)-1-F[j]-B[j])
+    ans = uf.size(j)-1-F[j]-B[j]
+    print(ans)
