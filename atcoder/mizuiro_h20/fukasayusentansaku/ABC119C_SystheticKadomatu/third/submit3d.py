@@ -53,11 +53,11 @@ def dfs(a,b,c,now_pos):
     else:
         # now_pos番目の竹を取り付けていく
         # Aの場合
-        minPoint1 = dfs(a+l[now_pos],b,c,now_pos+1)+10
+        minPoint1 = dfs(a+lList[now_pos],b,c,now_pos+1)+10
         # Bの場合
-        minPoint2 = dfs(a,b+l[now_pos],c,now_pos+1)+10
+        minPoint2 = dfs(a,b+lList[now_pos],c,now_pos+1)+10
         # Cの場合
-        minPoint3 = dfs(a,b,c+l[now_pos],now_pos+1)+10
+        minPoint3 = dfs(a,b,c+lList[now_pos],now_pos+1)+10
         # 使わない場合
         minPoint4 = dfs(a,b,c,now_pos+1)
         now_min = min(minPoint1,minPoint2,minPoint3,minPoint4)
