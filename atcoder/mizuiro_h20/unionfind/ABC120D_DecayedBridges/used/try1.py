@@ -43,5 +43,5 @@ class UnionFind():
         else:
             self.parents[x] = self.find(self.parents[x])
             return self.parents[x]
-    ## TODO: ここからスタート 2023-08-19 19:29:49
+    ## ここからスタート 2023-08-19 19:29:49->挫折
     ## https://note.nkmk.me/python-union-find/
