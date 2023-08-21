@@ -25,7 +25,7 @@ logger.addHandler(handler)
 logger.propagate = False
 
 # クラス+メソッドを一関数
-xdebug=logger.debug
+# xdebug=logger.debug
 ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
@@ -50,11 +50,11 @@ class UnionFind():
         if ok:
             return
         if self.parents[y]<self.parents[x]:
-            x,y = y.x
+            x,y = y,x
         self.parents[x]=self.parents[x]+self.parents[y]
         self.parents[y]=x
     def size(self,x):
-        return -self.parents[x]
+        return -self.parents[self.find(x)]
     def same(self,x,y):
         ok = (self.find(x)==self.find(y))
         return ok
@@ -79,7 +79,7 @@ class UnionFind():
 
 N,M = MI()
 L = [[0,0] for j in range(0,M)]
-xdebug(f"N={N},M={M}")
+# xdebug(f"N={N},M={M}")
 # xdebug(f"L={L}")
 for j in range(0,M):
     x,y = MI()
@@ -89,8 +89,26 @@ for j in range(0,M):
 #    xdebug(f"({L[j][0]},{L[j][1]})")
 # 試しに逆順にUnionFindした結果を並べてみる
 uf = UnionFind(N)
+answer = [0 for _ in range(0,M)]
+fuben = (N*(N-1))//2
+# for j in reversed(range(0,M)):
+#     x,y = L[j]
+#     uf.union(x,y)
+#     xdebug(f"{j+1}番目の橋が復帰した")
+#     xdebug(uf)
 for j in reversed(range(0,M)):
+    answer[j]=fuben
     x,y = L[j]
-    uf.union(x,y)
-    xdebug(f"{j+1}番目の橋が復帰した")
-    xdebug(uf)
+# TODO: python atcoderはこのコードのコメントにして提出
+# 2023-08-21 19:16:53
+    if not uf.same(x,y) :
+        xdebug(f"{x}と{y}は行き来できないので橋 {j}をつなげる必要あり")
+        xdebug(f"{x} 島のグループ数 {uf.size(x)} , {y} 島のグループ数 {uf.size(y)}")
+        fuben = fuben - uf.size(x)*uf.size(y)
+        xdebug(f"これで不便度 {fuben} になった")
+        uf.union(x,y)
+    else:
+        xdebug(f"{x}と{y}は行き来できるので橋 {j}をつなげる必要無い")
+
+for j in range(0,M):
+    print(answer[j])
