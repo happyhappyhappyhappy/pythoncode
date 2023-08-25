@@ -85,4 +85,12 @@ fuben = (N*(N-1))//2
 ans = [0]*M
 for j in reversed(range(0,M)):
     ans[j]=fuben
-    if ## NEXT
+    ok = uf.same(L[j][0],L[j][1])
+    if ok == False:
+        fuben = fuben - uf.size(L[j][0])*uf.size(L[j][1])
+    uf.union(L[j][0],L[j][1])
+    # xdebug(f"--BridgeNo.{j} is alive--")
+    # xdebug(uf)
+
+for j in range(0,M):
+    print(ans[j])

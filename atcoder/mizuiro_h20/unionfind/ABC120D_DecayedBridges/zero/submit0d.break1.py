@@ -77,7 +77,7 @@ MINSIZE = -( 1 << 59) + 1
 #         def __str__(self):
 #             res = "\n".join(f"{r} : {m}" for r,m in self.all_group_members().items())
 #             return res
-# TODO: 2023-08-24 19:34:18 UnionFindをもう少し丁寧に書写
+# 2023-08-24 19:34:18 UnionFindをもう少し丁寧に書写
 N,M = MI()
 L = [[0,0] for _ in range(0,M)]
 for j in range(0,M):
