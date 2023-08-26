@@ -75,12 +75,12 @@ class UnionFind():
         res='\n'.join(f'{r} : {m}' for r,m in self.all_group_members().items())
         return res
 
-def dataView(N,M,A,B,C,D):
-    xdebug(f"N={N},M={M}")
-    xdebug(f"A={A}")
-    xdebug(f"B={B}")
-    for j in range(0,M):
-        xdebug(f"{C[j]} <-> {D[j]}")
+# def dataView(N,M,A,B,C,D):
+#     xdebug(f"N={N},M={M}")
+#     xdebug(f"A={A}")
+#     xdebug(f"B={B}")
+#     for j in range(0,M):
+#         xdebug(f"{C[j]} <-> {D[j]}")
 
 N,M=MI()
 A=LI()
@@ -93,11 +93,24 @@ for j in range(0,M):
     x=x-1
     y=y-1
     # この行そのものは利用しない。すぐにUnionFindに入れる
-    C.append(x)
-    D.append(y)
+#    C.append(x)
+#    D.append(y)
     uf.union(x,y)
-    xdebug(f"---{j+1}---")
-    xdebug(uf)
+#    xdebug(f"---{j+1}---")
+#    xdebug(uf)
 
-dataView(N,M,A,B,C,D)
-# TODO: root毎diffの和を求める配列作成2023-08-25 19:36:04
+# dataView(N,M,A,B,C,D)
+diffList = [0]*N
+for j in range(0,N):
+    x = uf.find(j)
+    diffList[x]=diffList[x]+(A[j]-B[j])
+ok = True
+for j in range(0,N):
+    if diffList[j] != 0:
+#        xdebug(f" root = {j} で管理した値が {diffList[j]} でした NG")
+        ok=False
+        break
+if ok:
+    print("Yes")
+else:
+    print("No")
