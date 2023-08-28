@@ -25,7 +25,7 @@ logger.addHandler(handler)
 logger.propagate = False
 
 # クラス+メソッドを一関数
-xdebug=logger.debug
+# xdebug=logger.debug
 ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
@@ -90,8 +90,8 @@ class UnionFind():
 # uf.union(4,0)
 # xdebug("-----")
 # xdebug(uf)
-# COLMAX=400000
-COLMAX = 10
+COLMAX=400000
+# COLMAX = 10
 uf = UnionFind(COLMAX)
 Col=[0]*COLMAX
 N = II()
@@ -102,17 +102,17 @@ for _ in range(0,N):
     uf.union(a,b)
     Col[a]=Col[a]+1
     Col[b]=Col[b]+1
-xdebug(uf)
-xdebug(Col)
+# xdebug(uf)
+# xdebug(Col)
 ANS=0
 for g in uf.all_group_members().values():
     nowEdge=0
     for k in g:
         nowEdge=nowEdge+Col[k]
     if nowEdge == 2*((len(g))-1):
-        xdebug(f"eq 木 {g} においては 点灯するのが {len(g)-1} 個です")
+#        xdebug(f"eq 木 {g} においては 点灯するのが {len(g)-1} 個です")
         ANS=ANS+(len(g)-1)
     else:
-        xdebug(f"not eq 木 {g} においては 点灯するのが {len(g)} 個です")
+#        xdebug(f"not eq 木 {g} においては 点灯するのが {len(g)} 個です")
         ANS=ANS+(len(g))
 print(ANS)
