@@ -60,6 +60,23 @@ def gen_primes_upto_segment(x):
     for bp in baseprimes:
         yield bp
     for segstart in range(segsize,x,segsize):
-        # TODO : HERE START2023-08-29 19:16:38
-        # https://eli.thegreenplace.net/2023/my-favorite-prime-number-generator/
-        # segsizeからxまでもとめる
+        seg = [True]*segsize
+        for bp in baseprimes:
+            first_multiple =(
+segstart if ((segstart % bp)==0)
+else segstart+bp-(segstart%bp)
+            )
+            for q in range(first_multiple,segstart+segstart,bp):
+                seg[q%len(seg)]=False
+    start = 1 if ((segstart%2)==0) else 0
+    for j in range(start,len(seg),2):
+        if seg[j]==True:
+            if segstart+j >= n:
+                break
+            yield segstart+j
+
+D = []
+N = 100
+for x in gen_primes_upto_segment(N):
+    D.append(x)
+print(D)
