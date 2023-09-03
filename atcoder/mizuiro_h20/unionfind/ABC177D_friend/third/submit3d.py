@@ -53,21 +53,49 @@ class UnionFind():
             xroot = yroot
             yroot = roottmp
         self.parents[xroot]=self.parents[xroot]+self.parents[yroot]
-        self.parents[yroot]=x
-# UnionFind実装
-# 2023-09-01 19:32:36
-# TODO: 次のサイトを参考の上実装
-# https://note.nkmk.me/python-union-find/
-
-
+        self.parents[yroot]=xroot
+    def size(self,x):
+        res = (-1)*self.parents[self.find(x)]
+        return res
+    def same(self,x,y):
+        xroot = self.find(x)
+        yroot = self.find(y)
+        ok = (xroot == yroot)
+        return ok
+    def members(self,x):
+        root = self.find(x)
+        res = [j for j in range(0,self.n) if self.find(j) == root]
+        return res
+    def roots(self):
+        res = [ j for j,x in enumerate(self.parents) if x < 0]
+        return res
+    def group_count(self):
+        res = len(self.roots())
+        return res
+    def all_group_members(self):
+        group_members=defaultdict(list)
+        for member in range(0,self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+    def __str__(self):
+#        xdebug(self.all_group_members())
+        res = "\n".join(f"{r} : {m}" for r,m in self.all_group_members().items())
+        return res
 
 def solver(N,M,Pairs):
     result = 0
-    print(f"N={N},M={M}")
+    uf = UnionFind(N)
+#    print(f"N={N},M={M}")
     for j in range(0,M):
         a,b = Pairs[j]
-        print(f"a_{j} = {a},b_{j}= {b}")
-    # algorithm
+#        print(f"a_{j} = {a},b_{j}= {b}")
+        uf.union(a,b)
+    # 実装テスト
+#    xdebug(uf)
+
+    for j in range(0,N):
+        if result < uf.size(j):
+            result = uf.size(j)
     return result
 
 
