@@ -39,85 +39,89 @@ class UnionFind():
         if self.parents[x]<0:
             return x
         else:
-            xparent=self.parents[x]
-            self.parents[x]=self.find(xparent)
+            self.parents[x]=self.find(self.parents[x])
             return self.parents[x]
     def union(self,x,y):
-        x = self.find(x)
-        y = self.find(y)
-        ok = (x==y)
-        if ok:
-            return
-        if self.parents[y]<self.parents[x]:
-            x,y=y,x
-        self.parents[x]=self.parents[x]+self.parents[y]
-        self.parents[y]=x
-    def size(self,x):
-        res = (-1)*(self.parents[self.find(x)])
-        return res
-    def same(self,x,y):
         xroot = self.find(x)
         yroot = self.find(y)
-        ok_or_ng = (xroot==yroot)
-        return ok_or_ng
+        ok = (xroot==yroot)
+        if ok:
+            return
+
+        if self.parents[yroot]<self.parents[xroot]:
+            tmp = xroot
+            xroot = yroot
+            yroot = tmp
+        self.parents[xroot]=self.parents[xroot]+self.parents[yroot]
+        self.parents[yroot]=xroot
+        return
+    def size(self,x):
+        res = (-1)*self.parents[x]
+        return res
+    def same(self,x,y):
+        t_or_f = (self.find(x)==self.find(y))
+        return t_or_f
     def members(self,x):
         root = self.find(x)
-        res = [ j for j in range(0,self.n) if self.find(j)==root]
+        res = [j for j in range(0,self.n) if self.find(j) == root]
         return res
     def roots(self):
-        res = [ x for x,y in enumerate(self.parents) if y < 0 ]
+        res = [ j for j,x in enumurate(self.parents) if x < 0]
         return res
     def group_count(self):
-        roots = self.roots()
-        return len(roots)
+        res = self.roots()
+        res2 =  len(res)
+        return res2
     def all_group_members(self):
         group_members=defaultdict(list)
         for m in range(0,self.n):
-            group_members[self.find(m)].append(m)
+            root = self.find(m)
+            group_members[root].append(m)
         return group_members
     def __str__(self):
         res = "\n".join(f"{r} : {m}" for r,m in self.all_group_members().items())
         return res
 
-def solver(N,M,K,UF,R,B):
+def solver(N,M,K,Real,Block,UF):
+    result = 0
     # xdebug(f"N={N},M={M},K={K}")
-    # xdebug(UF)
-    # xdebug(f"R={R}")
-    # xdebug(f"B={B}")
-    ansList = []
-    for j in range(0,N):
-        X = uf.size(j)
-#        xdebug(f" {j+1} 氏の 初期値 {X}")
-        X = X-1 # 自分自身
-#        xdebug(f"自分をのぞく {X}")
-        X = X-R[j] # 実際の友人関係
-#        xdebug(f"リアル友人をのぞく {X}")
-        X = X-B[j] # グループ内ブロック関係
-#        xdebug(f"ブロック関係を除く 完了形 {X}")
-        ansList.append(str(X))
+    # xdebug(Real)
+    # xdebug(Block)
     # algorithm
-    result = " ".join(ansList)
-    # xdebug(f"多分答えは {ansSug}")
-    return result
+    # xdebug(UF)
+    ans=[]
+
+    for j in range(0,N):
+        ExcludeSet = set(Real[j]+Block[j])
+        # xdebug(f"{j}番目 除外集合 {ExcludeSet}")
+        unionlist = UF.members(j)
+        eachans = len(unionlist)-1
+        for k in range(0,len(unionlist)):
+            if unionlist[k] in ExcludeSet:
+                # xdebug(f"人:{unionlist[k]} は {j} にとって除外に入るので候補1減らします")
+                eachans = eachans - 1
+        ans.append(str(eachans))
+    res = " ".join(ans)
+    # xdebug(f"回答予定 {res}")
+    return res
 
 
 if __name__ == "__main__":
     N,M,K=MI()
     uf = UnionFind(N)
-    RealL=[0]*N
-    BlockL=[0]*N
+    Real=[[] for _ in range(0,N)]
+    Block=[[] for _ in range(0,N)]
     for _ in range(0,M):
-        a,b = MI()
-        a = a-1
-        b = b-1
+        a,b=MI()
+        a=a-1
+        b=b-1
+        Real[a].append(b)
+        Real[b].append(a)
         uf.union(a,b)
-        RealL[a]=RealL[a]+1
-        RealL[b]=RealL[b]+1
     for _ in range(0,K):
-        c,d = MI()
-        c = c-1
-        d = d-1
-        if uf.same(c,d)==True:
-            BlockL[c]=BlockL[c]+1
-            BlockL[d]=BlockL[d]+1
-    print("{}".format(solver(N,M,K,uf,RealL,BlockL)))
+        c,d=MI()
+        c=c-1
+        d=d-1
+        Block[c].append(d)
+        Block[d].append(c)
+    print("{}".format(solver(N,M,K,Real,Block,uf)))
