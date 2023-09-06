@@ -34,3 +34,26 @@ class UnionFind():
         root = self.find(x)
         res = [ j for j in range(0,self.n) if self.find(j)==root]
         return res
+    def roots(self):
+        res = [ j for j,x in enumerate(self.parents) if x < 0]
+        return res
+    def group_count(self):
+        return len(self.roots())
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for m in range(0,self.n):
+            group_members[self.find(m)].append(m)
+        return group_members
+    def __str__(self):
+        res = "\n".join(f"{r} : {m}" for r,m in self.all_group_members().items())
+        return res
+
+N,Q = map(int,input().split())
+C = list(map(int,input().split()))
+print(f"C={C}")
+D = []
+for j in range(0,N):
+    d = defaultdict(int)
+    d[C[j]]=1
+    D.append(d)
+print(D)
