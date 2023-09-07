@@ -99,8 +99,6 @@ fuben = (N*(N-1))//2
 for j in reversed(range(0,M)):
     answer[j]=fuben
     x,y = L[j]
-# TODO: python atcoderはこのコードのコメントにして提出
-# 2023-08-21 19:16:53
     if not uf.same(x,y) :
         xdebug(f"{x}と{y}は行き来できないので橋 {j}をつなげる必要あり")
         xdebug(f"{x} 島のグループ数 {uf.size(x)} , {y} 島のグループ数 {uf.size(y)}")
