@@ -56,4 +56,29 @@ for j in range(0,N):
     d = defaultdict(int)
     d[C[j]]=1
     D.append(d)
-print(D)
+uf = UnionFind(N)
+for j in range(0,Q):
+    q,a,b = map(int,input().split())
+    if q==1:
+        print(f"{j}の指令,{a}と{b}を合流させる")
+        if not uf.same(a-1,b-1):
+            a = uf.find(a-1)
+            b = uf.find(b-1)
+            if uf.parents[b]<uf.parents[a]:
+                print(f"数値入れ替え {a} と {b}")
+                a,b = b,a
+            print(D)
+            print(f"{b}から{a}へ持っていかれる。{b}の中身->{D[b].items()}")
+            for k,v in D[b].items():
+                print(f"loop->k={k},v={v}")
+                print(f"D[{a}][{k}]={D[a][k]}")
+                D[a][k]=D[a][k]+v
+                print(f"D[{a}][{k}]={D[a][k]}")
+            uf.union(a,b)
+            print(uf)
+    else:
+        print(f"{j}の指令,人{a}の束にいるクラス{b}の生徒数")
+        print(D)
+        print(f"D[{uf.find(a-1)}][{b}]")
+        x = D[uf.find(a-1)][b]
+        print(x)
