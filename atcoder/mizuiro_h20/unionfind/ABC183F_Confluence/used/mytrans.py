@@ -54,8 +54,30 @@ class UnionFind():
         xroot = self.find(x)
         res = (-1)*self.parents[xroot]
         return res
-    # TODO: 2023-09-07 19:36:14 same(self,x,y) の実装から
-
+    def same(self,x,y):
+        xroot = self.find(x)
+        yroot = self.find(y)
+        ok = (xroot==yroot)
+        return ok
+    def members(self,x):
+        xroot = self.find(x)
+        res = [ j for j in range(0,self.n) if self.find(j) == xroot ]
+        return res
+    def roots(self):
+        res = [ j for j,x in enumerate(self.parents) if x < 0 ]
+        return res
+    def group_count(self):
+        resInf = self.roots()
+        return len(resInf)
+    def all_group_members(self):
+        group_members=defaultdict(list)
+        for m in range(0,self.n):
+            mroot = self.find(m)
+            group_members[mroot].append(m)
+        return group_members
+    def __str__(self):
+        res = "\n".join(f"{r}:{m} " for r,m in self.all_group_members().items())
+        return res
 N,Q = MI()
 C = LI()
 D = []
@@ -65,9 +87,24 @@ for j in range(0,N):
     d[cid]=1
     D.append(d)
 xdebug(f"D=>{D}")
-for _ in range(0,Q):
+uf = UnionFind(N)
+for m in range(0,Q):
     q,a,b = MI()
     if q==1:
         xdebug(f"{a}と{b}合流の為 D[{b-1}]からD[{a-1}]情報移動する")
+        a = a-1
+        b = b-1
+        if uf.same(a,b) == False:
+            aroot = uf.find(a)
+            broot = uf.find(b)
+            if uf.parents[broot] < uf.parents[aroot]:
+                aroot,broot = broot,aroot
+            for cid,v in D[broot].items():
+                D[aroot][cid]=D[aroot][cid]+v
+            xdebug(f"D[{aroot}]は{D[aroot]}に変化")
+            uf.union(aroot,broot)
+            xdebug(f"Q.{m}")
+            xdebug(uf)
     else:
         xdebug(f"D[{a-1}]内にあるクラスid{b}の構成人数を出す")
+        print(D[a-1][b])
