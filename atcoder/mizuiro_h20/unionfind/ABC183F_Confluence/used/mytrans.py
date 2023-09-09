@@ -78,6 +78,7 @@ class UnionFind():
     def __str__(self):
         res = "\n".join(f"{r}:{m} " for r,m in self.all_group_members().items())
         return res
+
 N,Q = MI()
 C = LI()
 D = []
