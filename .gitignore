@@ -5,3 +5,4 @@ testdir
 testcase
 *.pyc
 *.ng
+out.txt

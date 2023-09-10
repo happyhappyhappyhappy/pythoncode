@@ -38,33 +38,36 @@ class UnionFind():
     def find(self,x):
         if self.parents[x]<0:
             return x
-        else:
+        else :
             self.parents[x]=self.find(self.parents[x])
             return self.parents[x]
     def union(self,x,y):
-        x = self.find(x)
-        y = self.find(y)
-        if x==y:
+        xroot = self.find(x)
+        yroot = self.find(y)
+        if (xroot == yroot) == True:
             return
-        if self.parents[y]<self.parents[x]:
-            x,y = y,x
-        self.parents[x]=self.parents[x]+self.parents[y]
-        self.parents[y]=x
+        if self.parents[yroot]<self.parents[xroot]:
+            xroot,yroot = yroot,xroot
+        self.parents[xroot]=self.parents[xroot]+self.parents[yroot]
+        self.parents[yroot]=xroot
+        return
     def size(self,x):
-        res = (-1)*self.parents[self.find(x)]
-        return res
+        res = self.parents[self.find(x)]
+        return (-1)*res
     def same(self,x,y):
-        t_or_f=(self.find(x)==self.find(y))
-        return t_or_f
+        xroot = self.find(x)
+        yroot = self.find(y)
+        return (xroot == yroot)
     def members(self,x):
         xroot = self.find(x)
-        res = [ j for j in range(0,self.n) if self.find(j)==xroot]
+        res = [j for j in range(0,self.n) if self.find(j) == xroot]
         return res
     def roots(self):
-        res = [ j for j,x in enumerate(self.parents) if x < 0]
+        res = [j for j,x in enumerate(self.parents) if x < 0]
         return res
     def group_count(self):
-        return len(self.roots())
+        roots = self.roots()
+        return len(roots)
     def all_group_members(self):
         group_members=defaultdict(list)
         for m in range(0,self.n):
@@ -72,38 +75,35 @@ class UnionFind():
             group_members[mroot].append(m)
         return group_members
     def __str__(self):
-        res = "\n".join(f"{root}:{member}" for root,member in self.all_group_members().items())
+        res = "\n".join(f" {root} : {member} " for root,member in self.all_group_members().items())
         return res
-
+# N:人数 Q:指示された合流処理数＋質問数の和
 N,Q = MI()
+# 各人の所属クラス
 C = LI()
+# CCL各人の合流値
 CCL = []
+# 初期値をセット
 for j in range(0,N):
-    c = Counter([C[j]])
+    c=Counter([C[j]])
     CCL.append(c)
 uf = UnionFind(N)
-# xdebug(f"CCL={CCL}")
-for _ in range(0,Q):
+for j in range(0,Q):
     q,a,b=MI()
-    if q==1:
-#        xdebug(f"{a}と{b}を結合する")
-        a=a-1
-        b=b-1
-        if uf.same(a,b)==False:
-            a = uf.find(a)
-            b = uf.find(b)
-            if uf.parents[b]<uf.parents[a]:
-                a,b = b,a
-            uf.union(a,b)
-#            xdebug(f"----{a}と{b}がくっついた時のUnionFind----")
-#            xdebug(uf)
-#           xdebug(f"{a}と{b}のメンバー情報統合")
-            CCL[a].update(CCL[b])
-#            xdebug(CCL)
-#        else:
-#            xdebug("もう結合済みなので何も実行せず")
+    if q == 1:
+        a = a-1
+        b = b-1
+        if uf.same(a,b) == False:
+            aroot = uf.find(a)
+            broot = uf.find(b)
+            if uf.parents[broot] < uf.parents[aroot]:
+                aroot,broot = broot,aroot
+            # 結合処理
+            CCL[aroot].update(CCL[broot])
+            xdebug(f"現在の集合{CCL}")
+            uf.union(aroot,broot)
     else:
-        aroot = uf.find(a-1)
-#        xdebug(f"人 {a}が中にいる集合でクラス{b}が何人いるか確認する")
-#        xdebug(f"答え {CCL[aroot][b]}")
-        print(CCL[aroot][b])
+        xdebug(f"Q={q},A={a},B={b}")
+        xdebug(f"{a-1}の属する集団にクラス{b}がある人数")
+        xdebug(CCL[a-1])
+        print(CCL[a-1][b])
