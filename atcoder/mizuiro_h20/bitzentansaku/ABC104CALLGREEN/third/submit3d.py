@@ -41,8 +41,6 @@ ans = MAXSIZE
 for bit in range(0,1<<D):
     passP = []
     notpassP = []
-    # 2023-09-11 19:21:40 この辺で終了
-    # TODO:bitの値に応じて今全問解いた問題、今は解かなかった問題に分離
     for j in range(0,D):
         x = (bit >> j) & 1
         if x == 1:
@@ -60,14 +58,33 @@ for bit in range(0,1<<D):
             thissum = BaseData[np][0]*BaseData[np][1]+BaseData[np][2]
             nowsum=nowsum+thissum
             nowpass=nowpass+BaseData[np][0]
-    xdebug(f"指定問題 {passP} 全完時-> 合計得点 {nowsum} : 合計問題 {nowpass}")
-    xdebug(f"合格点{G}に満たすか")
+    # xdebug(f"指定問題 {passP} 全完時-> 合計得点 {nowsum} : 合計問題 {nowpass}")
+    # xdebug(f"合格点{G}に満たすか")
     if G <= nowsum:
-        xdebug(f"{G} <= 全完 {passP}の時はここで終了 飛ばします")
+        # xdebug(f"{G} <= 全完 {passP}の時はここで終了 飛ばします")
         if nowpass <= ans:
             ans = nowpass
-            xdebug(f"問題数 {ans} になりました")
+            # xdebug(f"ansを{nowpass}にします")
+            # xdebug(f"問題数 {ans} になりました")
         continue
     else:
-        xdebug(f"補講のパターン。後で書くTODO:")
-    xdebug("continue掛かって時はここで飛ぶはず")
+        # notpassPの一番ラストの問題を全部解くまで調べる
+        notpassP.reverse()
+        # xdebug(f"まだ解いていない{notpassP}の一番最初を解く")
+        prob=notpassP[0]
+        coun,point,tmp=BaseData[prob]
+        # xdebug(f"{prob} 番目情報 全問題数 {coun}問,得点{point}")
+        for j in range(0,coun):
+            nowsum=nowsum+point
+            nowpass=nowpass+1
+            if G<=nowsum:
+                # xdebug(f"{nowsum}点となり完了しました")
+                if nowpass < ans:
+                    ans = nowpass
+                    # xdebug(f"ansを{nowpass}にします")
+                    # xdebug(f"問題数 {ans} になりました")
+                # xdebug(f"bit={bit}の時の補講は終了しました")
+                break
+        # xdebug(f"bit={bit}の時の処理を終了しました")
+        continue
+print(ans)
