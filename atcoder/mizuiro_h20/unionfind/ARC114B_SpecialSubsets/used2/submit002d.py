@@ -97,4 +97,5 @@ for j in range(0,N):
 gc = uf.group_count()
 # print(f"グループの数は {gc}です")
 x = pow2(2,gc)-1
-print(f"answer={x}")
+# print(f"answer={x}")
+print(x)
