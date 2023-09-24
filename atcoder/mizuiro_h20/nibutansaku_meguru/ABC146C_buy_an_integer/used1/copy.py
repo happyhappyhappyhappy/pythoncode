@@ -13,4 +13,5 @@ def meguru_bisect(ng,ok):
 
 first_ng = 10**9+1
 first_ok = 0
-ans = meguru_bisect
+ans = meguru_bisect(first_ng,first_ok)
+print(ans)
