@@ -78,7 +78,7 @@ class UnionFind():
         return res
 COLMAX=10
 uf = UnionFind(COLMAX)
-# TODO: 2023-09-14 19:27:30 ufに設定を保存
+# 2023-09-14 19:27:30 ufに設定を保存
 Col=[0]*COLMAX
 N = II()
 for _ in range(0,N):

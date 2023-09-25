@@ -5,7 +5,7 @@ from pdfminer.pdfpage import PDFPage
 from pdfminer.layout import LAParams
 from io import StringIO
 
-pdf_file_path = "./target.pdf"
+pdf_file_path = "./ChatGPT_Cheatsheet_Costa.pdf"
 
 with open(pdf_file_path , "rb") as pdf_file: #ファイルオブジェクトを受け取り、変数「pdf_file」に代入。
     output = StringIO() #コンソールに出力されたテキストを取得するため、IOクラス「StringIO」使用
