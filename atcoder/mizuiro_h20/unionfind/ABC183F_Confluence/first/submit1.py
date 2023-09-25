@@ -4,10 +4,10 @@ import sys
 import pprint as pp
 from collections import Counter,defaultdict
 # pypy3用
-# import pypyjit
+import pypyjit
 # 再帰制御解放
-# pypyjit.set_param('max_unroll_recursion=-1')
-# sys.setrecursionlimit(10**6)
+pypyjit.set_param('max_unroll_recursion=-1')
+sys.setrecursionlimit(10**6)
 from logging import getLogger, StreamHandler, DEBUG
 
 # 入力のマクロ
@@ -25,7 +25,6 @@ logger.addHandler(handler)
 logger.propagate = False
 
 # クラス+メソッドを一関数
-xdebug=logger.debug
 ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
@@ -84,7 +83,6 @@ CCL=[]
 for j in range(0,N):
     c = Counter([CList[j]])
     CCL.append(c)
-xdebug(CCL)
 
 uf = UnionFind(N)
 
@@ -98,14 +96,8 @@ for j in range(0,Q):
             sroot = uf.find(s)
             if uf.parents[sroot] < uf.parents[froot]:
                 froot,sroot = sroot,froot
-            xdebug(f"処理前 froot {CCL[froot]},sroot {CCL[sroot]}")
             CCL[froot].update(CCL[sroot])
-            xdebug(f"処理後 froot {CCL[froot]}")
             uf.union(froot,sroot)
-            xdebug(f"結合後 {uf}")
-        else:
-            xdebug(f"{f}と{s}は合流済みなので処理しない")
     else:
         froot = uf.find(f-1)
-        xdebug(f"生徒{f-1}のリーダー->{froot}中のクラス{s}の数は {CCL[froot][s]}")
         print(CCL[froot][s])
