@@ -1,716 +1,347 @@
-The ChatGPT Cheat Sheet
+AtCoder Regular Contest 037
+解説
 
-This cheat sheet illustrates the diverse abilities of OpenAI’s ChatGPT for developers and content creators
-to enhance their proﬁciency in large language model prompting across various domains including media
-content creation, natural language processing, and programming.
+AtCoder株式会社 代表取締役
+高橋 直大
 
-Table of Contents:
+3/19/15
 
-1. NLP Tasks
-2. Code
-3. Structured Output Styles
-4. Unstructured Output Styles
-5. Media Types
-6. Meta ChatGPT
-7. Expert Prompting
+競技プログラミングを始める前に
 
-www.neuralmagic.com
+• 競技プログラミングをやったことがない人へ
 
-(batteries not included)
+– まずはこっちのスライドを見よう！
+– http://www.slideshare.net/chokudai/abc004
 
-1. NLP
+3/19/15
 
-Text Generation
+A問題　全優
 
-Prompt: write an intro paragraph to a mystery novel
+1.問題概要
+2.アルゴリズム
 
-It was a dark and stormy night when the body was found. The small town of Millfield was in shock as the
-news spread that one of their own, local businessman, had been murdered in cold blood. The police were at
-a loss for leads and the residents of the town were on edge. But one person, a young and ambitious
-reporter, was determined to uncover the truth and find the killer. Little did she know, this case would
-lead her down a treacherous path of lies, deception, and hidden secrets that would shake the very
-foundations of the town. As she delves deeper into the investigation, she begins to realize that nothing
-is as it seems and that the killer may be closer than she ever imagined.
+3/19/15
 
-Summarization
+©AtCoder Inc. All rights reserved.
 
-Prompt: summarize this text: It was a dark and stormy night when the body was found. The small town of
-Millfield was in shock as the news spread that one of their own, local businessman, had been murdered in
+A問題　問題概要
 
-cold blood. The police were at a loss for leads and the residents of the town were on edge. But one person,
+• N科目の試験を受ける
+• 勉強しなければ科目 i では mi 点を取る
 
-a young and ambitious reporter, was determined to uncover the truth and find the killer. Little did she
+• 1分間勉強することで1つの科目の得点を
+• 1点上げられる
 
-know, this case would lead her down a treacherous path of lies, deception, and hidden secrets that would
+• 全科目で80点以上を取るには
+• 何分の勉強が必要？
 
-shake the very foundations of the town. As she delves deeper into the investigation, she begins to realize
+• (科目数) ≦ 25, 1 ≦ mi ≦ 100
 
-that nothing is as it seems and that the killer may be closer than she ever imagined.
+3/19/15
 
-A young reporter in a small town investigates the murder of a local businessman and uncovers a web of
-lies, deception and hidden secrets that shake the foundations of the town. The police have no leads and
-the town is on edge. The reporter delves deeper into the investigation and realizes the killer may be
-closer than she imagined.
+A問題　アルゴリズム
 
-www.neuralmagic.com                                                                                                                                                                          2
+• mi が80未満の科目は 80 - mi 分勉強する
+• 必要がある
+• mi が80以上の科目の勉強時間は 0 分でよい
 
-Open Domain Question Answering
+• 全科目についてこれを合計したものが答え
 
-Prompt: when did Apollo 11 land on the moon
+• 各科目の勉強時間を max(0, 80 – mi) と
+• 書くこともできる
 
-Apollo 11 landed on the moon on July 20, 1969.
+3/19/15
 
-Paraphrasing
+B問題　バウムテスト
 
-Prompt: rewrite this text: Apollo 11 landed on the moon on July 20, 1969
+1.問題概要
+2.アルゴリズム
 
-On July 20, 1969, the Apollo 11 mission successfully landed on the moon.
+3/19/15
 
-Sentiment Analysis (few-shot or zero-shot)
+©AtCoder Inc. All rights reserved.
 
-Prompt: I like pizza, positive
+B問題　問題概要
 
-I don't like pizza, negative
+• N頂点M辺の無向グラフが与えられる
 
-sometimes, I like pizza sometimes I don't, neutral
+• このグラフの連結成分のうち木であるもの
+• （閉路がないもの）の個数を求めよ
 
-while the movie was good, I sometimes though it was a bit dry,
+• N ≦ 100, M ≦ N(N-1)/2
 
-neutral
+3/19/15
 
-www.neuralmagic.com                                                                                                                                                                          3
+B問題　アルゴリズム
 
-Table to Text
+• 複数の異なる方針のうち１つを紹介する
 
-Prompt: summarize the data in this table: I like pizza positive
-I don't like bananas negative
+• とりあえず連結成分を列挙する必要がある
 
-Sometimes I like pizza but sometimes I don't neutral
+• 「まだ見ていない頂点を選んでそこからDFS
+• （深さ優先探索）をする」のを繰り返すとよい
 
-While the movie in general was pretty good, I sometimes thought it was a bit dry neutral
+• こうして連結成分を得るついでに
+• 閉路がないか判定する
 
-This table contains four statements, two of them express a positive and negative opinion about two
-different subjects, Pizza and Bananas. Other two statements express a neutral opinion about the same
-subjects, Pizza and a movie.
+3/19/15
 
-Text to Table
+B問題　アルゴリズム
 
-Prompt: create a table from this text: create a 2 column table where the first column contains the stock
-ticker symbol for Apple, Google, Amazon, Meta, and the other column contains the names of the companies.
+• DFSをする上で、無限ループを防ぐために
+• 「すでに訪れた」頂点をマークしていき、
+• 二度訪れないようにするが…
 
-www.neuralmagic.com                                                                                                                                                                          4
+• 連結成分に閉路がなければ「すでに訪れた
+• 頂点にまた訪れようとする」ということが
+• 起こらないので、これで木の判別が可能
 
-Token Classiﬁcation (few-shot or zero-shot)
+• （DFSで直前に訪れた頂点を覚えて
+• おかないと、誤検知してしまうので注意）
 
-Prompt: classify the named entities in this text: George Washington and his troops crossed the Delaware
-River on December 25, 1776 during the American Revolutionary War.
+3/19/15
 
-George Washington: Person
-Delaware River: Location
-December 25, 1776: Date
-American Revolutionary War: Event/War
+C問題　壁抜け
 
-Dataset Generation (few-shot or zero-shot)
+1.問題概要
+2.アルゴリズム
 
-Prompt: generate more datapoints from this text:
-"contains no wit , only labored gags "
+3/19/15
 
-0 (negative)
+©AtCoder Inc. All rights reserved.
 
-"that loves its characters and communicates something rather beautiful about human nature "
+C問題　問題概要
 
-1 (positive)
+• N^2 ます計算（掛け算）をする
 
-"remains utterly satisfied to remain the same throughout "
+• N^2 個の計算結果を昇順に
+• ソートしたとき、小さい方から
+• K番目にくる値は？
 
-0 (negative)
+• N ≦ 30000
+• (行、列の値) ≦ 10^9
 
- "has a convoluted plot that fails to engage the audience"
-0 (negative)
-"lacks emotional depth and fails to connect with the audience"
-0 (negative)
+3/19/15
 
-www.neuralmagic.com                                                                                                                                                                          5
+C問題　アルゴリズム (部分点)
 
-Machine Translation
+• 5点: N ≦ 10
 
-Prompt: translate this text into Portuguese: welcome to the matrix
+• １００マス計算
 
-Bem-vindo à matriz.
+• 全部計算してソートできる
 
-www.neuralmagic.com                                                                                                                                                                          6
+3/19/15
 
-2. Code
+C問題　アルゴリズム (満点)
 
-Code Generation
+• 100点: N ≦ 30000
 
-Prompt: show me how to make an http request in Python
+• 9億マス計算
 
-www.neuralmagic.com                                                                                                                                                                          7
+• 全部計算するとメモリが足りない、
+• もし足りてもソートは確実に間に合わない
 
-Code Explanation
+• なんとかして K 番目の値「だけ」を求めたい
 
-Prompt: explain this python code:
-from deepsparse import Pipeline
+3/19/15
 
-qa_pipeline = Pipeline.create(task="question-answering")
+C問題　アルゴリズム (満点)
 
-inference = qa_pipeline(question="What's my name?", context="My name is Snorlax")
+• そもそも「小さい方からK番目の値がXである」
+• とはどういうことか？
 
->> {'score': 0.9947717785835266, 'start': 11, 'end': 18, 'answer': 'Snorlax'}
+• ずばり「X-1以下の数はK個未満しかないが、
+ X以下の数はK個以上ある」ということ
 
-This code is using a library called "deepsparse" to create a pipeline for question-answering.
+ 1,1,2,2,2,2,2,4,4
+ 小さい方から7番目は2
+ 1以下の数は ２個 < 7個
+ 2以下の数は 7個
 
-from deepsparse import Pipeline imports the "Pipeline" class from the "deepsparse" library, which allows
-the user to define a pipeline for a specific task like question-answering.
+3/19/15
 
-qa_pipeline = Pipeline.create(task="question-answering") creates a new pipeline object for the task of
-question-answering and assigns it to the variable "qa_pipeline".
+C問題　アルゴリズム (満点)
 
-inference = qa_pipeline(question="What's my name?", context="My name is Snorlax") is passing the values of
-the question and context to the pipeline object "qa_pipeline" and storing the result in a variable called
-"inference". The inference variable stores a dictionary containing the score of the answer, the start and
-end index of the answer in the context, and the answer itself. The returned output would look like
-{'score': 0.9947717785835266, 'start': 11, 'end': 18, 'answer': 'Snorlax'}
+• 「X-1以下の数はK個未満しかないが、
+ X以下の数はK個以上ある」
 
-It appears that the pipeline is using some form of machine learning model to understand the question and
-context, and extract the answer from the context based on the question. The library "deepsparse" is meant
-for public use, this code is an example of how to use it to perform question-answering task.
+ 別の言い方では
+ 「X以下の数がK個以上あるような最小のX」
+ が小さい方からK番目の数
 
-www.neuralmagic.com                                                                                                                                                                          8
+ 二分探索が使える
 
-Docstrings Generation
+3/19/15
 
-Prompt: write a docstring description for this function:
-import requests
+C問題　アルゴリズム (満点)
 
-def make_get_request(url):
+• 「Xを決めたとき、X以下の数は
+• K個以上あるか？」という問題を繰り返し
+• 解くことになる
 
-response = requests.get(url)
+ 実際に数えてK個以上か確かめればよい
 
-return response.status_code, response.text
+ どうやって数えるか？
 
-make_get_request('https://www.example.com')
+3/19/15
 
-www.neuralmagic.com                                                                                                                                                                          9
+C問題　アルゴリズム (満点)
 
-Programming Language Conversion
+• 各行を一つずつ見ていく
 
-Prompt: convert this code from Python to Javascript:
-print("hello world")
+• a_i * b_j ≦ K ⇔ b_j ≦ K / a_i (切り捨て)
 
-console.log("hello world");
+• i行目に含まれるK以下の数の個数は、
+• b_1, b_2, …, b_N のうち K / a_i 以下で
+• あるようなものの個数と一致
 
-Data Object Conversions (JSON, XML, CSV etc.)
+• b をソートしておけば（再び）二分探索で
+• O(log(N)) 時間で求まる
 
-Prompt: convert this JSON object into XML:
-{"Name":{"0":"John Smith","1":"Jane Doe","2":"Bob Johnson","3":"Samantha
+3/19/15
 
-Williams"},"Age":{"0":32,"1":28,"2":45,"3":40},"Gender":{"0":"Male","1":"Female","2":"Male","3":"Female"},"O
+C問題　アルゴリズム (満点)
 
-ccupation":{"0":"Software Developer","1":"Data Analyst","2":"Project Manager","3":"Marketing Director"}}
+• 総計算量：
+• O(log(MAX_A * MAX_B) * N * log(N))
 
-(continued next page)
+• log(10^18) * 3万 * log(3万) = 2700万
 
-www.neuralmagic.com                                                                                                                                                                          10
+• 速い言語でないと厳しいが、ゆるくすると
+• C++で本当にソートして通ってしまうので
+• 許してください
 
-www.neuralmagic.com                                                                                                                                                                          11
+3/19/15
 
-Knowledge Graph Generation
+D問題　Chaotic Polygons
 
-Prompt: convert this text into nodes and edges: Babe Ruth joined the New York Yankees in 1920. The Boston
-Red Sox sold his contract to the Yankees. He played for the Yankees from 1920 to 1934, and during that time
+1.問題概要
+2.アルゴリズム
 
-he established himself as one of the greatest players in baseball history.
+3/19/15
 
-Here is an example of how the text could be converted into nodes and edges:
+©AtCoder Inc. All rights reserved.
 
-Nodes:
+D問題　問題概要
 
-Edges:
+• こういう→
+• 多角形の個数を mod 10億7 で
+• 求めよ
 
-•Babe Ruth
-•New York Yankees
-•Boston Red Sox
-•baseball history
+• L ≦ 10^5
+• (右の図の正三角形の数を
+• 3^L とする)
 
-•Babe Ruth (node) joined (edge) New York Yankees (node) in 1920 (edge property)
-•Boston Red Sox (node) sold (edge) Babe Ruth's contract (edge property) to (edge) New York Yankees
-(node)
-•Babe Ruth (node) played for (edge) New York Yankees (node) from 1920 (edge property) to 1934 (edge
-property)
-•Babe Ruth (node) established himself as (edge) one of the greatest players (edge property) in
-baseball history (node)
+3/19/15
 
-It's important to note that, the representation of the knowledge graph can be different depending on the
-purpose of the graph, and depending on the data available in the text.
+D問題　アルゴリズム
 
-www.neuralmagic.com                                                                                                                                                                          12
+• 求める答え（レベルLの図形に含まれる
+• 多角形の個数）を f(L) とおく
 
-HTML to Text (Web Scraping)
+• 中央の正三角形に注目
 
-Prompt: convert this HTML to text: <h1 class="heading1" id="neural-magic-platform-documentation">Neural
-Magic Platform Documentation</h1>
+• それを含まないような多角形の
+• 個数は 3 * f(L-1)
 
-www.neuralmagic.com                                                                                                                                                                          13
+A→
 
-3. Structured Output Styles
+←B
 
-List
+• 含むような多角形の個数は、
+• 図のA地点からB地点までの
+• 「多角形の一部」の個数をg(L-1) として、 g(L-1)^3
 
-Prompt: give me a list of 5 citrus fruits
+3/19/15
 
-Here is a list of 5 citrus fruits:
+D問題　アルゴリズム
 
-● Oranges
-● Lemons
-● Limes
-● Grapefruit
-● Tangerines
+• g(L) を求めたい
+• (地点AからBまで辿る「多角形の一部」
+• （右の図はレベルL+1とする）)
 
-Numbered List
+• やはり中央の正三角形に注目
 
-Prompt: give me a numbered list of 5 citrus fruits
+中央
 
-Sure, here is a numbered list of 5 citrus fruits:
+A→
 
-1. Oranges
-2. Lemons
-3. Limes
-4. Grapefruit
-5. Tangerines
+←B
 
-www.neuralmagic.com                                                                                                                                                                          14
+• それを含まないような「多角形の
+• 一部」の個数は先ほどと同様に
+• 再帰で
 
-Headings and Subheadings
+• 含む場合は…
 
-Prompt: convert this text into headings and subheadings: Babe Ruth joined the New York Yankees in 1920. The
-Boston Red Sox sold his contract to the Yankees. He played for the Yankees from 1920 to 1934, and during
+3/19/15
 
-that time he established himself as one of the greatest players in baseball history.
+D問題　アルゴリズム
 
-Here is an example of how the text could be converted into headings and subheadings:
+• 含む場合は…
+• A→C→D→B と辿る
+C→Dは g(L-1) 通り
 
-1. Introduction
+• A→C と D→Bについては、
+単体では g(L-1) 通りだが
+両方とも E を通ってはいけない
 
-○ The text is about Babe Ruth and his time playing for the New York Yankees
-○ The text covers his move from the Boston Red Sox to the Yankees and his time playing for the
+C→
 
-team
+← D
 
-2. Babe Ruth's move to the New York Yankees
+A→
 
-○ Babe Ruth joined the New York Yankees in 1920
-○ The Boston Red Sox sold his contract to the Yankees
+中央
 
-3. Babe Ruth's time with the New York Yankees
+↑ E
 
-○ He played for the Yankees from 1920 to 1934
-○ During that time he established himself as one of the greatest players in baseball history
+←B
 
-It's important to note that the text needs to be structured and well-organized in order to create clear
-and meaningful headings and subheadings.
+• 右の図形をレベルL+2として、
 
-www.neuralmagic.com                                                                                                                                                                          15
+A→E→Cと辿るような「多角形の一部」の個数を h(L)
+とおいて、これを求めて両方Eを通るケースを引く
 
-Tables
+3/19/15
 
-Prompt: create a table from this list: Oranges, Lemons, Limes, Grapefruit, Tangerines
+D問題　アルゴリズム
 
-www.neuralmagic.com                                                                                                                                                                          16
+右の図形をレベルL+2として、A→E→Cと辿るような「多角形の
+一部」の個数を h(L) とおいた
 
-4. Unstructured Output Styles
+今回は中央の三角形（FGH）に
+対して必ずE側を通る
 
-Narrative Modes (1st, 2nd or in the 3rd person)
+A→F→E→G→C という経路に
+なるが、さきほどと同じくHを
+二度通ってはならない
 
-Prompt: write a paragraph on how to make brownies in the 1st person
+C→
 
-Hey there, I'm excited to show you how to make delicious brownies from scratch.
+H→
 
-To make brownies, you will need the following ingredients:
+G
+←
 
-●
-●
-●
-●
-●
-●
-●
+A→
 
-1/2 cup (1 stick) of unsalted butter
-1 cup of granulated sugar
-2 large eggs
-1 teaspoon of vanilla extract
-1/2 cup of all-purpose flour
-1/3 cup of unsweetened cocoa powder
-1/4 teaspoon of salt
+↑ F
 
-Here's the step by step process:
+↑ E
 
-1. Preheat your oven to 350°F (175°C) and grease an 8-inch square baking pan.
-2. Melt the butter in a saucepan over medium heat. Once melted, remove from heat and stir in the sugar.
-3. Add the eggs and vanilla extract, and mix well.
-4. In a separate bowl, combine the flour, cocoa powder, and salt. Gradually add this to the butter mixture,
+適当に回転すれば今までと同様に h(L) が g(L-1), h(L-1) で表せる
 
-stirring until well blended.
+以上で f(L),g(L),h(L) が f(L-1), g(L-1), h(L-1) によって表されたので
+O(L) で f(L) が求まる
 
-5. Pour the batter into the prepared pan, and smooth the top with a spatula.
-6. Bake for 18-20 minutes, or until a toothpick inserted into the center comes out clean.
-7. Once done, remove from the oven and let it cool for a few minutes before cutting into squares and serving.
+3/19/15
 
-And there you have it, a batch of delicious homemade brownies. I recommend serving them warm with a scoop of vanilla
-ice cream or a drizzle of chocolate sauce. Enjoy!
+D問題　アルゴリズム
 
-www.neuralmagic.com                                                                                                                                                                          17
+お疲れ様でした。
 
-Formal
-
-Prompt: write a paragraph on the topic of cellular automata in a formal style
-
-Cellular automata is a mathematical model that simulates the behavior of complex systems through the
-interaction of simple, locally interacting agents. This model is used to understand and predict the
-behavior of a wide range of systems, including but not limited to physics, chemistry, biology and computer
-science. The theory behind cellular automata is based on the concept of a collection of discrete cells,
-which can exist in a finite number of states, and whose evolution is determined by a set of rules that
-depend on the state of the cells and their neighbors. Its applications are varied and range from
-theoretical physics, to computer science, to the modeling of complex systems.
-
-Informal
-
-Prompt: write a paragraph on the topic of cellular automata in an informal style
-
-Yo, have you ever heard of cellular automata? It's this really cool concept that simulates the behavior of
-complex systems by using simple agents that interact with each other. Basically, it's like a virtual world
-where little "cells" interact with each other to create different patterns and behaviors. It's used in all
-sorts of fields like physics, chemistry, biology and computer science. It's pretty wild to think about all
-the possibilities that cellular automata holds. It's not a widely known concept but It's pretty
-interesting once you learn about it.
-
-www.neuralmagic.com                                                                                                                                                                          18
-
-Personas
-
-Prompt: write a paragraph on the topic of cellular automata in the style of a social media influencer
-
-Hey guys, have you heard about cellular automata? It's this super cool concept that simulates the behavior
-of complex systems through the interaction of simple agents. Think of it like a virtual world where tiny
-"cells" interact with each other to create amazing patterns and behaviors. It's like a mini universe in
-your computer! It's used in all sorts of fields like physics, chemistry, biology and computer science.
-It's so mind-blowing to think about all the possibilities that cellular automata holds. I'm obsessed and I
-think you will be too! #cellularautomata #science #futurism
-
-Custom Text Manipulation
-
-Prompt: write a paragraph on the history of the calculator, include emojis at the end of every sentence, and
-do not capitalize the first word in each sentence
-
-the first calculator was invented by william ovens in 1642. it was called the "pascal calculator" and was
-designed to perform the four basic arithmetic operations. in the following centuries, many different types
-of calculators were invented, including the slide rule and the abacus. however, it wasn't until the 1970s
-that electronic calculators became widely available and affordable. the first electronic calculator was
-the "hp-35" which was introduced in 1972 by hewlett-packard. it was a scientific calculator that could
-perform trigonometric and logarithmic functions. 🤖📊 Since then, the calculator has become an essential
-tool in many fields, including science, engineering, and finance. 💻🧮 Today, we have a wide variety of
-calculators available, from basic models to advanced models with advanced features like graphing
-capabilities and programming languages.📱💻
-
-www.neuralmagic.com                                                                                                                                                                          19
-
-5. Media Types
-
-Write Social Media Posts
-
-Prompt: write a tweet on futurism
-
-"Exploring the future is both exciting and daunting. From AI to biotech, advances in technology are
-shaping our world in ways we never thought possible. Let's embrace change and shape the future together.
-#futurism #technology #innovation"
-
-www.neuralmagic.com                                                                                                                                                                          20
-
-Write Blogs
-
-Prompt: write a blog on french cuisine
-
-French cuisine is widely considered to be one of the most sophisticated and refined in the world. The
-French have a long history of culinary arts, dating back to the Middle Ages, and have developed a culinary
-tradition that is rich and diverse. French cuisine is characterized by its use of fresh, seasonal
-ingredients, expertly prepared and presented in a way that is both elegant and delicious.
-
-One of the most recognizable elements of French cuisine is the use of sauces. French sauces are typically
-made with a base of butter, cream, or stock, and are flavored with herbs, spices, and other ingredients.
-Some of the most famous French sauces include béarnaise, hollandaise, and béchamel. These sauces are often
-served with meats, seafood, and vegetables and are a hallmark of French cuisine.
-
-Another important element of French cuisine is the use of fresh, seasonal ingredients. The French are
-known for their commitment to using only the freshest and highest-quality ingredients in their cooking.
-This is why many French dishes are only available at certain times of the year, when the ingredients are
-at their peak.
-
-One of the most popular types of French cuisine is 'bistro' cuisine. These are casual, friendly
-restaurants that serve traditional French dishes in a relaxed atmosphere. Bistro cuisine often features
-simple, hearty dishes such as steak frites, mussels, and ratatouille, and is a great way to experience the
-flavors of France.
-
-French pastries and desserts are also famous around the world. French patisseries, or pastry shops, are
-known for their delicious croissants, macarons, tarts, and cakes. French desserts are often made with
-fresh fruits, cream, and chocolate and are a perfect way to end a meal.
-
-In conclusion, French cuisine is a true art form, known for its sophistication and refinement. The use of
-fresh,
-
-www.neuralmagic.com                                                                                                                                                                          21
-
-Write Emails
-
-Prompt: write an email selling software to corporate executives
-
-Subject: Enhance Your Business Operations with Our Innovative Software
-
-Dear [Executive's Name],
-
-I hope this email finds you well. My name is [Your Name], and I am reaching out to introduce you to our
-cutting-edge software that has the potential to revolutionize the way your business operates.
-
-Our software is designed to streamline and automate various business processes, including but not limited
-to inventory management, financial forecasting, and customer relationship management. With its
-user-friendly interface and customizable features, it is easy for your team to navigate and tailor to your
-specific needs.
-
-What sets our software apart from the competition is its ability to integrate seamlessly with other
-systems and platforms, allowing for smooth data transfer and real-time analysis. This results in increased
-efficiency, reduced errors and ultimately improved decision-making capabilities.
-We understand that every business is unique, and that's why our team is dedicated to providing
-personalized solutions and exceptional customer service. We would love the opportunity to schedule a demo
-and show you how our software can benefit your business.
-
-Please let me know if this is something that interests you and we can schedule a time that works best for
-you. I look forward to hearing from you soon.
-
-Best regards,
-
-[Your Name]
-
-P.S. Our software comes with a 30-day free trial and flexible pricing options to fit any budget. Don't
-hesitate to reach out if you have any questions or concerns.
-
-www.neuralmagic.com                                                                                                                                                                          22
-
-Write Poems
-
-Prompt: write a poem about the soul and show rhyme and meter headings
-
-The soul, a mystery deep and true
-A treasure to find, a journey to pursue
-
-Rhyme: AABB
-Meter: Iambic tetrameter
-
-It whispers to us, in the dark of the night
-Guiding us towards, the path that is right
-
-Rhyme: AABB
-Meter: Iambic tetrameter
-
-It is the essence, of who we truly are
-A light that shines, from the stars
-
-Rhyme: AABB
-Meter: Iambic tetrameter
-
-It is the music, that plays in our hearts
-The rhythm that keeps us, from falling apart
-
-www.neuralmagic.com                                                                                                                                                                          23
-
-Write Songs
-
-Prompt: write a folk song about the sunset show guitar chords
-
-Verse 1:
-G C G
-The sun sets in the west
-G C G
-And the sky turns a fiery red
-G C G
-I take my guitar in hand
-D G C G
-And play a song for the sunset show
-
-Chorus:
-C G D
-Oh the sunset show
-C G D
-Is a sight to behold
-C G D
-As the day comes to a close
-G C G
-I'll keep playing my guitar
-
-www.neuralmagic.com                                                                                                                                                                          24
-
-Write Resumes/Cover Letters
-
-Prompt: write a software engineer resume
-
-[Full Name]
-[Address]
-[Phone Number]
-[Email Address]
-
-Summary:
-
-Highly motivated and experienced software engineer with over 5 years of experience in the industry. Strong
-background in full-stack development and a proven track record of delivering high-quality, reliable and
-maintainable code. Skilled in multiple programming languages including Java, Python, and JavaScript.
-Strong problem-solving and analytical skills, with a passion for learning new technologies and staying
-current in the field.
-
-Education:
-
-● Bachelor of Science in Computer Science, [University Name], [Graduation Date]
-● Master of Science in Computer Science, [University Name], [Graduation Date]
-
-Technical Skills:
-
-● Programming Languages: Java, Python, JavaScript, C++, C#
-● Web Development: HTML, CSS, React, AngularJS, Node.js
-● Database: MySQL, MongoDB, Oracle
-● Tools and Frameworks: Git, JIRA, Scrum, Agile
-● Operating Systems: Windows, Linux, MacOS
-
-Professional Experience:
-
-Software Engineer, [Company Name], [Dates of Employment]
-
-www.neuralmagic.com                                                                                                                                                                          25
-
-● Worked on the development of a web-based application using React, Node.js, and MongoDB.
-● Collaborated with the team to design and implement new features, improve performance and fix bugs.
-● Contributed to the design and implementation of the application's RESTful API.
-● Assisted with the deployment of the application to the production environment.
-● Participated in code reviews and provided feedback to other team members.
-● Mentored junior developers and provided guidance on best practices.
-
-Software Developer, [Company Name], [Dates of Employment]
-
-● Worked on the development of a mobile application using Java and Android SDK.
-● Collaborated with the team to design and implement new features, improve performance and fix bugs.
-● Assisted with the deployment of the application to the Google Play Store.
-● Participated in code reviews and provided feedback to other team members.
-
-Additional Experience:
-
-● Participated in various hackathons and coding competitions, winning several awards for creative and
-
-efficient solutions.
-
-● Contributed to open-source projects on Github.
-
-Certifications:
-
-● Oracle Certified Professional, Java SE 11 Developer
-● Microsoft Certified: Azure Developer Associate
-● AWS Certified Developer - Associate
-
-Professional Affiliations:
-
-● Member of [Professional Organization Name]
-● Member of [Professional Organization Name]
-
-Languages:
-
-English (native)
-Spanish (fluent)
-
-www.neuralmagic.com                                                                                                                                                                          26
-
-6. Meta ChatGPT
-
-Ask ChatGPT About Its Own Capabilities
-
-Prompt: what ways can you structure text output?
-
-As a language model, I can structure text output in a variety of ways, including:
-
-● Paragraphs: I can generate text in the form of multiple paragraphs, which can be useful for longer
-
-pieces of writing such as articles or essays.
-
-● Lists: I can generate lists of items, which can be useful for creating bullet points or enumerated
-
-lists.
-
-● Headings and subheadings: I can use headings and subheadings to organize text and make it easier to
-
-read.
-
-● Sentences: I can generate text one sentence at a time, which can be useful for generating responses
-
-to specific questions or prompts.
-
-● Tables: I can generate table format text, which can be useful for displaying data in a structured
-
-format.
-
-● Poems and songs: I can structure text in rhyme and meter, which can be useful for generating
-
-creative writing like poems and songs.
-
-● Dialogue: I can generate text in the form of a conversation or dialogue between two or more
-
-characters.
-
-These are just a few examples of the ways that I can structure text output. The specific structure will
-depend on the prompt and task at hand.
-
-www.neuralmagic.com                                                                                                                                                                          27
-
-Correct ChatGPT on Its Knowledge
-
-www.neuralmagic.com                                                                                                                                                                          28
-
-Ask ChatGPT to Expand on Answers
-
-www.neuralmagic.com                                                                                                                                                                          29
-
-7. Expert Prompting
-
-You can use several conditions discussed in this cheat sheet to prompt ChatGPT to obtain more granular output.
-
-Prompt ChatGPT with Simultaneous Conditions
-
-Prompt: write a paragraph on machine learning, in the 1st person, with emojis, with headings and subheadings
-
-🤖 Hi there! I'm excited to talk to you about machine learning.
-
-🧠 Machine learning is a type of artificial intelligence (AI) that allows systems to learn and improve from experience without being
-explicitly programmed.
-
-📈 It is used in a wide range of applications, such as image recognition, natural language processing, and predictive analytics.
-
-🤖 Here's a breakdown of the different types of machine learning:
-
-1. Supervised Learning
-
-● 🏫 In this type of learning, the model is trained on a labeled dataset, where the correct output is already known.
-● 💻 Common examples include identifying objects in images or spam emails.
-
-2. Unsupervised Learning
-
-● 󰡷 In this type of learning, the model is not given any labeled data and must find patterns and relationships on its
-
-own.
-
-● 🤖 Common examples include clustering data or identifying patterns in customer behavior.
-
-3. Reinforcement Learning
-
-● 🎮 In this type of learning, the model is rewarded for certain actions and learns through trial and error.
-● 🤖 This is often used in gaming and robotics.
-
-🤖 I hope this gives you a better understanding of machine learning and its different types! Let me know if you have any questions.
-
-www.neuralmagic.com                                                                                                                                                                          30
+3/19/15
 
 
