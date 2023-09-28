@@ -12,11 +12,21 @@ A.sort()
 B.sort()
 
 def is_ok(X):
+    print(f"今チェックしようとしている値 {X}")
+    print(f"検索しようとしている数列{A}")
     cnt = 0
     for a in A:
         aa = X // a
-        cnt += bisect_right(B,aa)
-    return cnt >= K
+        print(f"{B}の中に{aa}より小さい個数を求めたい")
+        pos=bisect_right(B,aa)
+        print(f"この場合{pos}個")
+        cnt = cnt+pos
+    result = (K <= cnt)
+    if result:
+        print(f"数えた結果{cnt} が{K}番目より上 OK")
+    else:
+        print(f"数えた結果{cnt} が{K}より下 NG")
+    return result
 
 def meguru_bisect(ng,ok):
     while (abs(ok-ng)>1):
