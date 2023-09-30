@@ -84,13 +84,12 @@ class UnionFind():
         return res
 
 # Edge Count
-MAXCOLOR=20
-# MAXCOLOR=400001
+# MAXCOLOR=200
+MAXCOLOR=400001
 ECNT=[0 for _ in range(0,MAXCOLOR)]
 
 N = II()
 uf = UnionFind(MAXCOLOR)
-# uf=UnionFind(N) <- 例題2の様に111と出てくる場合もある
 for _ in range(0,N):
     at,bt = MI()
     a = at-1
@@ -98,12 +97,21 @@ for _ in range(0,N):
     ECNT[a]=ECNT[a]+1
     ECNT[b]=ECNT[b]+1
     uf.union(a,b)
-xdebug(f"{ECNT}")
-xdebug(uf)
-# TODO
-# 残りの作業
-# ufよりall_group_members().values()よりグループ毎の塊を出す
-# 塊の中のECNTを全部足し合わせる
-# もし 2(n-1)なら n-1を足す
-# それ以外なら nを足す
-# 後、上でUnionFindをN個としているが正しくはMAXCOLOR40001
+# xdebug(uf)
+counter = 1
+ans = 0
+for groups in uf.all_group_members().values():
+#    xdebug(f"{counter}->{groups}")
+    counter=counter+1
+    edge = 0
+    gplen = len(groups)
+    for gp in groups:
+        edge=edge+ECNT[gp]
+    checkEdge = 2*(gplen-1)
+    if edge == checkEdge:
+        # xdebug(f"{groups}は木になっている {gplen-1}個点灯する")
+        ans = ans + (gplen-1)
+    else:
+        # xdebug(f"{groups}は木になっていない {gplen}個点灯する")
+        ans = ans + gplen
+print(ans)
