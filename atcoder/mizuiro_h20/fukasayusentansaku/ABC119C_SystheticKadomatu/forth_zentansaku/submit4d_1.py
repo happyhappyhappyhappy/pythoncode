@@ -34,7 +34,7 @@ MINSIZE = -( 1 << 59) + 1
 
 N,A,B,C = MI()
 L=[0 for _ in range(0,8)]
-CH = [0 for _ in range(0,9)]
+CH = [1 for _ in range(0,8)]
 xdebug(L)
 for j in range(0,N):
     L[j]=II()
@@ -46,7 +46,7 @@ A_b = [] # Aに使う竹
 B_b = [] # Bに使う竹
 C_b = [] # Cに使う竹
 Z_b = [] # 使わない竹
-
+xdebug(CH)
 for j0 in range(0,CH[0]):
     for j1 in range(0,CH[1]):
         for j2 in range(0,CH[2]):
@@ -55,4 +55,16 @@ for j0 in range(0,CH[0]):
                     for j5 in range(0,CH[5]):
                         for j6 in range(0,CH[6]):
                             for j7 in range(0,CH[7]):
-                                # はまった ペンディング
+                                CLIST=[]
+                                CLIST.append(j0)
+                                CLIST.append(j1)
+                                CLIST.append(j2)
+                                CLIST.append(j3)
+                                CLIST.append(j4)
+                                CLIST.append(j5)
+                                CLIST.append(j6)
+                                CLIST.append(j7)
+                                xdebug(CLIST)
+                                # https://docs.python.org/ja/3/tutorial/controlflow.html?highlight=match#tut-match
+                                # を使って各リストの中身をA_b,B_b,C_bに分ける
+                                # 分けた後その値を総値関数に投げて最小を受け取る
