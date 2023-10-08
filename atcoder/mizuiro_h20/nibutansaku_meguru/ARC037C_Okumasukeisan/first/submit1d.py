@@ -51,22 +51,22 @@ def isOK(num):
         pos=pos+now_pos
     if K <= pos: # ここどうだっけ
         result = True
-    if result:
-        xdebug(f"整数{num} は {K}番目以上の所におかれるOK")
-    else:
-        xdebug(f"整数{num} は {K}番目未満の所におかれるNG")
+    # if result:
+    #     xdebug(f"整数{num} は {K}番目以上の所におかれるOK")
+    # else:
+    #     xdebug(f"整数{num} は {K}番目未満の所におかれるNG")
     return result
 
 def m_bisect(ngint,okint):
     while 1 < abs(okint-ngint):
         mid=(okint+ngint)//2
         if isOK(mid)==True:
-            xdebug(f"OKなので位置を{okint}から{mid}に下げる")
+            # xdebug(f"OKなので位置を{okint}から{mid}に下げる")
             okint = mid
         else:
-            xdebug(f"NGなので位置を{ngint}から{mid}に上げる")
+            # xdebug(f"NGなので位置を{ngint}から{mid}に上げる")
             ngint = mid
-    xdebug(f"NG値 {ngint} <-> OK値 {okint}の差が1になりました")
+    # xdebug(f"NG値 {ngint} <-> OK値 {okint}の差が1になりました")
     return okint
 
 def solver():
@@ -75,14 +75,24 @@ def solver():
     # algorithm
     return result
 
+# def answer():
+#     xdebug("---逐次解答---")
+#     ANSL=[]
+#     for aa in A:
+#         for bb in B:
+#             ANSL.append(aa*bb)
+#     ANSL.sort()
+#     for x in range(0,len(ANSL)):
+#         xdebug(f"左から[{x+1}]番目->{ANSL[x]}")
+#         if (K == x+1):
+#             xdebug(f"\tこれが答え {K}番目")
 
 if __name__ == "__main__":
     global N,K,A,B
     N,K=MI()
     A=LI()
-    sorted(A)
+    A.sort()
     B=LI()
-    sorted(B)
-    # xdebug(f"A={A}")
-    # xdebug(f"B={B}")
+    B.sort()
     print("{}".format(solver()))
+#    answer()
