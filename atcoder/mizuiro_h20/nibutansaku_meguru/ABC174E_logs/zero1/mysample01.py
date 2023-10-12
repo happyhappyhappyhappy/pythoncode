@@ -1,3 +1,5 @@
+# ABC174E_logs
+# https://atcoder.jp/contests/abc174/tasks/abc174_e
 # ライブラリのインポート
 import sys
 # import heapq,copy
@@ -42,18 +44,30 @@ def pow2(p,n):
     return result
 
 def is_ok(t):
-# TODO: 2023-10-11 19:33:33
     result=True
-
+    cnt = 0
+    for a in A:
+        cnt=cnt+(((a+t-1)//t)-1)
+        # Point1 (X+t-1)//t でXをtで割った時の切り上げを求めている
+        # Point2 最後の-1はとりあえずは一旦刃を下ろす->必要が無いときがあることを考慮
+    # xdebug(f"長さ[{t}] 条件の回数{K}を、求まった{cnt}で下回るか?")
+    result = (cnt <= K)
+    # if result==True:
+    #     xdebug("OK")
+    # else:
+    #     xdebug("NG")
     return result
 
 def m_bisect(ngd,okd):
     while 1 < abs(okd-ngd):
         mid=(okd+ngd)>>1
         if is_ok(mid):
+            # xdebug(f"{mid}は条件を満たす、okd={okd}から値を下げてみる")
             okd = mid
         else:
+            # xdebug(f"{mid}は条件を満たさない、ngd={ngd}から値を上げてみる")
             ngd = mid
+    # xdebug(f"OK値{okd} と NG値{ngd}の差が1以下になりました")
     return okd
 
 def solver():
@@ -64,7 +78,7 @@ def solver():
 
 
 if __name__ == "__main__":
-    global N,A
-    N = II()
+    global N,K
+    N,K = MI()
     A = LI()
     print("{}".format(solver()))

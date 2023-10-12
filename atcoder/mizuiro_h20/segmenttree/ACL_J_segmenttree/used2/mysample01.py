@@ -1,0 +1,163 @@
+# AtCoder ACL practice
+# https://atcoder.jp/contests/practice2/tasks/practice2_j
+# ライブラリのインポート
+import sys
+# import heapq,copy
+import pprint as pp
+# from collections import deque
+# pypy3用
+# import pypyjit
+# 再帰制御解放
+# pypyjit.set_param('max_unroll_recursion=-1')
+# sys.setrecursionlimit(10**6)
+from logging import getLogger, StreamHandler, DEBUG
+
+# 入力のマクロ
+def II(): return int(sys.stdin.readline())
+def MI(): return map(int, sys.stdin.readline().split())
+def LI(): return list(map(int, sys.stdin.readline().split()))
+def LLI(rows_number): return [LI() for _ in range(rows_number)]
+
+# デバッグ出力の作成
+logger = getLogger(__name__)
+handler = StreamHandler()
+handler.setLevel(DEBUG)
+logger.setLevel(DEBUG)
+logger.addHandler(handler)
+logger.propagate = False
+
+# クラス+メソッドを一関数
+xdebug=logger.debug
+ppp=pp.pprint
+# Const
+MAXSIZE = ( 1 << 59 ) -1
+MINSIZE = -( 1 << 59) + 1
+
+class SegTree():
+    class SegTree():
+        n = 1
+        log = 2
+        d = [0]
+        op = None
+        e=10**15
+    def __init__(self,V,OP,E):
+        self.n=len(V)
+        self.op=OP
+        self.e=E
+        self.log=(self.n-1).bit_length()
+        self.size=1<<self.log
+        self.d=[E for j in range(0,2*self.size)]
+        for j in range(0,self.n):
+            self.d[self.size+j]=V[j]
+        for j in range(self.size-1,0,-1):
+            self.update(j)
+    def set(self,p,x):
+        assert 0 <= p and p < self.n
+        p=p+self.size
+        self.d[p]=x
+        for j in range(1,self.log+1):
+            pos = p >> j
+            self.update(pos)
+    def get(self,p):
+        assert 0 <= p and p < self.n
+        x = p+self.size
+        return self.d[x]
+    def prod(self,l,r):
+        assert 0 <= l and l <= r and r <= self.n
+        sml=self.e
+        smr=self.e
+        l=l+self.size
+        r=r+self.size
+        xdebug(f"Start l={l},r={r} cf self.size={self.size}")
+        while(l<r):
+            oddcheck=l&1
+            if oddcheck==1:
+                sml=self.op(sml,self.d[l])
+                l=l+1
+            oddcheck=r&1
+            if oddcheck==1:
+                smr=self.op(self.d[r-1],smr)
+                r=r-1
+            l=l>>1
+            r=r>>1
+            xdebug(f"Next l={l},r={r}")
+        return self.op(sml,smr)
+    def all_prod(self):
+        return self.d[1]
+    def max_right(self,l,f):
+        assert 0 <= l and l <= self.n
+        assert f(self.e)
+        if l==self.n:
+            return self.n
+        l=l+self.size
+        sm=self.e
+        while(1):
+            while(l%2==0):
+                l = l >> 1
+            if f(self.op(sm,self.d[l]))==False:
+                xdebug(f"l={l}が self.size={self.size}未満まで続く")
+                while(l<self.size):
+                    if f(self.op(sm,self.d[l]))==True:
+                        xdebug(f"sm={sm}とself.d[{l}]{self.d[l]} を比較")
+                        sm=self.op(sm,self.d[l])
+                xdebug(f"max_right {l}-{self.size}を持って帰る")
+                return l-self.size
+            sm=self.op(sm,self.d[l])
+            l=l+1
+            allCheck=l&(-l)
+            if allCheck==l:
+                xdebug("while(1)抜ける")
+                break
+        return self.n
+    def min_left(self,r,f):
+        assert 0 <= r and r <= self.n
+        assert f(self.e)
+        if r==0:
+            return 0
+        r=r+self.size
+        sm=self.e
+        while(1):
+            r=r-1
+            while(1<r and (r%2)):
+                r=r>>1
+            if f(self.op(self.d[r],sm))==False:
+                while(r<self.size):
+                    r=r*2+1
+                    if f(self.op(self.d[r],sm)):
+                        sm=self.op(self.d[r],sm)
+                        r=r-1
+                return r+1-self.size
+            sm=self.op(self.d[r],sm)
+            x=r&(-r)
+            if x==r:
+                break
+        return 0
+    def update(self,k):
+        xdebug(f"self.d[2*{k}]={self.d[2*k]}とself.d[2*{k}+1]={self.d[2*k+1]}を操作し,self.d[{k}]に返す")
+        self.d[k]=self.op(self.d[2*k],self.d[2*k+1])
+    def __str__(self):
+        res = str([self.get(j) for j in range(0,self.n)])
+        return res
+if __name__ == "__main__":
+    N,Q=MI()
+    A = LI()
+    G = SegTree(A,max,-1)
+# TODO: 2023-10-12 19:35:09
+# 元のクラスは出来たので具体的な操作部分を追加する
+    for _ in range(0,Q):
+        a,b,c=MI()
+        if a==1:
+            b = b-1
+            xdebug("--- Task 1---")
+            xdebug(f"要素 {b}を{c}で置き換える")
+        if a==2:
+            b=b-1
+            c=c-1
+            xdebug("--- Task 2---")
+            xdebug(f"要素 {b} から {c}までの最大値を求める")
+        if a==3:
+            b=b-1
+            xdebug("--- Task3 ---")
+            xdebug(f"要素 {b}から右を見る")
+            xdebug(f"値が {c}以下の物を求める")
+            xdebug(f"もし無ければ {N+1}を出力")
