@@ -1,4 +1,35 @@
+# ライブラリのインポート
 import sys
+# import heapq,copy
+import pprint as pp
+# from collections import deque
+# pypy3用
+# import pypyjit
+# 再帰制御解放
+# pypyjit.set_param('max_unroll_recursion=-1')
+# sys.setrecursionlimit(10**6)
+from logging import getLogger, StreamHandler, DEBUG
+
+# 入力のマクロ
+def II(): return int(sys.stdin.readline())
+def MI(): return map(int, sys.stdin.readline().split())
+def LI(): return list(map(int, sys.stdin.readline().split()))
+def LLI(rows_number): return [LI() for _ in range(rows_number)]
+
+# デバッグ出力の作成
+logger = getLogger(__name__)
+handler = StreamHandler()
+handler.setLevel(DEBUG)
+logger.setLevel(DEBUG)
+logger.addHandler(handler)
+logger.propagate = False
+
+# クラス+メソッドを一関数
+xdebug=logger.debug
+ppp=pp.pprint
+# Const
+MAXSIZE = ( 1 << 59 ) -1
+MINSIZE = -( 1 << 59) + 1
 
 class SegTree:
     def __init__(self, op, e, n, v=None):
@@ -60,27 +91,28 @@ class SegTree:
             if l & -l == l: break
         return self._n
 
-def op(x, y):
-    return max(x, y)
 
+def op(x,y):
+    return max(x,y)
 def e():
     return -1
 
 def main():
-    input = sys.stdin.readline
-    n, q = map(int, input().split())
-    A = list(map(int, input().split()))
-    seg = SegTree(op, e, n, A)
-    for _ in range(q):
-        t, a, b = map(int, input().split())
+    N,Q = MI()
+    A = LI()
+    G = SegTree(op,e,N,A)
+    for _ in range(0,Q):
+        t,a,b = MI()
         a -= 1
         if t == 1:
-            seg.set(a, b)
-        elif t == 2:
-            print(seg.prod(a, b))
+            G.set(a,b)
+        elif t==2:
+            x = G.prod(a,b)
+            print(G.prod(a,b))
         else:
-            f = lambda x: x < b
-            print(seg.max_right(a, f) + 1)
+            f = lambda x: x<b
+            y = G.max_right(a,f)+1
+            print(y)
 
 if __name__ == "__main__":
     main()
