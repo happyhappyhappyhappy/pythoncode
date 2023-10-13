@@ -68,7 +68,6 @@ class SegTree():
         smr=self.e
         l=l+self.size
         r=r+self.size
-        xdebug(f"Start l={l},r={r} cf self.size={self.size}")
         while(l<r):
             oddcheck=l&1
             if oddcheck==1:
@@ -80,7 +79,6 @@ class SegTree():
                 r=r-1
             l=l>>1
             r=r>>1
-            xdebug(f"Next l={l},r={r}")
         return self.op(sml,smr)
     def all_prod(self):
         return self.d[1]
@@ -95,18 +93,15 @@ class SegTree():
             while(l%2==0):
                 l = l >> 1
             if f(self.op(sm,self.d[l]))==False:
-                xdebug(f"l={l}が self.size={self.size}未満まで続く")
                 while(l<self.size):
+                    l=2*l
                     if f(self.op(sm,self.d[l]))==True:
-                        xdebug(f"sm={sm}とself.d[{l}]{self.d[l]} を比較")
                         sm=self.op(sm,self.d[l])
-                xdebug(f"max_right {l}-{self.size}を持って帰る")
                 return l-self.size
             sm=self.op(sm,self.d[l])
             l=l+1
             allCheck=l&(-l)
             if allCheck==l:
-                xdebug("while(1)抜ける")
                 break
         return self.n
     def min_left(self,r,f):
@@ -133,7 +128,6 @@ class SegTree():
                 break
         return 0
     def update(self,k):
-        xdebug(f"self.d[2*{k}]={self.d[2*k]}とself.d[2*{k}+1]={self.d[2*k+1]}を操作し,self.d[{k}]に返す")
         self.d[k]=self.op(self.d[2*k],self.d[2*k+1])
     def __str__(self):
         res = str([self.get(j) for j in range(0,self.n)])
@@ -142,22 +136,24 @@ if __name__ == "__main__":
     N,Q=MI()
     A = LI()
     G = SegTree(A,max,-1)
-# TODO: 2023-10-12 19:35:09
-# 元のクラスは出来たので具体的な操作部分を追加する
+
     for _ in range(0,Q):
         a,b,c=MI()
         if a==1:
             b = b-1
-            xdebug("--- Task 1---")
-            xdebug(f"要素 {b}を{c}で置き換える")
+            G.set(b,c)
         if a==2:
             b=b-1
             c=c-1
-            xdebug("--- Task 2---")
-            xdebug(f"要素 {b} から {c}までの最大値を求める")
+            x = G.prod(b,c+1)
+            print(x)
         if a==3:
-            b=b-1
-            xdebug("--- Task3 ---")
-            xdebug(f"要素 {b}から右を見る")
-            xdebug(f"値が {c}以下の物を求める")
-            xdebug(f"もし無ければ {N+1}を出力")
+            x=b-1
+            v=c
+            def func(arg):
+                if v > arg:
+                    return True
+                else:
+                    return False
+            ans = G.max_right(x,func)+1
+            print(ans)

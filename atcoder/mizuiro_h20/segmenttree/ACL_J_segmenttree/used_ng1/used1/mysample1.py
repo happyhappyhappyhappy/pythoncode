@@ -83,6 +83,7 @@ class SegTree():
     def all_prod(self):
         return self.d[1]
     def max_right(self,l,f):
+        xdebug(f"--- func max_right start input {l}---")
         assert 0 <= l and l <= self.n
         assert f(self.e)
         if l==self.n:
@@ -92,11 +93,13 @@ class SegTree():
         while(1):
             while(l%2==0):
                 l=l>>1
+                xdebug(f"min(sm={sm},self.d[{l}]={self.d[l]})でfunc呼び出し")
             if f(self.op(sm,self.d[l]))==False:
                 while(l<self.size):
                     l=2*l
                     if f(self.op(sm,self.d[l]))==True:
                         sm=self.op(sm,self.d[l])
+                xdebug(f"max_right {l}-{self.size}を持って帰る->return")
                 return l-self.size
             sm=self.op(sm,self.d[l])
             l=l+1
@@ -151,10 +154,12 @@ def solver():
             x=a-1
             v=b
             def func(arg):
-                xdebug(f"関数funcを{arg}で実行されました")
+                xdebug(f"---func start input->{arg}<----")
                 if v>arg:
+                    xdebug(f"{v} > {arg} -> OK")
                     return True
                 else:
+                    xdebug(f"{v} < {arg} -> NG")
                     return False
             print(G.max_right(x,func)+1)
 
