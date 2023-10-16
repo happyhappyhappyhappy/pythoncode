@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-template<class Monoid,Monoid(*op)(Monoid,Monoid),Monoid IDENTITY> struct SegTree {
+template<class Monoid,Monoid(*OP)(Monoid,Monoid),Monoid IDENTITY> struct SegTree {
     int N;
     int offset;
     vector<Monoid> dat;
@@ -53,7 +53,83 @@ template<class Monoid,Monoid(*op)(Monoid,Monoid),Monoid IDENTITY> struct SegTree
         if ( l == N) return N;
         l = l + offset;
         Monoid sum = IDENTITY;
-    // TODO: L.69 から
+        do {
+            while(l % 2 == 0) l >>=1;
+            if(!f(OP(sum,dat[l]))){
+                while(l < offset){
+                    l = l * 2;
+                    if ( f(OP(sum,dat[l]))){
+                        sum = OP(sum,dat[l]);
+                        ++l;
+                    }
+                }
+                return l - offset;
+            }
+            sum = OP(sum,dat[l]);
+            ++l;
+        }while ((l & -l) != l);
+        return N;
     }
+    int min_left(const function<bool(Monoid)> f,int r = -1){
+        if ( r == 0)return 0;
+        if ( r == -1) r = N;
+        r += offset;
+        Monoid sum = IDENTITY;
+        do {
+            --r;
+            while ( r > 1 && (r % 2)) r >>= 1;
+            if (!f(OP(dat[r],sum))){
+                while(r < offset){
+                    r = r * 2+1;
+                    if ( f(OP(dat[r],sum))){
+                        sum = OP(dat[r],sum);
+                        --r ;
+                    }
+                }
+                return r+1 - offset;
+            }
+            sum = OP(dat[r],sum);
+        }while (( r & -r) != r);
+        return 0;
+    }
+    friend ostream& operator << (ostream &s,const SegTree &seg){
+        for ( int j = 0;j < seg.size(); ++j){
+            s << seg[j];
+            if ( j != seg.size()-1) s << " ";
+        }
+        return s;
+    }
+};
 
+const int INF = 1<<30;
+
+int op(int a,int b){
+    return max(a,b);
+}
+
+int main(void){
+    int N,Q;
+    cin >> N >> Q;
+    SegTree<int,op,-INF> seg(N);
+    for(int j=0;j<N;++j){
+        seg.set(j,0);
+    }
+    while(Q--){
+        int t;
+        cin >> t;
+        if(t == 1){
+            int pos,x;
+            cin >> pos >> x;
+            --pos;
+            cout << seg << "\n" << flush;
+            seg.set(pos,x);
+            cout << seg << "\n" << flush;
+        }else{
+            int l,r ;
+            cin >> l >> r;
+            --l;
+            --r;
+            cout << seg.prod(l,r) << endl;
+        }
+    }
 }

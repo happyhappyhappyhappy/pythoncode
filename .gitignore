@@ -6,3 +6,4 @@ testcase
 *.pyc
 *.ng
 out.txt
+*.out
