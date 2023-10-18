@@ -4,8 +4,8 @@ class lazy_segtree():
         self.d[k]=self.mapping(f,self.d[k])
         if (k<self.size):self.lz[k]=self.composition(f,self.lz[k])
     def push(self,k):
-        self.app_apply(2*k,self.lz[k])
-        self.app_apply(2*k+1,self.lz[k])
+        self.all_apply(2*k,self.lz[k])
+        self.all_apply(2*k+1,self.lz[k])
         self.lz[k]=self.identity
     def __init__(self,V,OP,E,MAPPING,COMPOSITION,ID):
         self.n=len(V)
@@ -84,7 +84,53 @@ class lazy_segtree():
         for i in range(1,self.log+1):
             if (((l>>i)<<i)!=l):self.update(l>>i)
             if (((r>>i)<<i)!=r):self.update((r-1)>>i)
-    # TODO: max_rightから L.86
+    def max_right(self,l,g):
+        assert 0 <= l and l <= self.n
+        assert g(self.e)
+        if l==self.n : return self.n
+        l=l+self.size
+        for j in range(self.log,0,-1):self.push(l>>j)
+        sm = self.e
+        while(1):
+            while(l%2==0):l>>=1
+            if not(g(self.op(sm,self.d[l]))):
+                while(l<self.size):
+                    self.push(l)
+                    l=2*l
+                    if (g(self.op(sm,self.d[l]))):
+                        sm=self.op(sm,self.d[l])
+                        l=l+1
+                return l-self.size
+            sm=self.op(sm,self.d[l])
+            l=l+1
+            twoPow=l&(-1)
+            if twoPow == l:break
+        return self.n
+    def min_left(self,r,g):
+        assert (0 <= r and r<=self.n)
+        assert g(self.e)
+        if r==0:return 0
+        r=r+self.size
+        for j in range(self.log,0,-1):
+            self.push((r-1)>>j)
+        sm=self.e
+        while(1):
+            r=r-1
+            while(1<r and ((r%2)==1)):
+                r >>= 1
+            if not(g(self.op(self.d[r],sm))):
+                while(r<self.size):
+                    self.push(r)
+                    r=r*2+1
+                    if g(self.op(self.d[r],sm)):
+                        sm=self.op(self.d[r],sm)
+                        r=r-1
+                return r+1-self.size
+            sm=self.op(self.d[r],sm)
+            twoPow=r&(-r)
+            if twoPow==r:
+                break
+        return 0
 N,Q = map(int,input().split())
 a=[int(i) for i in input().split()]
 ans=[]
