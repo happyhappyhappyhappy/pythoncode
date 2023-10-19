@@ -26,17 +26,9 @@ class lazy_segtree():
             self.update(p>>i)
     def get(self,p):
         assert 0<=p and p < self.n
-        p=p+self.size
         for i in range(self.log,0,-1):
             self.push(p>>i)
-
         return self.d[p]
-    # def get(self,p):
-    #     assert 0<=p and p<self.n
-    #     p+=self.size
-    #     for i in range(self.log,0,-1):self.push(p>>i)
-    #     return self.d[p]
-
     def prod(self,l,r):
         assert 0 <= l and l <= r and r <= self.n
         if l==r:return self.e
@@ -61,14 +53,14 @@ class lazy_segtree():
             r>>=1
         return self.op(sml,smr)
     def all_prod(self):return self.d[1]
-    # def apply_point(self,p,f):
-    #     assert 0 <= p and p < self.n
-    #     p=p+self.size
-    #     for i in range(self.log,0,-1):
-    #         self.push(p>>i)
-    #     self.d[p]=self.mapping(f,self.d[p])
-    #     for i in range(1,self.log+1):
-    #         self.update(p>>i)
+    def apply_point(self,p,f):
+        assert 0 <= p and p < self.n
+        p=p+self.size
+        for i in range(self.log,0,-1):
+            self.push(p>>i)
+        self.d[p]=self.mapping(f,self.d[p])
+        for i in range(1,self.log+1):
+            self.update(p>>i)
     def apply(self,l,r,f):
         assert 0 <= l and l<=r and r<= self.n
         if l==r:
@@ -160,14 +152,9 @@ class lazy_segtree():
         self.all_apply(2*k,self.lz[k])
         self.all_apply(2*k+1,self.lz[k])
         self.lz[k]=self.identity
-    def __str__(self):
-        ret = [self.get(j) for j in range(0,self.n)]
-        return str(ret)
-
 
 N,Q=map(int,input().split())
 a=[int(i) for i in input().split()]
-print(a)
 ans=[]
 mod=998243353
 def operate(a,b):
@@ -175,7 +162,7 @@ def operate(a,b):
     a1=a%(1<<32)
     b0=b>>32
     b1=b%(1<<32)
-    return (((a0+b0)%mod)<<32)+a1+b1
+    return ((a0+b0)%mod)+a1+b1
 def mapping(f,x):
     f0=f>>32
     f1=f%(1<<32)
@@ -188,15 +175,8 @@ def composition(f,g):
     g0=g>>32
     g1=g%(1<<32)
     return (((f0*g0)%mod)<<32)+((g1*f0+f1)%mod)
-def mapping(f,x):
-    f0,f1=f>>32,f%(1<<32)
-    x0,x1=x>>32,x%(1<<32)
-    return (((f0*x0+x1*f1)%mod)<<32)+x1
 
-
-# G=lazy_segtree([(i<<32)+1 for i in a],operate,0,mapping,composition,1<<32)
 G=lazy_segtree([(i<<32)+1 for i in a],operate,0,mapping,composition,1<<32)
-print(G)
 for i in range(Q):
     seq=tuple(map(int,input().split()))
     if seq[0]==0:

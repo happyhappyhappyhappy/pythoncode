@@ -126,6 +126,9 @@ class lazy_segtree():
             sm=self.op(self.d[r],sm)
             if (r&-r)==r:break
         return 0
+    def __str__(self):
+        ret = [self.get(j) for j in range(0,self.n)]
+        return str(ret)
 
 
 N,Q=map(int,input().split())
@@ -146,6 +149,7 @@ def composition(f,g):
     return (((f0*g0)%mod)<<32)+((g1*f0+f1)%mod)
 
 seg=lazy_segtree([(i<<32)+1 for i in a],operate,0,mapping,composition,1<<32)
+print(seg)
 for i in range(Q):
     seq=tuple(map(int,input().split()))
     if seq[0]==0:
