@@ -1,4 +1,3 @@
-# 遅延セグメント木を素直にコーディングした物。しかし、TLEが起こる可能性がある
 # ライブラリのインポート
 import sys
 # import heapq,copy
@@ -44,18 +43,19 @@ class lazy_segtree():
         self.mapping=MAPPING
         self.composition=COMPOSITION
         self.identity=ID
-        for j in range(self.n):
+        for j in range(0,self.n):
             self.d[self.size+j]=V[j]
         for j in range(self.size-1,0,-1):
             self.update(j)
     def set(self,p,x):
         assert 0 <= p and p < self.n
-        p=p+self.size
+        p = p + self.size
         for j in range(self.log,0,-1):
-            self.push(p>>i)
+            self.push(p>>j)
         self.d[p]=x
         for j in range(1,self.log+1):
-            self.update(p>>j)
+            a = p >> j
+            self.update(a)
     def get(self,p):
         assert 0 <= p and p < self.n
         p=p+self.size
@@ -63,8 +63,9 @@ class lazy_segtree():
             self.push(p>>j)
         return self.d[p]
     def prod(self,l,r):
-        assert 0 <= l and l <= r and r<=self.n
-        if l==r:return self.e
+        assert 0 <= l and l <= r and r <= self.n
+        if l == r:
+            return self.e
         l=l+self.size
         r=r+self.size
         for j in range(self.log,0,-1):
@@ -82,17 +83,17 @@ class lazy_segtree():
                 sml=self.op(sml,self.d[l])
                 l=l+1
             oddr=r&1
-            if oddr == 1:
+            if oddr==1:
                 r=r-1
                 smr=self.op(self.d[r],smr)
-            l=l>>1
-            r=r>>1
+            l = l >> 1
+            r = r >> 1
         return self.op(sml,smr)
     def all_prod(self):
         return self.d[1]
     def apply(self,l,r,f):
-        assert 0<= l and l <= r and r <= self.n
-        if l==r:
+        assert 0 <= l and l <= r and r <= self.n
+        if l == r:
             return
         l=l+self.size
         r=r+self.size
@@ -106,7 +107,7 @@ class lazy_segtree():
         l2,r2=l,r
         while(l<r):
             oddl=l&1
-            if oddl==1:
+            if oddl == 1:
                 self.all_apply(l,f)
                 l=l+1
             oddr=r&1
@@ -127,7 +128,7 @@ class lazy_segtree():
     def max_right(self,l,g):
         assert 0 <= l and l <= self.n
         assert g(self.e)
-        if l==self.n:
+        if l == self.n:
             return self.n
         l=l+self.size
         for j in range(self.log,0,-1):
@@ -139,8 +140,8 @@ class lazy_segtree():
             if g(self.op(sm,self.d[l])) == False:
                 while(l<self.size):
                     self.push(l)
-                    l=2*l
-                    if (g(self.op(sm,self.d[l]))) == True:
+                    l=l*2
+                    if g(self.op(sm,self.d[l])) == True:
                         sm=self.op(sm,self.d[l])
                         l=l+1
                 return l-self.size
@@ -153,16 +154,16 @@ class lazy_segtree():
     def min_left(self,r,g):
         assert 0 <= r and r <= self.n
         assert g(self.e)
-        if r==0:
+        if r == 0:
             return 0
-        r=r+self.size
+        r = r+self.size
         for j in range(self.log,0,-1):
             x = (r-1)>>j
             self.push(x)
         sm=self.e
         while(True):
             while(1<r and ((r%2)==1)):
-                r = r>>1
+                r = r >> 1
             if g(self.op(self.d[r],sm))==False:
                 while(r<self.size):
                     self.push(r)
@@ -193,32 +194,51 @@ class lazy_segtree():
         ansL=[]
         for j in range(1,self.size*2):
             if self.d[j] == self.e:
-                ansL.append("e")
-            else :
+                ansL.append("E")
+            else:
                 ansL.append(self.d[j])
         return "内部詳細 : "+str(ansL)
-N,Q = MI()
+    def str3(self):
+        ansL=[]
+        for j in range(1,self.size):
+            ansL.append(self.lz[j])
+        return "遅延 : "+str(ansL)
+
+N,Q=MI()
 a=LI()
 ans=[]
 mod=998243353
 def operate(a,b):
-    return ((a[0]+b[0])%mod,a[1]+b[1])
+    x = (a[0]+b[0])%mod
+    y = a[1]+b[1]
+    return (x,y)
 def mapping(f,x):
-    return ((f[0]*x[0]+x[1]*f[1])%mod,x[1])
+    a = (f[0]*x[0]+x[1]*f[1])%mod
+    b = x[1]
+    return (a,b)
 def composition(f,g):
-    return ((f[0]*g[0])%mod,(g[1]*f[0]+f[1])%mod)
+    x = (f[0]*g[0])%mod
+    y = (g[1]*f[0]+f[1])%mod
+    return (x,y)
 
 G=lazy_segtree([(j,1) for j in a],operate,(0,0),mapping,composition,(1,0))
-xdebug(G)
-xdebug(G.str2())
 for j in range(0,Q):
     seq=tuple(MI())
     if seq[0]==0:
         dummy,l,r,b,c=seq
         G.apply(l,r,(b,c))
+        xdebug(f"{l}から{r-1}までのapply({b}x+{c})の後")
+        xdebug(G)
+        xdebug(G.str2())
+        xdebug(G.str3())
     else:
         dummy,l,r=seq
-        ans.append(G.prod(l,r)[0])
+        x = G.prod(l,r)
+        xdebug(f"{l}から{r-1}までのprod全部足しの後")
+        xdebug(G)
+        xdebug(G.str2())
+        xdebug(G.str3())
+        ans.append(x[0])
 
 for line in ans:
     print(line)
