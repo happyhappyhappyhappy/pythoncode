@@ -35,44 +35,50 @@ def pow2(p,n):
     res=1
     while 0 < n:
         oddn=n&1
-        if oddn == 1:
-            res=p*res
+        if oddn==1:
+            res=res*p
         n=n>>1
         p=p*p
     return res
 
-def isOK(N):
-    nleng=len(str(N))
-    total = A*N+B*nleng
-#    xdebug(f"手持ちのお金 {X} と {N}を買うのに必要なお金 {total} を照合します")
-    if total <= X:
-#        xdebug(f"\t結果->OK")
+def isOK(arg):
+    # arg本作るとなれば少なくとも赤,青1本ずつの消費をする
+    R_r=R-arg
+    B_r=B-arg
+    if (R_r < 0) or (B_r < 0):
+        xdebug(f"{arg}束は明らかに作れないNG")
+        return False
+    total = (R_r // (x-1)) + (B_r // (y-1))
+    if arg <= total:
+        xdebug(f"何とか 目標{arg}に対して 多い{total}が作れる OK")
         return True
     else:
-#        xdebug(f"\t結果->NG")
+        xdebug(f"目標{arg}に対して 少ない{total}しか作れない NG")
         return False
 
 def m_bisect(okd,ngd):
-    while 1 < abs(ngd-okd):
-        mid = (ngd+okd)>>1
-        if isOK(mid)==True:
-            okd = mid
+    while 1 < abs(okd-ngd):
+        mid = (okd+ngd)>>1
+        if isOK(mid):
+            xdebug(f"{mid}束作れそうなので この値を{okd}から{mid}まで引き上げる")
+            okd=mid
         else:
+            xdebug(f"{mid}束作るのは無理なので {ngd}を{mid}に下げる")
             ngd=mid
-#    xdebug(f"OK値 {okd} と NG値 {ngd}の差が1になりました。終了")
+    xdebug(f"OK数 {okd} , NG数 {ngd}の差が1になり境ができました")
     return okd
 
-def solver(dat):
+def solver(in1,in2):
     result = 0
-    global A,B,X
-    A = dat[0]
-    B = dat[1]
-    X = dat[2]
-    result = m_bisect(0,pow2(10,9)+1)
+    global R,B,x,y
+    R,B=in1[0],in1[1]
+    x,y=in2[0],in2[1]
+    result = m_bisect(0,pow2(10,18)+1)
     # algorithm
     return result
 
 
 if __name__ == "__main__":
-    inpt=tuple(MI())
-    print("{}".format(solver(inpt)))
+    input1=tuple(MI())
+    input2=tuple(MI())
+    print("{}".format(solver(input1,input2)))
