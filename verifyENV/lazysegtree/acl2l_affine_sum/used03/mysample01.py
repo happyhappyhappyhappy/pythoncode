@@ -1,4 +1,3 @@
-# 遅延セグメント木を素直にコーディングした物。しかし、TLEが起こる可能性がある
 # ライブラリのインポート
 import sys
 # import heapq,copy
@@ -44,13 +43,13 @@ class lazy_segtree():
         self.mapping=MAPPING
         self.composition=COMPOSITION
         self.identity=ID
-        for j in range(self.n):
+        for j in range(0,self.n):
             self.d[self.size+j]=V[j]
         for j in range(self.size-1,0,-1):
             self.update(j)
     def set(self,p,x):
         assert 0 <= p and p < self.n
-        p=p+self.size
+        p = p + self.size
         for j in range(self.log,0,-1):
             self.push(p>>j)
         self.d[p]=x
@@ -58,21 +57,26 @@ class lazy_segtree():
             self.update(p>>j)
     def get(self,p):
         assert 0 <= p and p < self.n
-        p=p+self.size
+        p = p + self.size
         for j in range(self.log,0,-1):
             self.push(p>>j)
         return self.d[p]
     def prod(self,l,r):
-        assert 0 <= l and l <= r and r<=self.n
-        if l==r:return self.e
+        assert 0 <= l and l <= r and r <= self.n
+        if l == r :
+            return self.e
         l=l+self.size
         r=r+self.size
         for j in range(self.log,0,-1):
             x = (l>>j)<<j
-            if x != l:
+            xdebug(f"(l>>j)<<j->{l}から{x}")
+            y = (l>>j)
+            xdebug(f"l>>j->{y}")
+            if x!=l:
                 self.push(l>>j)
-            x = (r>>j)<<j
-            if x != r:
+            x = ( r>>j)<<j
+            xdebug(f"(r>>j)<<j->{r}から{x}")
+            if x!=r:
                 self.push(r>>j)
         sml=self.e
         smr=self.e
@@ -81,7 +85,7 @@ class lazy_segtree():
             if oddl==1:
                 sml=self.op(sml,self.d[l])
                 l=l+1
-            oddr=r&1
+            oddr = r & 1
             if oddr == 1:
                 r=r-1
                 smr=self.op(self.d[r],smr)
@@ -91,7 +95,8 @@ class lazy_segtree():
     def all_prod(self):
         return self.d[1]
     def apply(self,l,r,f):
-        assert 0<= l and l <= r and r <= self.n
+        assert 0 <= l and l <= r and r <= self.n
+        xdebug(f"apply({l},{r},{f})")
         if l==r:
             return
         l=l+self.size
@@ -105,11 +110,11 @@ class lazy_segtree():
                 self.push((r-1)>>j)
         l2,r2=l,r
         while(l<r):
-            oddl=l&1
-            if oddl==1:
+            oddl = l & 1
+            if oddl == 1:
                 self.all_apply(l,f)
                 l=l+1
-            oddr=r&1
+            oddr = r & 1
             if oddr == 1:
                 r=r-1
                 self.all_apply(r,f)
@@ -118,29 +123,29 @@ class lazy_segtree():
         l=l2
         r=r2
         for j in range(1,self.log+1):
-            x = (l>>j)<<j
+            x=(l>>j)<<j
             if x != l:
                 self.update(l>>j)
-            x = (r>>j)<<j
-            if x != r:
+            x=(r>>j)<<j
+            if x!=r:
                 self.update((r-1)>>j)
     def max_right(self,l,g):
         assert 0 <= l and l <= self.n
         assert g(self.e)
-        if l==self.n:
+        if l == self.n:
             return self.n
-        l=l+self.size
+        l = l + self.size
         for j in range(self.log,0,-1):
             self.push(l>>j)
         sm=self.e
         while(True):
             while(l%2==0):
-                l=l>>1
-            if g(self.op(sm,self.d[l])) == False:
-                while(l<self.size):
+                l = l >> 1
+            if g(self.op(sm,self.d[l]))==False:
+                while (l < self.size):
                     self.push(l)
                     l=2*l
-                    if (g(self.op(sm,self.d[l]))) == True:
+                    if g(self.op(sm,self.d[l]))==True:
                         sm=self.op(sm,self.d[l])
                         l=l+1
                 return l-self.size
@@ -160,17 +165,17 @@ class lazy_segtree():
             x = (r-1)>>j
             self.push(x)
         sm=self.e
-        while(True):
+        while True:
             while(1<r and ((r%2)==1)):
-                r = r>>1
-            if g(self.op(self.d[r],sm))==False:
-                while(r<self.size):
-                    self.push(r)
-                    r=r*2+1
-                    if g(self.op(self.d[r],sm))==True:
-                        sm=self.op(self.d[r],sm)
-                        r=r-1
-                return r+1-self.size
+                r = r >>1
+                if g(self.op(self.d[r],sm))==False:
+                    while(r<self.size):
+                        self.push(r)
+                        r=r*2+1
+                        if g(self.op(self.d[r],sm))==True:
+                            sm = self.op(self.d[r],sm)
+                            r=r-1
+                    return r+1-self.size
             sm=self.op(self.d[r],sm)
             twoPow=r&(-r)
             if twoPow == r:
@@ -179,10 +184,12 @@ class lazy_segtree():
     def update(self,k):
         self.d[k]=self.op(self.d[2*k],self.d[2*k+1])
     def all_apply(self,k,f):
+        xdebug(f"all_apply({k},{f})")
         self.d[k]=self.mapping(f,self.d[k])
         if(k<self.size):
             self.lz[k]=self.composition(f,self.lz[k])
     def push(self,k):
+        xdebug(f"{k}をプッシュします lz[k]->{self.lz[k]}")
         self.all_apply(2*k,self.lz[k])
         self.all_apply(2*k+1,self.lz[k])
         self.lz[k]=self.identity
@@ -192,12 +199,13 @@ class lazy_segtree():
     def str2(self):
         ansL=[]
         for j in range(1,self.size*2):
-            if self.d[j] == self.e:
-                ansL.append("e")
-            else :
+            if self.d[j]==self.e:
+                ansL.append("元")
+            else:
                 ansL.append(self.d[j])
         return "内部詳細 : "+str(ansL)
-N,Q = MI()
+
+N,Q=MI()
 a=LI()
 ans=[]
 mod=998243353
@@ -209,16 +217,15 @@ def composition(f,g):
     return ((f[0]*g[0])%mod,(g[1]*f[0]+f[1])%mod)
 
 G=lazy_segtree([(j,1) for j in a],operate,(0,0),mapping,composition,(1,0))
-xdebug(G)
-xdebug(G.str2())
 for j in range(0,Q):
-    seq=tuple(MI())
+    seq = tuple(MI())
     if seq[0]==0:
-        dummy,l,r,b,c=seq
+        dum,l,r,b,c=seq
         G.apply(l,r,(b,c))
     else:
-        dummy,l,r=seq
-        ans.append(G.prod(l,r)[0])
+        dum,l,r=seq
+        res=G.prod(l,r)
+        ans.append(res[0])
 
 for line in ans:
     print(line)
