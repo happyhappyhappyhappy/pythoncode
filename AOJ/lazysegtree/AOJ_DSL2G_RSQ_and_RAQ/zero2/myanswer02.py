@@ -74,6 +74,7 @@ class LazySegment():
             r = self.n
         if r <= a or b <= l:
             return self.e
+        xdebug(f"getSumでeval呼び出し({a},{b},{k},{l},{r})")
         self.eval(k,l,r)
         if a <= l and r <= b:
             return self.node[k]
@@ -109,6 +110,9 @@ for j in range(0,Q):
         s=s-1
         t=t-1
         G.add(s,t+1,x)
+        xdebug(f"nodeの中身 {G}")
+        xdebug(f"lazyの中身 {G.strL()}")
+
         # ANSL.append(f"要素{s} から 要素{t+1}の閉区間で 値{x} を追加します")
     else:
         dmy,s,t=query
@@ -117,6 +121,8 @@ for j in range(0,Q):
 #        xdebug(f"Query {j} の時の G:{G}")
 #        xdebug(f"Query {j} の時の GLazy:{G.strL()}")
         x = G.getSum(s,t+1)
+        xdebug(f"区間和  完了時のnodeの中身 {G}")
+        xdebug(f"区間和 完了時のlazyの中身 {G.strL()}")
         # ANSL.append(f"要素{s} から 要素{t+1}の閉区間の合計を返します")
         ANSL.append(x)
 for line in ANSL:

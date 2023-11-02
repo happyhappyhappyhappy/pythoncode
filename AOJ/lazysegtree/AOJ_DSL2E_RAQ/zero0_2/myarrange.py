@@ -30,20 +30,17 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-# 今回の問題の単位元(共通)
-E = 0
 
 class LazySegment():
     n = 1
     sz = 1
-    # クラス内で設定
-    e = E
+    e = 0
     node = []
     lazy = []
     def __init__(self,V):
         self.sz = len(V)
         while self.n < self.sz:
-            self.n=self.n*2
+            self.n = self.n * 2
         self.node=[self.e]*(self.n*2-1)
         self.lazy=[self.e]*(self.n*2-1)
         for j in range(0,self.sz):
@@ -51,54 +48,38 @@ class LazySegment():
         for j in range(self.n-2,-1,-1):
             self.node[j]=self.node[2*j+1]+self.node[2*j+2]
     def eval(self,k,l,r):
-
-        if self.lazy[k]!=self.e:
-            # lazyの中身が単位元でなければ行う
-            # 自身の反映
+        if self.lazy[k] != self.e:
             self.node[k]=self.node[k]+self.lazy[k]
-            # 最下段ではなければ 1 < (r - l) 下段のlazyを設定
-            # ここでは下の二つの節に等しく、後で反映させたい数値を与える
-            if 1 < (r - l):
+            if 1 < (r-l):
                 self.lazy[2*k+1]=self.lazy[2*k+1]+(self.lazy[k]//2)
                 self.lazy[2*k+2]=self.lazy[2*k+2]+(self.lazy[k]//2)
-            # 今の節の役目完了
             self.lazy[k]=self.e
     def add(self,a,b,x,k=0,l=0,r=-1):
         if r < 0:
-            # していない場合は [0,n) 閉区間に注意
             r = self.n
-        # 値が揃ったところで評価1
         self.eval(k,l,r)
         if b <= l or r <= a:
-            # お互い交点無いときはもう終わり
             return
         if a <= l and r <= b:
-            # 包括していたら
-            # 1.lazyに値を入れる
             self.lazy[k]=self.lazy[k]+(r-l)*x
-            # 2.評価2回目(包括したケースのみ)
             self.eval(k,l,r)
+            return
         else:
-            # それ以外
-            # 下の節二つを呼び出す
-            # 次の呼び出しで下の節2つは評価済みになっている
-            # これ以上は評価しない
             self.add(a,b,x,2*k+1,l,(l+r)//2)
             self.add(a,b,x,2*k+2,(l+r)//2,r)
-            # その後 新しいnode値を持ってくる
             self.node[k]=self.node[2*k+1]+self.node[2*k+2]
+            return
     def oneSum(self,a,b,k=0,l=0,r=-1):
         if r < 0:
             r = self.n
         if r <= a or b <= l:
             return self.e
-        xdebug(f"getSumでeval呼び出し({a},{b},{k},{l},{r})")
         self.eval(k,l,r)
         if a <= l and r <= b:
             return self.node[k]
-        dmyl = self.oneSum(a,b,2*k+1,l,(l+k)//2)
-        dmyr = self.oneSum(a,b,2*k+2,(l+k)//2,r)
-        return dmyl+dmyr
+        vl = self.oneSum(a,b,2*k+1,l,(l+r)//2)
+        vr = self.oneSum(a,b,2*k+2,(l+r)//2,r)
+        return vl+vr
     def __str__(self):
         ansL=[]
         for j in range(0,self.n*2-1):
@@ -110,16 +91,16 @@ class LazySegment():
     def strL(self):
         ansL=[]
         for j in range(0,self.n*2-1):
-            if self.lazy[j] != self.e:
-                ansL.append(self.lazy[j])
+            if self.node[j] != self.e:
+                ansL.append(self.node[j])
             else:
                 ansL.append("E")
         return str(ansL)
+
 N,Q = MI()
-V = [E]*N
+V = [0]*N
 G = LazySegment(V)
-# xdebug(f"G:{G}")
-ansL=[]
+ANSL = []
 for j in range(0,Q):
     query=tuple(MI())
     if query[0]==0:
@@ -127,14 +108,10 @@ for j in range(0,Q):
         s = s-1
         t = t-1
         G.add(s,t+1,x)
-        # ansL.append(f"G.add({s},{t+1},{x})")
-        xdebug(G)
-        xdebug(f"G Lazy: {G.strL()}")
     else:
         dmy,j=query
-        j=j-1
-        x = G.oneSum(j,j+1)
-        ansL.append(x)
-        # ansL.append(f"G.get({j})")
-for line in ansL:
+        i = j-1
+        x = G.oneSum(i,j)
+        ANSL.append(x)
+for line in ANSL:
     print(line)
