@@ -54,6 +54,8 @@ class LazySegment():
                 if 1 < (r-l):
                     self.lazy[k*2+1]=self.lazy[k*2+1]+(self.lazy[k]>>1)
                     self.lazy[k*2+2]=self.lazy[k*2+2]+(self.lazy[k]>>1)
+                    self.lazyFlag[k*2+1]=True
+                    self.lazyFlag[k*2+2]=True
                 self.lazy[k]=0
                 self.lazyFlag[k]=False
     def add(self,a,b,val,k=0,l=0,r=-1):
@@ -71,8 +73,52 @@ class LazySegment():
             self.add(a,b,val,k*2+1,l,mid)
             self.add(a,b,val,k*2+2,mid,r)
             self.node[k]=min(self.node[k*2+1],self.node[k*2+2])
-    def getMin(self,a,b,k=0,l=0,r=-1):
+    def find(self,a,b,k=0,l=0,r=-1):
         if r < 0:
             r = self.n
-    # TODO 2023-11-08 19:32:57
-    # TODO 最小値を求める所から続き
+        if r <= a or b <= l:
+            return E
+        self.eval(k,l,r)
+        if a <= l and r <= b:
+            return self.node[k]
+        mid = (l+r)>>1
+        vl = self.find(a,b,k*2+1,l,mid)
+        vr = self.find(a,b,k*2+2,mid,r)
+        return min(vl,vr)
+    def __str__(self):
+        ans=["node:"]
+        for j in range(0,self.n*2-1):
+            if self.node[j]==E:
+                ans.append("E")
+            else:
+                ans.append(self.node[j])
+        return str(ans)
+    def strL(self):
+        ans=["lazy:"]
+        for j in range(0,self.n*2-1):
+            if self.lazy[j]==E:
+                ans.append("E")
+            else:
+                ans.append(self.lazy[j])
+        return str(ans)
+
+
+N,Q = MI()
+V = [0]*N
+G = LazySegment(V)
+ans = []
+for q in range(0,Q):
+    query=tuple(MI())
+    if query[0]==0:
+        dmy,s,t,x=query
+        G.add(s,t+1,x)
+    else:
+        dmy,s,t=query
+        # xdebug(f"In {q+1} GNode->{G}")
+        # xdebug(f"In {q+1} GLazy->{G.strL()}")
+        x = G.find(s,t+1)
+        # xdebug(f"In {q+1} GNode事後->{G}")
+        # xdebug(f"In {q+1} GLazy事後->{G.strL()}")
+        ans.append(x)
+for line in ans:
+    print(line)
