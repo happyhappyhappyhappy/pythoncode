@@ -114,8 +114,8 @@ for q in range(0,Q):
         G.add(s,t+1,x)
     else:
         dmy,s,t=query
-        # xdebug(f"In {q+1} GNode->{G}")
-        # xdebug(f"In {q+1} GLazy->{G.strL()}")
+        xdebug(f"In {q+1} GNode->{G}")
+        xdebug(f"In {q+1} GLazy->{G.strL()}")
         x = G.find(s,t+1)
         # xdebug(f"In {q+1} GNode事後->{G}")
         # xdebug(f"In {q+1} GLazy事後->{G.strL()}")
