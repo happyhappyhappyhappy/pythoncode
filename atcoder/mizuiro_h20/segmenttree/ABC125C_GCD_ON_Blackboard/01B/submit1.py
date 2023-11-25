@@ -31,22 +31,21 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 E = 0
-def GCD2(a,b):
-    if b==0:
-        return a
-    else :
-        return GCD2(b,a%b)
 
-class SegTree():
-    def __init__(self,_n):
-        x = 1
-        while x < _n:
-            x = x*2
-        self.n=x
+def GCD2(a,b):
+    if b == 0:
+        return a
+    else:
+        return GCD2(b,a%b)
+class SegmentTree():
+    def __init__(self,V):
+        sv = len(V)
+        self.n=1
+        while self.n < sv:
+            self.n=self.n*2
         self.node=[E]*(self.n*2-1)
-    def set(self,p,val):
-        self.node[(self.n-1)+p]=val
-    def build(self):
+        for j in range(0,sv):
+            self.node[(self.n-1)+j]=V[j]
         for j in range(self.n-2,-1,-1):
             self.node[j]=GCD2(self.node[2*j+1],self.node[2*j+2])
     def getGCD(self,a,b,k=0,l=0,r=-1):
@@ -56,12 +55,12 @@ class SegTree():
             return E
         if a <= l and r <= b:
             return self.node[k]
-        mid=(l+r)>>1
-        vl=self.getGCD(a,b,2*k+1,l,mid)
-        vr=self.getGCD(a,b,2*k+2,mid,r)
+        mid =(r+l)>>1
+        vl = self.getGCD(a,b,2*k+1,l,mid)
+        vr = self.getGCD(a,b,2*k+2,mid,r)
         return GCD2(vl,vr)
     def __str__(self):
-        ans=[]
+        ans = []
         for j in range(0,self.n*2-1):
             if self.node[j]==E:
                 ans.append("E")
@@ -69,15 +68,9 @@ class SegTree():
                 ans.append(self.node[j])
         return str(ans)
 
-N = II()
-G = SegTree(N)
-V = LI()
-for j in range(0,len(V)):
-    G.set(j,V[j])
-G.build()
-res=0
-for j in range(0,N):
-    f_gcd=G.getGCD(0,j)
-    b_gcd=G.getGCD(j+1,N)
-    res=max(res,GCD2(f_gcd,b_gcd))
-print(res)
+V = [2,4,6,10,5]
+G = SegmentTree(V)
+print(G)
+print(G.getGCD(3,5))
+# TODO : 中身実装
+# 2023-11-24 19:35:21

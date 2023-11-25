@@ -30,54 +30,45 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-E = 0
-def GCD2(a,b):
-    if b==0:
-        return a
-    else :
-        return GCD2(b,a%b)
 
-class SegTree():
-    def __init__(self,_n):
+class LazySegTree():
+    def __init__(self,_n,fx,fa,fm,fp,ex,em):
         x = 1
         while x < _n:
-            x = x*2
+            x=x*2
         self.n=x
-        self.node=[E]*(self.n*2-1)
-    def set(self,p,val):
-        self.node[(self.n-1)+p]=val
-    def build(self):
-        for j in range(self.n-2,-1,-1):
-            self.node[j]=GCD2(self.node[2*j+1],self.node[2*j+2])
-    def getGCD(self,a,b,k=0,l=0,r=-1):
-        if r < 0:
-            r = self.n
-        if r <= a or b <= l:
-            return E
-        if a <= l and r <= b:
-            return self.node[k]
-        mid=(l+r)>>1
-        vl=self.getGCD(a,b,2*k+1,l,mid)
-        vr=self.getGCD(a,b,2*k+2,mid,r)
-        return GCD2(vl,vr)
+        self.node=[ex]*(self.n*2-1)
+        self.lazy=[em]*(self.n*2-1)
+        self.FX=fx
+        self.FA=fa
+        self.FM=fm
+        self.FP=fp
+    def testFX(self,a,b):
+        return self.FX(a,b)
     def __str__(self):
         ans=[]
         for j in range(0,self.n*2-1):
-            if self.node[j]==E:
-                ans.append("E")
+            if self.node[j]==ex:
+                ans.append("e")
             else:
                 ans.append(self.node[j])
         return str(ans)
 
-N = II()
-G = SegTree(N)
-V = LI()
-for j in range(0,len(V)):
-    G.set(j,V[j])
-G.build()
-res=0
-for j in range(0,N):
-    f_gcd=G.getGCD(0,j)
-    b_gcd=G.getGCD(j+1,N)
-    res=max(res,GCD2(f_gcd,b_gcd))
-print(res)
+# fx最終的な処理本体->最小値を返す
+def fx(x1,x2):
+    return min(x1,x2)
+# fa lazy:l があったらnode:nにどういう処理をさせたいか->足す
+def fa(n,l):
+    return d+l
+# fm lazyが溜まっているときにさらにlazyが来たらどうするか->足す
+def fm(la1,la2):
+    return la1+la2
+# fp lazyをnodeに移すときにlazyに対する処理をするか->最小値では弄らない
+# m = 1にします
+def fp(la,m):
+    return la*m
+ex = (1>>31)-1
+em = (1>>31)-1
+N,Q=MI()
+G = LazySegTree(N,fx,fa,fm,fp,ex,em)
+# print(G)
