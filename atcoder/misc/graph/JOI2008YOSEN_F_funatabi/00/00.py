@@ -1,7 +1,5 @@
 # ライブラリのインポート
 import sys
-from collections import defaultdict
-import heapq
 # import heapq,copy
 import pprint as pp
 # from collections import deque
@@ -32,15 +30,15 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-class Dijkstra():
-    def __init__(self):
-        self.e=collections.defaultdict(list)
-    def add(self,u,v,d,directed=False):
-        if directed is False:
-            self.e[u].append([v,d])
-            self.e[v].append([u,d])
-        else:
-            self.e[u].append([v,d])
-    def delete(self,u,v):
-        self.e[u]=[_ for _ in self.e[u] if _[0] != v ]
-        self.e[v]=[_ for _ in self.e[v] if _[0] != u]
+
+
+
+
+def solver():
+    result = 0
+    # algorithm
+    return result
+
+
+if __name__ == "__main__":
+    print("{}".format(solver()))

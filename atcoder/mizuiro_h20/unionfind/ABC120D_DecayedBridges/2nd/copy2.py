@@ -79,4 +79,4 @@ class UnionFind():
     def __str__(self):
         ans = "\n".join(f"{r} : {m}" for r,m in self.all_group_members.items())
         return ans
-# TODO:  本文実装から
+#   本文実装から -> Pend,Pause

@@ -11,6 +11,7 @@ print(heap)
 # print(min_element)
 # print(heap)
 print(heap[0])
+print(f"最大 {heap[len(heap)-1]}")
 print(heap)
 sorted_elements = []
 while len(heap) != 0:

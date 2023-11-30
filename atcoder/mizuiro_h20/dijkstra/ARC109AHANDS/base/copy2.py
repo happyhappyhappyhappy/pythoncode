@@ -1,9 +1,9 @@
 # ライブラリのインポート
 import sys
-from collections import defaultdict
-import heapq
 # import heapq,copy
 import pprint as pp
+from collections import defaultdict
+import heapq
 # from collections import deque
 # pypy3用
 # import pypyjit
@@ -34,13 +34,38 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 class Dijkstra():
     def __init__(self):
-        self.e=collections.defaultdict(list)
+        self.e=defaultdict(list)
     def add(self,u,v,d,directed=False):
-        if directed is False:
+        if directed == False:
             self.e[u].append([v,d])
             self.e[v].append([u,d])
         else:
             self.e[u].append([v,d])
     def delete(self,u,v):
-        self.e[u]=[_ for _ in self.e[u] if _[0] != v ]
-        self.e[v]=[_ for _ in self.e[v] if _[0] != u]
+        self.e[u]=[_ for _ in self.e[u] if _[0] != v]
+        self.e[v]=[_ for _ in self.e[v] if _[0] !=u]
+    def Dijkstra_search(self,s):
+        d = defaultdict(lambda: float('inf'))
+        prev = defaultdict(lambda: None)
+        d[s]=0
+        q = []
+        heapq.heappush(q,(0,s))
+        v = defaultdict(bool)
+        while len(q) != 0:
+            k,u = heapq.heappop(q)
+            if v[u] == True:
+                continue
+            v[u] = True
+            for uv,ud in self.e[u]:
+                if v[uv]==True:
+                    continue
+                vd = k+ud
+                if vd < d[uv]:
+                    d[uv]=vd
+                    prev[uv]=u
+                    heapq.heappush(q,(vd,uv))
+        return d,prev
+    def getDijkstraShortestPath(self,start,goal):
+        # TODO::2023-11-30 19:33:54
+        _ , prev = self.Dijkstra_search(start)
+        shortestPath=[]

@@ -72,5 +72,3 @@ V = [2,4,6,10,5]
 G = SegmentTree(V)
 print(G)
 print(G.getGCD(3,5))
-# TODO : 中身実装
-# 2023-11-24 19:35:21
