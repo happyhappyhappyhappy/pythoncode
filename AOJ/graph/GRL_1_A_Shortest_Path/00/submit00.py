@@ -1,6 +1,5 @@
 # ライブラリのインポート
 import sys
-# import heapq,copy
 import heapq
 import pprint as pp
 from collections import defaultdict
@@ -32,11 +31,17 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+def now_pq(lst):
+    ln=len(lst)
+    xdebug("今の優先度キューの中身")
+    for j in range(0,ln):
+        d , pos = lst[j]
+        xdebug(f" {j+1}: 方向{pos} へ コスト{d}")
 class Dijkstra():
     def __init__(self):
-        self.e = defaultdict(list)
+        self.e=defaultdict(list)
     def add(self,u,v,d,directed=False):
-        if directed == False:
+        if directed==False:
             self.e[u].append([v,d])
             self.e[v].append([u,d])
         else:
@@ -45,25 +50,30 @@ class Dijkstra():
         self.e[u]=[_ for _ in self.e[u] if _[0] != v]
         self.e[v]=[_ for _ in self.e[v] if _[0] != u]
     def Dijkstra_search(self,s):
-        d = defaultdict(lambda: float('inf'))
+        d = defaultdict(lambda: MAXSIZE)
         prev = defaultdict(lambda: None)
         d[s]=0
-        q=[]
-        heapq.heappush(q,(0,s))
+        pq= []
+        heapq.heappush(pq,(0,s))
         v = defaultdict(bool)
-        while len(q)!=0:
-            k,u = heapq.heappop(q)
-            if v[u]==True:
+        while len(pq)!=0:
+#            now_pq(pq)
+            k,u = heapq.heappop(pq)
+            if v[u] == True:
+ #               xdebug(f" pos = {u} は フラグがついているため飛びます")
                 continue
             v[u]=True
             for uv,ud in self.e[u]:
-                if v[uv]==True:
+                if v[uv] == True:
+#                    xdebug(f" pos = {uv} は フラグがついているため飛びます")
                     continue
                 vd = k + ud
-                if vd < d[uv]:
-                    d[uv]=vd
+                if (k + ud) < d[uv]:
+                    d[uv]=k+ud
                     prev[uv]=u
-                    heapq.heappush(q,(vd,uv))
+                    heapq.heappush(pq,(vd,uv))
+                # else:
+                #     xdebug(f"{u}->{v}へは最短の距離が見つからないためキュー処理は無し")
         return d,prev
     def getDijkstraShortestPath(self,start,goal):
         _,prev = self.Dijkstra_search(start)
@@ -80,18 +90,12 @@ for j in range(0,E):
     s,t,d=MI()
     G.add(s,t,d,True)
 d,prev=G.Dijkstra_search(r)
-# for k,v in d.items():
-    # xdebug(f"{r}から{k} への経路は {v} です")
 for j in range(0,V):
     x = d[j]
-    # if x == float('inf'):
-    #     xdebug(f"{r} から {j}までの経路はありません INF")
-    # else:
-    #     xdebug(f"{r} から {j}への経路は {x}です")
-    if x == float('inf'):
+    if x == MAXSIZE:
         print("INF")
     else:
         print(x)
-for j in range(0,V):
-    sp = G.getDijkstraShortestPath(r,j)
-    xdebug(f"{r} -> {j}までの経路 {sp}")
+# for j in range(0,V):
+#     sp = G.getDijkstraShortestPath(r,j)
+#     xdebug(f"{r} -> {j} への パス {sp}")

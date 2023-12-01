@@ -4,6 +4,7 @@ import sys
 import heapq
 import pprint as pp
 from collections import defaultdict
+# from collections import deque
 # pypy3用
 # import pypyjit
 # 再帰制御解放
@@ -34,9 +35,9 @@ MINSIZE = -( 1 << 59) + 1
 
 class Dijkstra():
     def __init__(self):
-        self.e = defaultdict(list)
+        self.e=defaultdict(list)
     def add(self,u,v,d,directed=False):
-        if directed == False:
+        if directed==False:
             self.e[u].append([v,d])
             self.e[v].append([u,d])
         else:
@@ -53,7 +54,7 @@ class Dijkstra():
         v = defaultdict(bool)
         while len(q)!=0:
             k,u = heapq.heappop(q)
-            if v[u]==True:
+            if v[u] == True:
                 continue
             v[u]=True
             for uv,ud in self.e[u]:
@@ -67,31 +68,36 @@ class Dijkstra():
         return d,prev
     def getDijkstraShortestPath(self,start,goal):
         _,prev = self.Dijkstra_search(start)
-        shortestPath = []
+        shortestPath=[]
         node = goal
         while node != None:
             shortestPath.append(node)
             node = prev[node]
         return shortestPath[::-1]
 
-V,E,r = MI()
+a,b,x,y=MI()
 G=Dijkstra()
-for j in range(0,E):
-    s,t,d=MI()
-    G.add(s,t,d,True)
-d,prev=G.Dijkstra_search(r)
-# for k,v in d.items():
-    # xdebug(f"{r}から{k} への経路は {v} です")
-for j in range(0,V):
-    x = d[j]
-    # if x == float('inf'):
-    #     xdebug(f"{r} から {j}までの経路はありません INF")
-    # else:
-    #     xdebug(f"{r} から {j}への経路は {x}です")
-    if x == float('inf'):
-        print("INF")
-    else:
-        print(x)
-for j in range(0,V):
-    sp = G.getDijkstraShortestPath(r,j)
-    xdebug(f"{r} -> {j}までの経路 {sp}")
+for j in range(1,101):
+    # 同じ階のA,Bはx
+    G.add("A"+str(j),"B"+str(j),x)
+# for j in range(1,100):
+#     # 右上がりの斜め階段はx
+#     G.add("A"+str(j),"B"+str(j+1),x)
+for j in range(1,100):
+    # 右下がりの斜め階段はx
+    G.add("A"+str(j+1),"B"+str(j),x)
+for j in range(1,100):
+    # 同ビル内の移動はy
+    G.add("A"+str(j),"A"+str(j+1),y)
+    G.add("B"+str(j),"B"+str(j+1),y)
+start = "A"+str(a)
+d,_ = G.Dijkstra_search("A"+str(a))
+# for j in range(1,101):
+#     goal="B"+str(j)
+#     cost = d[goal]
+#     if cost == float('inf'):
+#         xdebug(f"{start}-> {goal} ->INF")
+#     else:
+#         xdebug(f"{start}-> {goal} ->{cost}")
+goal="B"+str(b)
+print(d[goal])
