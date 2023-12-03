@@ -121,5 +121,5 @@ for j in range(0,Q):
         xdebug(f"G->{G}")
         x = G.getSum(s,t+1)
         print(x)
-# PENDING::2023-12-01 17:52:06
+# 2023-12-01 17:52:06
 # 値が正しく反映されない
