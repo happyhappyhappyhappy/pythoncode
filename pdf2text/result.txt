@@ -1,11 +1,296 @@
-B : 花束
+ABC 160 解説
 
-「$x 本の赤い花と $1$ 本の青い花からなる花束」を赤い花束，「$1$ 本の赤い花と $y$ 本の青い花からなる花束」を
-青い花束と呼ぶことにする．
-まず，「$K$ 個の花束を作ることができるか？」という Yes / No 問題を考える．花束を作るためには，赤い
-花と青い花が少なくとも 1 本ずつ必要なので，とりあえず赤い花と青い花を K 本ずつ減らす．
-赤い花束を作るためには，さらに赤い花が $x-1$本必要なので，赤い花束は $\left \lfloor \frac{R-K}{x-1} \right \rfloor$ 個作ることができる．
-同様に，青い花束は$\left \lfloor \frac{B-K}{y-1} \right \rfloor$
-⌋ 個作ることができる．
-$\left \lfloor \frac{R-K}{x-1} \right \rfloor + \left \lfloor \frac{B-K}{y-1} \right \rfloor \geq  K$
-か判定すれば良い。あとは，上の条件を満たす最大の$K$を二分探索すればよい．
+writer: DEGwer, kyopro friends, latte0119, satashun, ynymxiaolongbao
+
+2020 年 3 月 28 日
+
+For International Readers: English editorial starts on page 7.
+
+A: Coﬀee
+
+長さ 6 の英小文字からなる文字列に対して、3 文字目と 4 文字目が等しく、5 文字目と 6 文字目も
+
+等しいか判定する問題です。
+
+以下は C++ における実装例です。
+
+1 #include <iostream>
+2 using namespace std;
+3 int main(){
+string s;
+cin>>s;
+if(s[2]==s[3]&&s[4]==s[5]){
+
+5
+
+4
+
+6
+
+7
+
+8
+
+9
+
+10
+
+cout<<"Yes"<<endl;
+
+}
+else{
+
+cout<<"No"<<endl;
+
+}
+
+11
+12 }
+
+1
+
+B:Golden Coins
+
+500 円以上持っているのであれば、500 円硬貨 1 枚を手に入れた方が、5 円硬貨 100 枚を手に入れ
+
+るより嬉しさは大きくなります。よって、できる限り 500 円硬貨を手に入れた後、端数で 5 円硬貨を
+
+手に入れるのが最善です。
+
+C 言語での実装例は次のとおりです。
+
+1 #include<stdio.h>
+2 int main(){
+
+int x;
+scanf("%d",&x);
+int c500 = x/500; // 500 円硬貨の数
+int r500 = x%500; // 端数
+int c5 = r500/5; // 5 円硬貨の数
+printf("%d\n",c500*1000+c5*5);
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+9 }
+
+2
+
+C:Traveling Salesman around Lake
+
+湖の周りを家によって N 個の区間に分けます。セールスマンが全ての家を訪れるとき、N 個の区間
+
+のうち通らないものは高々 1 つです。また、N 個の区間のうち最も長いものを通らず、かつ、それ以
+
+外の区間をちょうど 1 度だけ通るようにしてすべての家を訪ねることができます。したがってそのよ
+
+うな移動方法をとると最短距離となります。最長の区間は O(N ) で求めることができるのでこの問題
+
+が解けました。実装上は真北 (座標 0) をまたいだ区間の扱いに気を付けてください。
+
+3
+
+D: Line++
+
+整数 i; j(1 (cid:20) i < j (cid:20) N ) を固定します。グラフ G における、頂点 i と頂点 j の最短距離を効率
+的に求めることを考えます。 頂点 X と頂点 Y を結ぶ辺を使う場合と使わない場合に分けて考える
+と、求める最短距離は minfjj (cid:0) ij; jX (cid:0) ij + 1 + jj (cid:0) Y j; jY (cid:0) ij + 1 + jj (cid:0) Xjg となります。この
+式に従って計算することで、 頂点 i と頂点 j の最短距離を O(1) で求めることができます。後は、
+1 (cid:20) i < j (cid:20) N を満たすすべての i; j について、上記の方法で最短距離を求めれば、 O(N 2) でこの
+問題を解くことができます。
+
+4
+
+E: Red and Green Apples
+
+元から赤色のリンゴを X 個以上食べることはないので、美味しさの大きい方から X 個以外は捨て
+
+ます。元から緑色のリンゴを Y 個以上食べることもないので、美味しさの大きい方から Y 個以外は
+
+捨てます。すると残ったリンゴからどのように X + Y 個のリンゴを選んでも、無色のリンゴを適切
+
+に着色することで赤色のリンゴ X 個と緑色のリンゴ Y 個にすることができます。よって、残ったリ
+
+ンゴを美味しさの大きい方から X + Y 個食べれば良いです。
+
+5
+
+F: Distributing Integers
+
+頂点 1 を根とする根付き木として考えます。以下のような値を定義します、
+
+dpv = 頂点 v を根とする部分木のみを考えたときの、頂点 v に 1 が書かれるような整数の書き方の数
+
+これは、以下の漸化式に従って、ボトムアップに計算することができます。
+
+dpv = (sizev (cid:0) 1)!
+
+∏
+
+u2ch(v)
+
+dpu
+sizeu!
+
+後は、上記の木 dp を元に全方位木 dp を行うことで、O(N ) でこの問題を解くことができます。
+
+6
+
+A: Coﬀee
+
+This problems asks to check if a string of length 6 consisting from English lowercase alphabets
+
+has the properties that the third and the forth letters are the same and that the (cid:12)fth and the
+
+sixth letters are the same.
+
+The following is a sample code in C++.
+
+1 #include <iostream>
+2 using namespace std;
+3 int main(){
+string s;
+cin>>s;
+if(s[2]==s[3]&&s[4]==s[5]){
+
+5
+
+4
+
+6
+
+7
+
+8
+
+9
+
+10
+
+cout<<"Yes"<<endl;
+
+}
+else{
+
+cout<<"No"<<endl;
+
+}
+
+11
+12 }
+
+7
+
+B:Golden Coins
+
+If he has more than 500 yen, then the happiness will be larger when he has a 500-yen coin
+
+than when he has 100 5-yen coins. Therefore, it is optimal to obtain 500-yen coins as much as
+
+possible, then obtain 5-yen coins with the fraction.
+
+The following is a sample code in C.
+
+1 #include<stdio.h>
+2 int main(){
+
+int x;
+scanf("%d",&x);
+int c500 = x/500; //The number of 500-yen coins
+int r500 = x%500; //Fraction
+int c5 = r500/5; //The number of 5-yen coins
+printf("%d\n",c500*1000+c5*5);
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+9 }
+
+8
+
+C:Traveling Salesman around Lake
+
+Split the circumference of the pond into the N segments by the houses When the salesman
+
+visits all the house, there are at most 1 segment out of the N segments which the salesman does
+
+not pass. Also, it is possible to visit all the houses so that the salesman does not pass the longest
+
+segment of the N segments while passing the other segments exactly once. The longest segment
+
+can be found in a total of O(N ) time, so the problem could be solved. When implementing, be
+
+careful of the treatment of the segment that strides over the due north.
+
+9
+
+D: Line++
+
+Fix two integers i; j(1 (cid:20) i < j (cid:20) N ). Let us consider an eﬃcient way of (cid:12)nding the shortest
+
+distance between vertex i and vertex j. By considering whether or not use the edge between
+vertex X and vertex Y , the desired shortest distance will be minfjj (cid:0) ij; jX (cid:0) ij + 1 + jj (cid:0) Y j; jY (cid:0)
+ij + 1 + jj (cid:0) Xjg. By following this equation, the shortest distance between vertex i and vertex j
+
+can be calculated in an O(1) time. Finally, by (cid:12)nding the shortest distance for all i; j such that
+1 (cid:20) i < j (cid:20) N with the method above, the problem can be solved in a total of O(N 2) time.
+
+10
+
+E: Red and Green Apples
+
+Since no more than X red apples will be eaten, we can abandon the apples other than X apples
+
+with the largest deliciousnesses. Also, since no more than Y green apples will be eaten, we can
+
+abandon the apples other than Y apples with the largest deliciousnesses. Then, no matter how
+
+we choose X + Y apples out of the apples left, by properly painting the colorless apples, we can
+
+obtain X red apples and Y green apples Therefore, it is optimal to eat the X + Y apples with
+
+the largest deliciousness out of the apples left.
+
+11
+
+F: Distributing Integers
+
+Consider it as a rooted tree with the root being vertex 1. We de(cid:12)ne the following value:
+
+dpv =The number of the ways of writing integers, in which integers are only to the subtree with
+the root being vertex v, such that 1 is written on vertex v.
+
+This value can be calculated bottom-up with the following recurrence equation:
+
+dpv = (sizev (cid:0) 1)!
+
+∏
+
+u2ch(v)
+
+dpu
+sizeu!
+
+By performing rerooting based on the tree DP above, the problem can be solved in a total of
+
+O(N ) time.
+
+12
+
+

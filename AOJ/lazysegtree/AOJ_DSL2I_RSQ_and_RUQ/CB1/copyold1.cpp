@@ -42,6 +42,6 @@ struct SegTreeLazyProportional{
                                 }
                                 n = x;
                             }
-    // TODO:2023-12-02 19:35:02
+    // 2023-12-02 19:35:02
     // ここから乃至もう一回コピー
 };
