@@ -4,6 +4,7 @@ import heapq
 import pprint as pp
 from collections import defaultdict
 import os
+# from collections import deque
 # pypy3用
 # import pypyjit
 # 再帰制御解放
@@ -35,57 +36,55 @@ MINSIZE = -( 1 << 59) + 1
 class Dijkstra():
     def __init__(self):
         self.e=defaultdict(list)
-    def add(self,u,v,d,directed=False):
-        if directed==False:
-            self.e[u].append([v,d])
-            self.e[v].append([u,d])
+    def add(self,u,v,d,k,directed=False):
+        if directed is False:
+            self.e[u].append([v,d,k])
+            self.e[v].append([u,d,k])
         else:
-            self.e[u].append([v,d])
+            self.e[u].append([v,d,k])
     def delete(self,u,v):
         self.e[u]=[x for x in self.e[u] if x[0]!=v]
         self.e[v]=[x for x in self.e[v] if x[0]!=u]
     def Dijkstra_search(self,s):
-        d=defaultdict(lambda: float('inf'))
+        d = defaultdict(lambda: float('inf'))
         prev = defaultdict(lambda: None)
         d[s]=0
-        q=[]
-        heapq.heappush(q,(0,s))
+        q = []
+        heapq.heappush(q, (0,s))
         v = defaultdict(bool)
         while len(q)!=0:
             k,u = heapq.heappop(q)
             if v[u]==True:
                 continue
             v[u]=True
-            for uv,ud in self.e[u]:
-                if v[uv]==True:
-                    continue
-                vd = k+ud
+            for uv,ud,uk in self.e[u]:
+                k = d[u]
+                k = -(-k//uk)*uk
+                vd = k + ud
                 if vd < d[uv]:
                     d[uv]=vd
                     prev[uv]=u
-                    heapq.heappush(q,(vd,uv))
+                    v[u]=False
+                    heapq.heappush(q, (vd,uv))
         return d,prev
     def getDijkstraShortestPath(self,start,goal):
         _,prev=self.Dijkstra_search(start)
         shortestPath=[]
-        node = goal
-        while node != None:
+        node=goal
+        while node is not None:
             shortestPath.append(node)
             node=prev[node]
         return shortestPath[::-1]
 
-V,E,r=MI()
-G=Dijkstra()
-for j in range(0,E):
-    s,t,d=MI()
-    G.add(s,t,d,True)
-ans=[]
-D,_=G.Dijkstra_search(r)
-for j in range(0,V):
-    dat=D[j]
-    if dat == float('inf'):
-        ans.append("INF")
-    else:
-        ans.append(dat)
-for line in ans:
-    print(line)
+N,M,X,Y=MI()
+ABTK=[]
+for _ in range(0,M):
+    ABTK.append(LI())
+G = Dijkstra()
+for a,b,t,k in ABTK:
+    G.add(a,b,t,k)
+dx,_=G.Dijkstra_search(X)
+if dx[Y]==float('inf'):
+    print("-1")
+else:
+    print(dx[Y])
