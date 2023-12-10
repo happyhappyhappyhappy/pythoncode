@@ -3,6 +3,7 @@ import sys
 import heapq
 import pprint as pp
 from collections import defaultdict
+import os
 # pypy3用
 # import pypyjit
 # 再帰制御解放
@@ -34,12 +35,12 @@ MINSIZE = -( 1 << 59) + 1
 class Dijkstra():
     def __init__(self):
         self.e=defaultdict(list)
-    def add(self,u,v,d,directed=False):
+    def add(self,u,v,d,k,directed=False):
         if directed is False:
-            self.e[u].append([v,d])
-            self.e[v].append([u,d])
+            self.e[u].append([v,d,k])
+            self.e[v].append([u,d,k])
         else:
-            self.e[u].append([v,d])
+            self.e[u].append([v,d,k])
     def delete(self,u,v):
         self.e[u]=[x for x in self.e[u] if x[0]!=v]
         self.e[v]=[x for x in self.e[v] if x[0]!=u]
@@ -48,19 +49,42 @@ class Dijkstra():
         prev=defaultdict(lambda: None)
         d[s]=0
         q=[]
-        heapq.heappush(q, (0,s))
+        heapq.heappush(q,(0,s))
         v = defaultdict(bool)
         while len(q)!=0:
             k,u = heapq.heappop(q)
             if v[u] is True:
                 continue
             v[u]=True
-            for uv,ud in self.e[u]:
-                if v[uv] is True:
-                    continue
-                vd = k + ud
+            for uv,ud,uk in self.e[u]:
+                xdebug(f"{u}から位置{uv},コスト{ud},定時時間{uk}について調査")
+                k=d[u]
+                xdebug(f"到着時間{k}")
+                k = -(k//uk)*uk
+                xdebug(f"次の出発時間{k}")
+                vd = k+ud
                 if vd < d[uv]:
                     d[uv]=vd
                     prev[uv]=u
+                    v[u]=False
                     heapq.heappush(q,(vd,uv))
         return d,prev
+    def getDijkstraShortestPath(self,start,goal):
+        _,prev=self.Dijkstra_search(start)
+        shortestPath=[]
+        node=goal
+        while node is not None:
+            shortestPath.append(node)
+            node=prev[node]
+        return shortestPath[::-1]
+N,M,X,Y = MI()
+ABTK = []
+for _ in range(0,M):
+    ABTK_L = LI()
+    ABTK.append(ABTK_L)
+G=Dijkstra()
+for a,b,t,k in ABTK:
+    G.add(a,b,t,k)
+for j in range(1,N+1):
+    print(f"{j} -> {G.e[j]}")
+d,_=G.Dijkstra_search(X)
