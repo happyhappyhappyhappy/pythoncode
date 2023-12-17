@@ -124,6 +124,7 @@ for j in range(1,N+1):
         else:
             cost=P
         xdebug(f"{j}->{x}へ行くのに{x}に止まるコスト{cost}")
+        # LINKS変数は最初の取得時に往復させている。有向グラフの集まりと見て処理をする。
         G.add(j,x,cost,True)
 for j in range(1,N+1):
     for x in G.e[j]:
