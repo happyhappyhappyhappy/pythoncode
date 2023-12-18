@@ -90,29 +90,29 @@ for j in range(0,M):
     a,b=MI()
     LINKS[a].append(b)
     LINKS[b].append(a)
-for j in range(1,N+1):
-    xdebug(f"都市{j}->{LINKS[j]}")
+# for j in range(1,N+1):
+#     xdebug(f"都市{j}->{LINKS[j]}")
 for j1 in range(0,S+1):
-    xdebug(f"ゾンビの範囲 {j1} で検索する")
+#    xdebug(f"ゾンビの範囲 {j1} で検索する")
     if q.empty()==True:
         break
     qsize=q.qsize()
-    xdebug(f"ゾンビ存在queueの中身は {qsize} です")
+#    xdebug(f"ゾンビ存在queueの中身は {qsize} です")
     for j in range(qsize-1,-1,-1):
         f = q.get()
         if danger[f]==True:
-            xdebug(f"都市 {f} はすでに危険対象都市です")
+#            xdebug(f"都市 {f} はすでに危険対象都市です")
             continue
-        xdebug(f"都市 {f} を危険としてマークしました")
+#        xdebug(f"都市 {f} を危険としてマークしました")
         danger[f]=True
         for t in LINKS[f]:
             q.put(t)
-xdebug("----危険確認-----")
-for j in range(1,N+1):
-    if danger[j]==True:
-        xdebug(f"都市 {j} -> 危険")
-    else:
-        xdebug(f"都市 {j} -> 安全")
+# xdebug("----危険確認-----")
+# for j in range(1,N+1):
+#     if danger[j]==True:
+#         xdebug(f"都市 {j} -> 危険")
+#     else:
+#         xdebug(f"都市 {j} -> 安全")
 G=Dijkstra()
 for j in range(1,N+1):
     for x in LINKS[j]:
@@ -123,9 +123,12 @@ for j in range(1,N+1):
             cost=Q
         else:
             cost=P
-        xdebug(f"{j}->{x}へ行くのに{x}に止まるコスト{cost}")
+#        xdebug(f"{j}->{x}へ行くのに{x}に止まるコスト{cost}")
         # LINKS変数は最初の取得時に往復させている。有向グラフの集まりと見て処理をする。
         G.add(j,x,cost,True)
-for j in range(1,N+1):
-    for x in G.e[j]:
-        xdebug(f"都市 {j} の接続先と宿泊費-> {x}")
+# for j in range(1,N+1):
+#     for x in G.e[j]:
+#         xdebug(f"都市 {j} の接続先と宿泊費-> {x}")
+
+d,_=G.Dijkstra_search(1)
+print(d[N])
