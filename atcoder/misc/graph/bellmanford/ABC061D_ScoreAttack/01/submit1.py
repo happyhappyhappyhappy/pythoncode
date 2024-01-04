@@ -30,18 +30,16 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-INF=1<<60
+INF = (1<<60)
 
-N,M,P=MI()
-edges=[]
 def BellmanFord(edges,V,start):
     dist=[INF]*V
     dist[start]=0
-    for j in range(0,V):
+    for _ in range(0,V):
         changed=False
-        for ed in edges:
-            fm,to,cost=ed
-            if dist[fm] == INF:
+        for e in edges:
+            fm,to,cost=e
+            if dist[fm]==INF:
                 continue
             x = dist[fm]+cost
             if x < dist[to]:
@@ -49,26 +47,24 @@ def BellmanFord(edges,V,start):
                 changed=True
         if changed == False:
             return dist
-    for j in range(0,V):
-        for ed in edges:
-            fm,to,cost=ed
+    for _ in range(0,V):
+        for e in edges:
+            fm,to,cost=e
             if dist[fm]==INF:
                 continue
             x = dist[fm]+cost
             if x < dist[to]:
-                dist[to] = (-1)*INF
+                dist[to]=(-1)*INF
     return dist
-for j in range(0,M):
+
+V,E=MI()
+edges=[]
+for _ in range(0,E):
     a,b,c=MI()
-    a=a-1
-    b=b-1
-    c=(c-P)*(-1)
-    edges.append([a,b,c])
-dist=BellmanFord(edges,N,0)
-ans=dist[N-1]*(-1)
+    edges.append([a-1,b-1,c*(-1)])
+dist = BellmanFord(edges,V,0)
+ans = dist[V-1]*(-1)
 if ans == INF:
-    print("-1")
-elif ans < 0:
-    print("0")
+    print("inf")
 else:
     print(ans)
