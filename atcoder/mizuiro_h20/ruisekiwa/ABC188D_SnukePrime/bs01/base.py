@@ -10,10 +10,10 @@ for a, b, c in ABC:
 days = sorted(list(days))
 
 dict = {x:i for i, x in enumerate(days)}
-
 acc = [0] * (len(days))
 for a, b, c in ABC:
     acc[dict[a]] += c
+
     acc[dict[b + 1]] -= c
 
 for i in range(len(days) - 1):
