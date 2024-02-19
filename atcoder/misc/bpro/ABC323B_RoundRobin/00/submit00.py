@@ -31,33 +31,8 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def pow2(p,n):
-    x = 1
-    while 0 < n:
-        flug = n&1
-        if flug == 1:
-            x = x * p
-        p=p*p
-        n=n>>1
-    return x
-
-def solver(N):
-    result = "No"
-    SN=N
-    cnt2=0
-    cnt3=0
-    while N % 2 == 0:
-        N=N//2
-        cnt2=cnt2+1
-    while N % 3 == 0:
-        N=N//3
-        cnt3=cnt3+1
-    # algorithm
-    # xdebug(f"{SN}=2^{cnt2}*3^{cnt3}か")
-    if pow(2,cnt2)*pow(3,cnt3) == SN:
-        result="Yes"
-    return result
-
-if __name__ == "__main__":
-    N=II()
-    print("{}".format(solver(N)))
+N = II()
+S = []
+for _ in range(0,N):
+    s = sys.stdin.readline().strip()
+    S.append(s)

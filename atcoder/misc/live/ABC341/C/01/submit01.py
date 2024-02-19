@@ -31,33 +31,36 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def pow2(p,n):
-    x = 1
-    while 0 < n:
-        flug = n&1
-        if flug == 1:
-            x = x * p
-        p=p*p
-        n=n>>1
-    return x
-
-def solver(N):
-    result = "No"
-    SN=N
-    cnt2=0
-    cnt3=0
-    while N % 2 == 0:
-        N=N//2
-        cnt2=cnt2+1
-    while N % 3 == 0:
-        N=N//3
-        cnt3=cnt3+1
-    # algorithm
-    # xdebug(f"{SN}=2^{cnt2}*3^{cnt3}か")
-    if pow(2,cnt2)*pow(3,cnt3) == SN:
-        result="Yes"
-    return result
-
-if __name__ == "__main__":
-    N=II()
-    print("{}".format(solver(N)))
+H,W,N = MI()
+S = []
+WAY = sys.stdin.readline().strip()
+for _ in range(0,H):
+    s = sys.stdin.readline().strip()
+    S.append(s)
+PTN=[]
+for j in range(0,H):
+    for k in range(0,W):
+        if S[j][k] == '.':
+            PTN.append([j,k])
+count = 0
+sLen=len(WAY)
+for j,k in PTN:
+    sj=j
+    sk=k
+    flug = True
+    for m in range(0,sLen):
+        nextT=WAY[m]
+        if nextT == 'L':
+            k=k-1
+        elif nextT == 'R':
+            k=k+1
+        elif nextT == 'U':
+            j=j-1
+        elif nextT == 'D':
+            j=j+1
+        if S[j][k] == '#':
+            flug=False
+            break
+    if flug == True:
+        count=count+1
+print(count)
