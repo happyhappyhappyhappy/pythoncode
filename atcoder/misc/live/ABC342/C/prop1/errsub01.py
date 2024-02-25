@@ -2,7 +2,6 @@
 import sys
 # import heapq,copy
 import pprint as pp
-from string import ascii_lowercase
 # from collections import deque
 # pypy3用
 # import pypyjit
@@ -33,24 +32,14 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-
-
-
-def solver(N,S,Q):
-    result = 0
-    fromalpha=ascii_lowercase
-    toalpha=ascii_lowercase
-    for _ in range(0,Q):
-        a,b = (sys.stdin.readline().strip()).split()
-        toalpha=toalpha.replace(a,b)
-    strTranseMap=str.maketrans(fromalpha,toalpha)
-    result = S.translate(strTranseMap)
-    # algorithm
-    return result
-
-
-if __name__ == "__main__":
-    N = int(input())
-    S = input()
-    Q = int(input())
-    print("{}".format(solver(N,S,Q)))
+N=II()
+MS=SI()
+Q=II()
+MSL=list(MS)
+for _ in range(0,Q):
+    c,d=(sys.stdin.readline().strip()).split(" ")
+#    xdebug(f"c = {c},d = {d}")
+    for j in range(0,N):
+        if MSL[j]==c:
+            MSL[j]=d
+print("".join(MSL))
