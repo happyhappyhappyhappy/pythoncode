@@ -1,6 +1,6 @@
-import pprint as pp
 import sys
 from logging import DEBUG, StreamHandler, getLogger
+import pprint as pp
 from string import ascii_lowercase
 
 # from collections import deque
@@ -16,7 +16,7 @@ def II(): return int(sys.stdin.readline())
 def SI(): return sys.stdin.readline().strip()
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
-def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
+def LLI(rows_number): return [LI() for _ in range(rows_number)]
 
 # デバッグ出力の作成
 logger = getLogger(__name__)
@@ -34,12 +34,12 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 
-def solver(S: int,Q: int):
+def solver(N,S,Q):
     result = 0
 #    xdebug(f"{N= },{S= },{Q= }")
     fromstr=ascii_lowercase
     tostr=ascii_lowercase
-    for _ in range(Q):
+    for _ in range(0,Q):
         c,d=sys.stdin.readline().strip().split()
 #        xdebug(f"{c= },{d= }")
         tostr=tostr.replace(c,d)
@@ -53,4 +53,4 @@ if __name__ == "__main__":
     N = II()
     S = SI()
     Q = II()
-    print("f{solver(S,Q)}")
+    print("{}".format(solver(N,S,Q)))
