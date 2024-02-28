@@ -1,14 +1,16 @@
 # ライブラリのインポート
-import sys
 # import heapq,copy
 import pprint as pp
+import sys
+
 # from collections import deque
 # pypy3用
 # import pypyjit
 # 再帰制御解放
 # pypyjit.set_param('max_unroll_recursion=-1')
 # sys.setrecursionlimit(10**6)
-from logging import getLogger, StreamHandler, DEBUG
+from logging import DEBUG, StreamHandler, getLogger
+
 
 # 入力のマクロ
 def II(): return int(sys.stdin.readline())
