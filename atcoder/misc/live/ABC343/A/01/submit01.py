@@ -33,26 +33,10 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-def eq(A:list,B:list):
-    result = True
-    leng=len(A)
-    for j in range(leng):
-        if A[j]!=B[j]:
-            result=False
-    return result
 
-S = SI()
-leng=len(S)
-flug=False
-selLen=leng-1
-while 1 <= selLen:
-    xdebug(f"{leng=},{selLen=}")
-    for j in range(leng-selLen):
-        # print(S[j:j+selLen+1])
-        Scut=S[j:j+selLen+1]
-        xdebug(f"{Scut=}")
-        Scutrev=Scut[::-1]
-        xdebug(f"{Scutrev=}")
-        if eq(Scut,Scutrev):
-            xdebug("This is OK")
-    selLen=selLen-1
+A,B=MI()
+X = A+B
+if 0 < X and X <= 9:
+    print(X-1)
+elif 0 == X :
+    print("1")

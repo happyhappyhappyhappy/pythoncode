@@ -33,26 +33,44 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-def eq(A:list,B:list):
-    result = True
-    leng=len(A)
-    for j in range(leng):
-        if A[j]!=B[j]:
-            result=False
-    return result
 
-S = SI()
-leng=len(S)
-flug=False
-selLen=leng-1
-while 1 <= selLen:
-    xdebug(f"{leng=},{selLen=}")
-    for j in range(leng-selLen):
-        # print(S[j:j+selLen+1])
-        Scut=S[j:j+selLen+1]
-        xdebug(f"{Scut=}")
-        Scutrev=Scut[::-1]
-        xdebug(f"{Scutrev=}")
-        if eq(Scut,Scutrev):
-            xdebug("This is OK")
-    selLen=selLen-1
+def pow2(p:int,n:int):
+    ans=1
+    while 0 < n:
+        and1 = n & 1
+        if and1 == 1:
+            ans=ans*p
+        p = p * p
+        n = n >> 1
+    return ans
+def palin(p:int):
+    pstr=str(p)
+    pstrRev = pstr[::-1]
+    leng=len(pstr)
+    flug = True
+    for j in range(leng):
+        if pstr[j] != pstrRev[j]:
+            flug=False
+            break
+    if flug is True:
+        return True
+    else:
+        return False
+MAXLIMIT=pow2(10,18)
+rippou = 1
+base=1
+rippouList=[]
+while rippou < MAXLIMIT:
+    rippou = pow2(base,3)
+    if palin(rippou) is True:
+        rippouList.append(rippou)
+    base=base+1
+rippouLen=len(rippouList)
+N = II()
+ans=1
+for j in range(rippouLen):
+    if  rippouList[j] <= N:
+        ans=rippouList[j]
+    else:
+        break
+print(ans)
