@@ -165,7 +165,7 @@
 			  "\t# algorithm",
 			  "\treturn result",
 			  "\n\nif __name__ == \"__main__\":",
-			  "    print(\"{}\".format(solver()))"
+			  "    print(f\"{solver()}\")"
 			],
 			"description": "pythonスニペット202301"
 		  }
