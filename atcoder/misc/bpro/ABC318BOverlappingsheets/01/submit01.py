@@ -33,38 +33,26 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def calc(S:str,T:str):
-    for j in range(len(T)):
-        if len(S) <= j:
-            return len(S)
-        if S[j]!=T[j]:
-            return j
-    return len(T)
-def check(S:str,T:str):
-    if 1 < abs(len(S)-len(T)):
-        return False
-    A=calc(S,T)
-    Sr=S[::-1]
-    Tr=T[::-1]
-    B=calc(Sr,Tr)
-    if A == len(S) and len(S)==len(T):
-        return True
-    if len(S)<=A+B and len(S)+1==len(T): # 送信より受信が一文字多い
-        return True
-    if len(S)-1<=A+B and len(S)-1==len(T): # 送信より受信が一文字少ない
-        return True
-    if len(S)-1==A+B and len(S)==len(T): # 一文字置換されて返ってきた
-        return True
-    return False
+def solver(N:int,R:list):
+    G=[[0]*100 for _ in range(100)]
+    for j in range(N):
+        A,B,C,D=R[j]
+        # xdebug(f"横 {A=},{B=} 縦 {C=},{D=}")
+        for x in range(A,B):
+            for y in range(C,D):
+                G[y][x]=1
+    # ppp(f"{G=}")
+    cover=0
+    for j in range(100):
+        cover=cover+sum(G[j])
+    return cover
+    # algorithm
+    # return result
 
-Nstr,T=SI().split(" ")
-N=int(Nstr)
-ansL=[]
-count=0
-for j in range(N):
-    S=SI()
-    if check(S,T):
-        ansL.append(j+1)
-        count=count+1
-print(count)
-print(" ".join(map(str,ansL)))
+if __name__ == "__main__":
+    N=II()
+    Rap=[]
+    for _ in range(N):
+        t=LI()
+        Rap.append(t)
+    print(f"{solver(N,Rap)}")

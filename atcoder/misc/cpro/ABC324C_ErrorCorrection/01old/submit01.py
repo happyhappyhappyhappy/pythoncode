@@ -40,31 +40,46 @@ def calc(S:str,T:str):
         if S[j]!=T[j]:
             return j
     return len(T)
+
 def check(S:str,T:str):
-    if 1 < abs(len(S)-len(T)):
-        return False
+#    xdebug(f"送信側 {S},受信側 {T}")
     A=calc(S,T)
     Sr=S[::-1]
     Tr=T[::-1]
     B=calc(Sr,Tr)
-    if A == len(S) and len(S)==len(T):
+    if A==len(S) and len(S)==len(T):
+#        xdebug(f"送信 {S} と 受信 {T}は同一")
         return True
-    if len(S)<=A+B and len(S)+1==len(T): # 送信より受信が一文字多い
+    elif len(S)<=A+B and len(S)+1==len(T):
+        # 先頭一致+後方一致の個数を送信より上回る→送信に一個追加されたが受信
+#        xdebug(f"送信 {S} が 受信 {T}では文字1個追加されて帰ってきた")
         return True
-    if len(S)-1<=A+B and len(S)-1==len(T): # 送信より受信が一文字少ない
+    elif len(S)-1<=A+B and len(S)-1==len(T):
+        # 送信から1マイナス が
+#        xdebug(f"送信 {S} が 受信 {T}では文字1個削除されて帰ってきた")
         return True
-    if len(S)-1==A+B and len(S)==len(T): # 一文字置換されて返ってきた
+    elif len(S)==A+B+1 and len(S)==len(T):
+#        xdebug(f"送信 {S} が 受信 {T}では文字1個置換された")
         return True
+#    xdebug(f"送信 {S} と 受信 {T}には関連がない")
     return False
 
-Nstr,T=SI().split(" ")
+Nstr,T2=SI().split(" ")
 N=int(Nstr)
-ansL=[]
-count=0
-for j in range(N):
-    S=SI()
-    if check(S,T):
-        ansL.append(j+1)
-        count=count+1
-print(count)
-print(" ".join(map(str,ansL)))
+# xdebug(f"候補数{N},青→高へ帰ってきた列{T2}")
+S=[""]
+ansl=[]
+for _ in range(N):
+    x=SI()
+    S.append(x)
+
+cont=0
+for j in range(1,N+1):
+    T=S[j]
+    if check(T,T2):
+#        xdebug(f"ケース{j}")
+        cont=cont+1
+        ansl.append(str(j))
+ans=" ".join(ansl)
+print(cont)
+print(ans)

@@ -33,38 +33,23 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def calc(S:str,T:str):
-    for j in range(len(T)):
-        if len(S) <= j:
-            return len(S)
-        if S[j]!=T[j]:
-            return j
-    return len(T)
-def check(S:str,T:str):
-    if 1 < abs(len(S)-len(T)):
-        return False
-    A=calc(S,T)
-    Sr=S[::-1]
-    Tr=T[::-1]
-    B=calc(Sr,Tr)
-    if A == len(S) and len(S)==len(T):
-        return True
-    if len(S)<=A+B and len(S)+1==len(T): # 送信より受信が一文字多い
-        return True
-    if len(S)-1<=A+B and len(S)-1==len(T): # 送信より受信が一文字少ない
-        return True
-    if len(S)-1==A+B and len(S)==len(T): # 一文字置換されて返ってきた
-        return True
-    return False
+# 注 これは意図的に範囲限定という前提を削除している→WAになる
+# ならなかった…
+def solver(N:int,A:list):
+    result = -1
+    # algorithm
+    A.sort()
+    xdebug(A)
+    mi=min(A)
+    A2=[x-mi for x in A]
+    for j in range(N):
+        y = A2[j]-j
+        if y == 1:
+            return j+mi
+    return result
 
-Nstr,T=SI().split(" ")
-N=int(Nstr)
-ansL=[]
-count=0
-for j in range(N):
-    S=SI()
-    if check(S,T):
-        ansL.append(j+1)
-        count=count+1
-print(count)
-print(" ".join(map(str,ansL)))
+
+if __name__ == "__main__":
+    N=II()
+    A=LI()
+    print(f"{solver(N,A)}")
