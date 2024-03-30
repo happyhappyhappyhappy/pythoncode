@@ -1,7 +1,14 @@
+# Chrome拡張 Atcoder Unittestの設定 2024/03/30
+# Flame Part
+import os
+import sys
+import pprint as pp
+import unittest
+
+from io import StringIO
+
 # ライブラリのインポート
 # import heapq,copy
-import pprint as pp
-import sys
 
 # from collections import deque
 # pypy3用
@@ -33,23 +40,25 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-PIANO="wbwbwwbwbwbw"
-WHITE="w"
-BLACK="b"
 
-def solver(W:int,B:int):
-    result = "No"
-    ALL_PIANO=PIANO*100
-    for j in range(13):
-        leng=W+B
-        subPIANO=ALL_PIANO[j:j+leng]
-        wcnt=subPIANO.count(WHITE)
-        bcnt=subPIANO.count(BLACK)
-        if wcnt == W and bcnt == B:
-            result="Yes"
-            return result
-    return result
+def resolve():
+    print(" ")
+
+class TestClass(unittest.TestCase):
+{{ METHOD }}
+    def judge(self, input, expected):
+        stdout, stdin = sys.stdout, sys.stdin
+        sys.stdout, sys.stdin = StringIO(), StringIO(input)
+        resolve()
+        sys.stdout.seek(0)
+        actual = sys.stdout.read()[:-1]
+        sys.stdout, sys.stdin = stdout, stdin
+        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
-    W,B=MI()
-    print(f"{solver(W,B)}")
+    if "ATCODER" in os.environ:
+        resolve()
+    else:
+        unittest.main(verbosity=2)
+
+# Test Part

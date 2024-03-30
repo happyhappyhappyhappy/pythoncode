@@ -33,23 +33,18 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-PIANO="wbwbwwbwbwbw"
-WHITE="w"
-BLACK="b"
-
-def solver(W:int,B:int):
-    result = "No"
-    ALL_PIANO=PIANO*100
-    for j in range(13):
-        leng=W+B
-        subPIANO=ALL_PIANO[j:j+leng]
-        wcnt=subPIANO.count(WHITE)
-        bcnt=subPIANO.count(BLACK)
-        if wcnt == W and bcnt == B:
-            result="Yes"
-            return result
+def solver(N:int,K:int,A:list):
+    result = (K*(K+1))//2
+    Data=set()
+    for j in range(N):
+        if A[j] <= K:
+            Data.add(A[j])
+    for _ in range(len(Data)):
+        x = Data.pop()
+        result = result - x
     return result
 
 if __name__ == "__main__":
-    W,B=MI()
-    print(f"{solver(W,B)}")
+    N,K=MI()
+    A=LI()
+    print(f"{solver(N,K,A)}")
