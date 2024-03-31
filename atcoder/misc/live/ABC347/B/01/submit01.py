@@ -1,12 +1,7 @@
-import os
-import sys
-import pprint as pp
-import unittest
-
-from io import StringIO
-
 # ライブラリのインポート
 # import heapq,copy
+import pprint as pp
+import sys
 
 # from collections import deque
 # pypy3用
@@ -49,33 +44,6 @@ def resolve():
             st.add(x)
     print(len(st))
 
-class TestClass(unittest.TestCase):
-    def test_sample1(self):
-        input = """yay"""
-        expected = """5"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """aababc"""
-        expected = """17"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """abracadabra"""
-        expected = """54"""
-        self.judge(input, expected)
-
-    def judge(self, input, expected):
-        stdout, stdin = sys.stdout, sys.stdin
-        sys.stdout, sys.stdin = StringIO(), StringIO(input)
-        resolve()
-        sys.stdout.seek(0)
-        actual = sys.stdout.read()[:-1]
-        sys.stdout, sys.stdin = stdout, stdin
-        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
-    if "ATCODER" in os.environ:
-        resolve()
-    else:
-        unittest.main(verbosity=2)
+    resolve()

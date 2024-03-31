@@ -40,29 +40,35 @@ MINSIZE = -( 1 << 59) + 1
 
 
 def resolve():
-    S=SI()
-    slen=len(S)
-    st=set()
-    for j in range(slen+1):
-        for k in range(j+1,slen+1):
-            x=S[j:k]
-            st.add(x)
-    print(len(st))
+    ans=1
+    N=II()
+    ans = (N+10-1)//10
+    print(ans)
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """yay"""
-        expected = """5"""
+        input = """27"""
+        expected = """3"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """aababc"""
-        expected = """17"""
+        input = """-13"""
+        expected = """-1"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """abracadabra"""
-        expected = """54"""
+        input = """40"""
+        expected = """4"""
+        self.judge(input, expected)
+
+    def test_sample4(self):
+        input = """-20"""
+        expected = """-2"""
+        self.judge(input, expected)
+
+    def test_sample5(self):
+        input = """123456789123456789"""
+        expected = """12345678912345679"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
