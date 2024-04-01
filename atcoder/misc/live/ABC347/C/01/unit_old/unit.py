@@ -38,38 +38,40 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def solver(N:int,A:int,B:int,D:list):
-    Week=A+B
-    Pos=set()
-    for j in range(N):
-        x=D[j]%Week
-        Pos.add(x)
-    if len(Pos) == 1:
+def hList(S:list,D:int):
+    dSet=set()
+    for j in range(len(S)):
+        x = S[j] % D
+        dSet.add(x)
+    xdebug(f"ぎゅっとまとめたら->{dSet}")
+    ansList=list(sorted(dSet))
+    # xdebug(f"さらにソート{ansList}")
+    return ansList
+
+def check(L:list,A:int,B:int):
+    N=len(L)
+    if N == 1:
         return "Yes"
-    SL=list(Pos)
-    SL.sort()
-    # SLstr=" ".join(map(str,SL))
-    # xdebug(f"{SLstr=}")
-    SN=len(SL)
-    flg=False
-    for j in range(SN-1):
-        x = (SL[j+1]-SL[j])%Week
-        if x > B:
-            flg=True
-            return "Yes"
-    if flg is False:
-        x = (SL[0]-SL[SN-1])%Week
-        if x > B:
+    for j in range(N-1):
+        d1=L[j]
+        pos=(j+1)%(N)
+        d2=L[pos]
+        if (d2-d1)%(A+B) > B:
             return "Yes"
     return "No"
 
-def main():
-    N,A,B=MI()
-    D=LI()
-    return solver(N,A,B,D)
+def solver(N:int,A:int,B:int,S:list):
+    xdebug(f"{N=},{A=},{B=}")
+    xdebug(f"LIST={S}")
+    GList=hList(S,A+B)
+    xdebug(f"{GList=}")
+    ans = check(GList,A,B)
+    return ans
 
 def resolve():
-    print(f"{main()}")
+    N,A,B=MI()
+    S=LI()
+    print(f"{solver(N,A,B,S)}")
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):

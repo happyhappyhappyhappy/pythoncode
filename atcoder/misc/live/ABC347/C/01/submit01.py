@@ -1,12 +1,7 @@
-import os
-import sys
-import pprint as pp
-import unittest
-
-from io import StringIO
-
 # ライブラリのインポート
 # import heapq,copy
+import pprint as pp
+import sys
 
 # from collections import deque
 # pypy3用
@@ -63,44 +58,12 @@ def solver(N:int,A:int,B:int,D:list):
             return "Yes"
     return "No"
 
+
 def main():
     N,A,B=MI()
     D=LI()
     return solver(N,A,B,D)
 
-def resolve():
-    print(f"{main()}")
-
-class TestClass(unittest.TestCase):
-    def test_sample1(self):
-        input = """3 2 5
-1 2 9"""
-        expected = """Yes"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """2 5 10
-10 15"""
-        expected = """No"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """4 347 347
-347 700 705 710"""
-        expected = """Yes"""
-        self.judge(input, expected)
-
-    def judge(self, input, expected):
-        stdout, stdin = sys.stdout, sys.stdin
-        sys.stdout, sys.stdin = StringIO(), StringIO(input)
-        resolve()
-        sys.stdout.seek(0)
-        actual = sys.stdout.read()[:-1]
-        sys.stdout, sys.stdin = stdout, stdin
-        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
-    if "ATCODER" in os.environ:
-        resolve()
-    else:
-        unittest.main(verbosity=2)
+    print(f"{main()}")

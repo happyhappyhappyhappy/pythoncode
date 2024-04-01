@@ -38,39 +38,35 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-def solver(N:int,A:int,B:int,D:list):
-    Week=A+B
-    Pos=set()
-    for j in range(N):
-        x=D[j]%Week
-        Pos.add(x)
-    if len(Pos) == 1:
-        return "Yes"
-    SL=list(Pos)
-    SL.sort()
-    # SLstr=" ".join(map(str,SL))
-    # xdebug(f"{SLstr=}")
-    SN=len(SL)
-    flg=False
-    for j in range(SN-1):
-        x = (SL[j+1]-SL[j])%Week
-        if x > B:
-            flg=True
-            return "Yes"
-    if flg is False:
-        x = (SL[0]-SL[SN-1])%Week
-        if x > B:
-            return "Yes"
-    return "No"
-
-def main():
-    N,A,B=MI()
-    D=LI()
-    return solver(N,A,B,D)
 
 def resolve():
-    print(f"{main()}")
+    N,A,B=MI()
+    AL=LI()
+    st=set()
+    for j in range(N):
+        x = AL[j] % (A+B)
+        st.add(x)
+    SL=list(sorted(st))
+    lenSL=len(SL)
+    SLstr=" ".join(map(str,SL))
+    xdebug(SLstr)
+    flg=False
+    for j in range(lenSL-1):
+        x = (SL[j+1]-SL[j]) % (A+B)
+        if x > B:
+            xdebug(f"(SL[{j+1}]-SL[{j}])%({A+B})={x} ? {B=}")
+            flg=True
+            break
+    x = (SL[0]-SL[-1])%(A+B)
 
+    xdebug(f"(SL[{lenSL}]-SL[{lenSL-1}])%({A+B})={x} ? {B=}")
+    if flg is False:
+        if x > B:
+            flg=True
+    if flg:
+        print("Yes")
+    else:
+        print("No")
 class TestClass(unittest.TestCase):
     def test_sample1(self):
         input = """3 2 5
