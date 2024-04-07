@@ -4,6 +4,9 @@ target-version = "py38"
 
 lint.ignore = [
     "I001",# 覚えてから使う 追記2024年3月10日 本人
+    "A001",# unittestで邪魔 追記2024年4月6日 本人
+    "A002",# unittestで邪魔 追記2024年4月6日 本人
+    "ANN001",# unittestで邪魔 追記2024年4月6日 本人
     "INP001",# 個々のファイルを実行させたい
     "G004", # `logging-f-string` : loggingでf-stringを使いたいので無視する
     "PD901", #すでに`df`という変数をいろんなところで使っているため
