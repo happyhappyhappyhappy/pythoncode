@@ -42,7 +42,7 @@
         "felmer",
         "readline"
     ],
-    "editor.fontFamily": "\"Intel One Mono\",\"0xProto\",Fira code, \"Ricty Diminished Regular\",UDEV Gothic JPDOC,JetBrains Mono, HackGen, Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "\"0xProto\",Fira code, \"Ricty Diminished Regular\",UDEV Gothic JPDOC,JetBrains Mono, HackGen, Consolas, 'Courier New', monospace"
     //"editor.fontFamily": "JetBrains Mono,'UDEV Gothic JPDOC',Fira Code,Ricty Diminished,'PlemolJP HS'"
     // "python.linting.pylamaPath": "C:\\\\Users\\\\USER\\\\scoop\\\\apps\\\\python\\\\3.8.3\\\\Scripts\\\\pylama.exe"
 }
