@@ -3,7 +3,6 @@ import sys
 import pprint as pp
 import unittest
 
-from collections import defaultdict
 from io import StringIO
 
 # ライブラリのインポート
@@ -41,42 +40,46 @@ MINSIZE = -( 1 << 59) + 1
 
 def solver():
     S=SI()
-    firstD=defaultdict(int)
-    lastD=defaultdict(int)
-    for j in range(len(S)):
-        x=S[j]
-        firstD[x]=firstD[x]+1
-    for value in firstD.values():
-        lastD[value]=lastD[value]+1
-    flg=True
-    for value in lastD.values():
-        if value != 2:
-            flg=False
-            break
-    ans=""
+    T=SI()
+    S2=S.upper()
+    s_pos=0
+    t_pos=0
+    flg=False
+    while s_pos < len(S2):
+        if S2[s_pos] == T[t_pos]:
+            t_pos=t_pos+1
+            if t_pos==3:
+                flg=True
+                break
+        s_pos=s_pos+1
+    # 敗者復活戦
+    if t_pos == 2 and T[2]=="X":
+        flg=True
     if flg is True:
-        ans="Yes"
+        return "Yes"
     else:
-        ans="No"
-    return ans
+        return "No"
 
 def resolve():
     print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """commencement"""
+        input = """narita
+NRT"""
         expected = """Yes"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """banana"""
-        expected = """No"""
+        input = """losangeles
+LAX"""
+        expected = """Yes"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """ab"""
-        expected = """Yes"""
+        input = """snuke
+RNG"""
+        expected = """No"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

@@ -34,24 +34,27 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-# S="commencement"
-# key=2->value=2
-# key=1->value=2
-# key=3->value=2
-# S="banana"
-# key=1->value=1
-# key=3->value=1
-# key=2->value=1
-S="ab"
+def solver():
+    S=SI()
+    firstD=defaultdict(int)
+    lastD=defaultdict(int)
+    for j in range(len(S)):
+        x=S[j]
+        firstD[x]=firstD[x]+1
+    for value in firstD.values():
+        lastD[value]=lastD[value]+1
+    flg=True
+    for value in lastD.values():
+        if value != 2:
+            flg=False
+            break
+    ans=""
+    if flg is True:
+        ans="Yes"
+    else:
+        ans="No"
+    return ans
 
-cb=defaultdict(int)
-d=defaultdict(int)
-for j in range(len(S)):
-    cb[S[j]]=cb[S[j]]+1
 
-for key,value in cb.items():
-    xdebug(f"{key=}->{value=}")
-    d[value]=d[value]+1
-
-for key,value in d.items():
-    xdebug(f"{key=}->{value=}")
+if __name__ == "__main__":
+    print(solver())

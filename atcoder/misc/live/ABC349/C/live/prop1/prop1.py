@@ -2,7 +2,6 @@
 # import heapq,copy
 import pprint as pp
 import sys
-
 from collections import defaultdict
 # from collections import deque
 # pypy3用
@@ -34,24 +33,16 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-# S="commencement"
-# key=2->value=2
-# key=1->value=2
-# key=3->value=2
-# S="banana"
-# key=1->value=1
-# key=3->value=1
-# key=2->value=1
-S="ab"
+S="narita"
+T="NRT"
 
-cb=defaultdict(int)
-d=defaultdict(int)
-for j in range(len(S)):
-    cb[S[j]]=cb[S[j]]+1
+x=ord(S[0])
+y=ord(T[0])
+c=x-y # 小文字の方が大きい
+# print(f"引き算をする{c=}")
+x2=y+c
+c2=chr(x2)
+print(f"{c2=}")
 
-for key,value in cb.items():
-    xdebug(f"{key=}->{value=}")
-    d[value]=d[value]+1
-
-for key,value in d.items():
-    xdebug(f"{key=}->{value=}")
+a=S.upper()
+print(a)

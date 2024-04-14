@@ -3,7 +3,6 @@
 import pprint as pp
 import sys
 
-from collections import defaultdict
 # from collections import deque
 # pypy3用
 # import pypyjit
@@ -34,24 +33,27 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-# S="commencement"
-# key=2->value=2
-# key=1->value=2
-# key=3->value=2
-# S="banana"
-# key=1->value=1
-# key=3->value=1
-# key=2->value=1
-S="ab"
+def solver():
+    S=SI()
+    T=SI()
+    S2=S.upper()
+    s_pos=0
+    t_pos=0
+    flg=False
+    while s_pos < len(S2):
+        if S2[s_pos] == T[t_pos]:
+            t_pos=t_pos+1
+            if t_pos==3:
+                flg=True
+                break
+        s_pos=s_pos+1
+    # 敗者復活戦
+    if t_pos == 2 and T[2]=="X":
+        flg=True
+    if flg is True:
+        return "Yes"
+    else:
+        return "No"
 
-cb=defaultdict(int)
-d=defaultdict(int)
-for j in range(len(S)):
-    cb[S[j]]=cb[S[j]]+1
-
-for key,value in cb.items():
-    xdebug(f"{key=}->{value=}")
-    d[value]=d[value]+1
-
-for key,value in d.items():
-    xdebug(f"{key=}->{value=}")
+if __name__ == "__main__":
+    print(solver())
