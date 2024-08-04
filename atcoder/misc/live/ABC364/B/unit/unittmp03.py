@@ -41,45 +41,35 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     result=[1,1]
     H,W=MI()
-    sx,sy=MI()
+    Si,Sj=MI()
     C=[]
     for _ in range(H):
         Cd=list(input().split())
         C.append(Cd)
     X=input()
-    xdebug(f"C={C}")
-    xdebug(f"X={X}")
-    sx=sx-1
-    sy=sy-1
+    xdebug(f"{C}")
+    Si -= 1
+    Sj -= 1
     for x in X:
-        sxtmp=sx
-        sytmp=sy
+        Sit=Si
+        Sjt=Sj
         if x == "U":
-            xdebug("↑に進もうと思います")
-            sytmp=sytmp-1
-        elif x == "D":
-            xdebug("↓に進もうと思います")
-            sytmp=sytmp+1
-        elif x == "L":
-            xdebug("←に進もうと思います")
-            sxtmp=sxtmp-1
-        else:
-            xdebug("→に進もうと思います")
-            sxtmp=sxtmp+1
-        xdebug(f"次は({sxtmp+1},{sytmp+1})になります")
-        if 0 <= sxtmp and 0 <= sytmp and sytmp < H and sxtmp < W and C[sxtmp][sytmp]==".":
-            xdebug(f"({sxtmp+1},{sytmp+1})は行けるので次に進みます")
-            sx=sxtmp
-            sy=sytmp
-        else:
-            xdebug(f"({sxtmp+1},{sytmp+1})は行けないのでパス")
-    result=[sx+1,sy+1]
+            Sit+=1
+            xdebug(f"({Sit+1},{Sjt+1})に進もうと思います")
+            if 0 <= Sit and Sit < H and C[Sit][Sjt] == ".":
+                xdebug("OK 進みます")
+                Si=Sit
+                Sj=Sjt
+            else:
+                xdebug("NG")
+        ## elif x == "D":
+    result=[Si+1,Sj+1]
     return result
 
 def resolve():
-    ans=solver()
-    ansstr=" ".join(map(str,ans))
-    print(ansstr)
+    result_r=solver()
+    result=" ".join(map(str,result_r))
+    print(result)
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):

@@ -41,45 +41,80 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     result=[1,1]
     H,W=MI()
-    sx,sy=MI()
+    Si,Sj=MI()
     C=[]
     for _ in range(H):
-        Cd=list(input().split())
+        Cd=list(input())
         C.append(Cd)
-    X=input()
     xdebug(f"C={C}")
+    X=input()
     xdebug(f"X={X}")
-    sx=sx-1
-    sy=sy-1
+    Si-=1
+    Sj-=1
     for x in X:
-        sxtmp=sx
-        sytmp=sy
+        Si_t=Si
+        Sj_t=Sj
         if x == "U":
-            xdebug("↑に進もうと思います")
-            sytmp=sytmp-1
+            Si_t-=1
+            xdebug(f"上 ({Si_t},{Sj_t}) に上がります")
+            if 0 <= Si_t :
+                xdebug(f"マス目{C[Si_t][Sj_t]}")
+                if C[Si_t][Sj_t]==".":
+                    xdebug("OK")
+                    Si=Si_t
+                    Sj=Sj_t
+                else:
+                    xdebug("ブロックされました")
+            else:
+                xdebug("0の範囲外です")
         elif x == "D":
-            xdebug("↓に進もうと思います")
-            sytmp=sytmp+1
+            Si_t+=1
+            xdebug(f"下 ({Si_t},{Sj_t})に進みます")
+            if Si_t < H:
+                xdebug(f"マス目{C[Si_t][Sj_t]}")
+                if C[Si_t][Sj_t]==".":
+                    xdebug("OK")
+                    Si=Si_t
+                    Sj=Sj_t
+                else:
+                    xdebug("ブロックされました")
+            else:
+                xdebug("Hの範囲外です")
         elif x == "L":
-            xdebug("←に進もうと思います")
-            sxtmp=sxtmp-1
+            Sj_t-=1
+            xdebug(f"左 ({Si_t},{Sj_t})に進みます")
+            if 0 <= Sj_t:
+                xdebug(f"マス目{C[Si_t][Sj_t]}")
+                if C[Si_t][Sj_t]==".":
+                    xdebug("OK")
+                    Si=Si_t
+                    Sj=Sj_t
+                else:
+                    xdebug("ブロックされました")
+            else:
+                xdebug("0の範囲外です")
         else:
-            xdebug("→に進もうと思います")
-            sxtmp=sxtmp+1
-        xdebug(f"次は({sxtmp+1},{sytmp+1})になります")
-        if 0 <= sxtmp and 0 <= sytmp and sytmp < H and sxtmp < W and C[sxtmp][sytmp]==".":
-            xdebug(f"({sxtmp+1},{sytmp+1})は行けるので次に進みます")
-            sx=sxtmp
-            sy=sytmp
-        else:
-            xdebug(f"({sxtmp+1},{sytmp+1})は行けないのでパス")
-    result=[sx+1,sy+1]
+            Sj_t+=1
+            xdebug(f"右 ({Si_t},{Sj_t})に進みます")
+            if  Sj_t < W:
+                xdebug(f"マス目{C[Si_t][Sj_t]}")
+                if C[Si_t][Sj_t]==".":
+                    xdebug("OK")
+                    Si=Si_t
+                    Sj=Sj_t
+                else:
+                    xdebug("ブロックされました")
+            else:
+                xdebug("Wの範囲外です")
+    result=[Si+1,Sj+1]
     return result
 
+
 def resolve():
-    ans=solver()
-    ansstr=" ".join(map(str,ans))
-    print(ansstr)
+    result=solver()
+    res_str=" ".join(map(str,result))
+    print(res_str)
+
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):

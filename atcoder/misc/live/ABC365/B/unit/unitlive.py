@@ -39,80 +39,35 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    result=[1,1]
-    H,W=MI()
-    sx,sy=MI()
-    C=[]
-    for _ in range(H):
-        Cd=list(input().split())
-        C.append(Cd)
-    X=input()
-    xdebug(f"C={C}")
-    xdebug(f"X={X}")
-    sx=sx-1
-    sy=sy-1
-    for x in X:
-        sxtmp=sx
-        sytmp=sy
-        if x == "U":
-            xdebug("↑に進もうと思います")
-            sytmp=sytmp-1
-        elif x == "D":
-            xdebug("↓に進もうと思います")
-            sytmp=sytmp+1
-        elif x == "L":
-            xdebug("←に進もうと思います")
-            sxtmp=sxtmp-1
-        else:
-            xdebug("→に進もうと思います")
-            sxtmp=sxtmp+1
-        xdebug(f"次は({sxtmp+1},{sytmp+1})になります")
-        if 0 <= sxtmp and 0 <= sytmp and sytmp < H and sxtmp < W and C[sxtmp][sytmp]==".":
-            xdebug(f"({sxtmp+1},{sytmp+1})は行けるので次に進みます")
-            sx=sxtmp
-            sy=sytmp
-        else:
-            xdebug(f"({sxtmp+1},{sytmp+1})は行けないのでパス")
-    result=[sx+1,sy+1]
+    result=1
+    N=II()
+    A=LI()
+    xdebug(f"A={A}")
+    As=sorted(A,reverse=True)
+    xdebug(f"As={As}")
+    X=As[1]
+    result=0
+    for j in range(N):
+        if A[j]==X:
+            result=j
+            break
+    result+=1
     return result
 
 def resolve():
-    ans=solver()
-    ansstr=" ".join(map(str,ans))
-    print(ansstr)
+    print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """2 3
-2 1
-.#.
-...
-ULDRU"""
-        expected = """2 2"""
+        input = """4
+8 2 5 1"""
+        expected = """3"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """4 4
-4 2
-....
-.#..
-...#
-....
-DUUUURULRD"""
-        expected = """2 4"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """6 6
-1 1
-.#####
-######
-######
-######
-######
-######
-RURLDLULLRULRDL"""
-        expected = """1 1"""
+        input = """8
+1 2 3 4 5 10 9 11"""
+        expected = """6"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
