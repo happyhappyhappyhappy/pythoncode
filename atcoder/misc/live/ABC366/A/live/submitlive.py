@@ -1,12 +1,7 @@
-import os
-import sys
-import pprint as pp
-import unittest
-
-from io import StringIO
-
 # ライブラリのインポート
 # import heapq,copy
+import pprint as pp
+import sys
 
 # from collections import deque
 # pypy3用
@@ -38,51 +33,22 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+
+
+
 def solver():
-    result="No"
+    result = "No"
+    # algorithm
     N,T,A=MI()
     pnt=(N+2-1)//2
     if pnt <= T:
-        xdebug("Takahashi氏の勝利です")
         result="Yes"
     elif pnt <= A:
-        xdebug("Aoki氏の勝利です")
         result="Yes"
     else:
-        xdebug("未確定")
         result="No"
     return result
 
-def resolve():
-    print(solver())
-
-class TestClass(unittest.TestCase):
-    def test_sample1(self):
-        input = """7 2 4"""
-        expected = """Yes"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """99 12 48"""
-        expected = """No"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """1 0 0"""
-        expected = """No"""
-        self.judge(input, expected)
-
-    def judge(self, input, expected):
-        stdout, stdin = sys.stdout, sys.stdin
-        sys.stdout, sys.stdin = StringIO(), StringIO(input)
-        resolve()
-        sys.stdout.seek(0)
-        actual = sys.stdout.read()[:-1]
-        sys.stdout, sys.stdin = stdout, stdin
-        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
-    if "ATCODER" in os.environ:
-        resolve()
-    else:
-        unittest.main(verbosity=2)
+    print(solver())

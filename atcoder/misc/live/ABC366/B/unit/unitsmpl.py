@@ -39,37 +39,59 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    result="No"
-    N,T,A=MI()
-    pnt=(N+2-1)//2
-    if pnt <= T:
-        xdebug("Takahashi氏の勝利です")
-        result="Yes"
-    elif pnt <= A:
-        xdebug("Aoki氏の勝利です")
-        result="Yes"
-    else:
-        xdebug("未確定")
-        result="No"
+    result=["test","sample"]
+    SL=[]
+    N=II()
+    for _ in range(N):
+        S=input()
+        SL.append(S)
+    # xdebug(f"SL={SL}")
+    M=0
+    for j in range(N):
+        SLen=len(SL[j])
+        M=max(SLen,M)
+    # xdebug(f"M={M}")
+    T=[["*"] * N for _ in range(M)]
+    # xdebug(f"T={T}")
+    for j in range(N):
+        Sdec=SL[j]
+
+    result=[]
+    for j in range(M):
+        TStr="".join(T[j])
+        result.append(TStr)
     return result
 
 def resolve():
-    print(solver())
+    res=solver()
+    resstr="\n".join(res)
+    print(resstr)
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """7 2 4"""
-        expected = """Yes"""
+        input = """3
+abc
+de
+fghi"""
+        expected = """fda
+geb
+h*c
+i"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """99 12 48"""
-        expected = """No"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """1 0 0"""
-        expected = """No"""
+        input = """3
+atcoder
+beginner
+contest"""
+        expected = """cba
+oet
+ngc
+tio
+end
+sne
+ter
+*r"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
