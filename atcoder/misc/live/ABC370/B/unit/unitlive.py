@@ -39,29 +39,29 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
     N=II()
-    res+=N
-    A=LI()
-    B=[]
-    for j in range(N-1):
-        x=A[j+1]-A[j]
-        B.append(x)
-    xdebug(f"確認列 {B}")
-    Lun=[]
-    j=0
-    while j < len(B):
-        k=j
-        num=B[j]
-        while k < len(B) and B[j]==B[k]:
-            k+=1
-        x=k-j
-        x2=((x+1)*x)//2
-        Lun.append([num,x,x2])
-        res+=x2
-        j=k
-    xdebug(f"ランレングス {Lun}")
-    return res
+    T=[]
+    for _ in range(N):
+        NO=LI()
+        T.append(NO)
+    xdebug(f"T:{T}")
+    for j in range(N):
+        xdebug(f"{T[j]}->leng={len(T[j])}")
+        for k in range(j+1):
+            xdebug(f"T[{j}][{k}]={T[j][k]}")
+    # 1回目
+    X = T[0][0]
+    for j in range(2,N+1):
+        xdebug(f"{j}回目 元素 {X}と {j}を合成")
+        if X < j:
+            xdebug(f"{j}->{X}")
+            X=T[j-1][X-1]
+        else:
+            xdebug(f"{X}->{j}")
+            X=T[X-1][j-1]
+
+
+    return X
 
 def resolve():
     print(solver())
@@ -69,20 +69,32 @@ def resolve():
 class TestClass(unittest.TestCase):
     def test_sample1(self):
         input = """4
-3 6 9 3"""
-        expected = """8"""
+3
+2 4
+3 1 2
+2 1 2 4"""
+        expected = """2"""
         self.judge(input, expected)
 
     def test_sample2(self):
         input = """5
-1 1 1 1 1"""
-        expected = """15"""
+5
+5 5
+5 5 5
+5 5 5 5
+5 5 5 5 5"""
+        expected = """5"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """8
-87 42 64 86 72 58 44 30"""
-        expected = """22"""
+        input = """6
+2
+1 5
+1 6 3
+2 6 1 4
+2 1 1 1 6
+5 6 1 2 2 5"""
+        expected = """5"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

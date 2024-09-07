@@ -2,7 +2,7 @@ import os
 import sys
 import pprint as pp
 import unittest
-
+import itertools
 from io import StringIO
 
 # ライブラリのインポート
@@ -39,29 +39,15 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
+    result=0
     N=II()
-    res+=N
     A=LI()
-    B=[]
-    for j in range(N-1):
-        x=A[j+1]-A[j]
-        B.append(x)
-    xdebug(f"確認列 {B}")
-    Lun=[]
-    j=0
-    while j < len(B):
-        k=j
-        num=B[j]
-        while k < len(B) and B[j]==B[k]:
-            k+=1
-        x=k-j
-        x2=((x+1)*x)//2
-        Lun.append([num,x,x2])
-        res+=x2
-        j=k
-    xdebug(f"ランレングス {Lun}")
-    return res
+    nums=range(N)
+    numL=list(itertools.combinations(nums,2))
+
+    xdebug(f"N={N},A={A}")
+    xdebug(numL)
+    return result
 
 def resolve():
     print(solver())

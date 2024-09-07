@@ -39,29 +39,32 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
+    result=0
     N=II()
-    res+=N
     A=LI()
     B=[]
     for j in range(N-1):
         x=A[j+1]-A[j]
         B.append(x)
-    xdebug(f"確認列 {B}")
-    Lun=[]
+    xdebug(f"B={B}")
+    res=0
+    num=0
+    SM=[]
     j=0
     while j < len(B):
         k=j
-        num=B[j]
-        while k < len(B) and B[j]==B[k]:
-            k+=1
-        x=k-j
-        x2=((x+1)*x)//2
-        Lun.append([num,x,x2])
-        res+=x2
+        xdebug(f"k={k}")
+        while k < len(B) and B[k]==B[j]:
+            k=k+1
+        n=k-j
+        SM.append(n)
+        res+=((n+2)*(n+1))//2
+        pat=((n+1)*n)//2
+        xdebug(f"パターン {pat}")
+        num+=1
         j=k
-    xdebug(f"ランレングス {Lun}")
-    return res
+    xdebug(f"ランレングス {SM},res={res}")
+    return result
 
 def resolve():
     print(solver())

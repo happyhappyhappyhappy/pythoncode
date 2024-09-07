@@ -39,50 +39,26 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
-    N=II()
-    res+=N
-    A=LI()
-    B=[]
-    for j in range(N-1):
-        x=A[j+1]-A[j]
-        B.append(x)
-    xdebug(f"確認列 {B}")
-    Lun=[]
-    j=0
-    while j < len(B):
-        k=j
-        num=B[j]
-        while k < len(B) and B[j]==B[k]:
-            k+=1
-        x=k-j
-        x2=((x+1)*x)//2
-        Lun.append([num,x,x2])
-        res+=x2
-        j=k
-    xdebug(f"ランレングス {Lun}")
-    return res
+    L,R=MI()
+    if not ( L ^ R == 1):
+        return "Invalid"
+    if L == 1:
+        return "Yes"
+    else:
+        return "No"
 
 def resolve():
     print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """4
-3 6 9 3"""
-        expected = """8"""
+        input = """1 0"""
+        expected = """Yes"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """5
-1 1 1 1 1"""
-        expected = """15"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """8
-87 42 64 86 72 58 44 30"""
-        expected = """22"""
+        input = """1 1"""
+        expected = """Invalid"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
