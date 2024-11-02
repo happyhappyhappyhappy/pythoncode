@@ -40,6 +40,35 @@ MINSIZE = -( 1 << 59) + 1
 
 def solver():
     res=0
+    N=8
+    Field=[]
+    for _ in range(8):
+        Ln=input()
+        Field.append(Ln)
+
+    xdebug(f"Field={Field}")
+    Line=[0]*8
+    Row=[0]*8
+    xdebug(f"横 {Line},縦 {Row}")
+    for j in range(8):
+        lng=Field[j]
+        if "#" in lng:
+            Line[j]=1
+    xdebug(f"入っている行は1 :{Line}")
+    for j in range(N):
+        lng=Field[j]
+        for k in range(N):
+            if lng[k] == "#":
+                Row[k]=1
+    xdebug(f"入っている縦は1 {Row}")
+    # テスト
+    res2 = 0
+    for j in range(N):
+        for k in range(N):
+            if Line[j] == 0 and Row[k] == 0:
+                xdebug(f"Field[{j}][{k}]は安全地帯です")
+                res2 += 1
+    xdebug(f"本当の答えは {res2}")
     return res
 
 def resolve():
