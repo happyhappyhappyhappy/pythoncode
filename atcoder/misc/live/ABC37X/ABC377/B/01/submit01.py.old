@@ -33,30 +33,34 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+
 def solver():
+    result = 0
+    # algorithm
     N=8
     Field=[]
     for _ in range(N):
-        ln = input().rstrip()
-        Field.append(ln)
-    Line=[1]*N
-    Row=[1]*N
+        Ln=input().rstrip()
+        Field.append(Ln)
+    xdebug(f"図面 : {Field}")
+    Line=[0]*N
+    Row=[0]*N
     for j in range(N):
-        ln=Field[j]
-        if "#" in ln:
-            Line[j]=0
+        Ln=Field[j]
+        if "#" in Ln:
+            Line[j]=1
     for j in range(N):
-        ln=Field[j]
+        Ln=Field[j]
         for k in range(N):
-            if ln[k] == "#":
-                Row[k]=0
-
-    result = 0
-    # algorithm
+            if Ln[k] == "#":
+                Row[k]=1
+    res=0
     for j in range(N):
         for k in range(N):
-            if Line[j]==1 and Row[k]==1:
-                result+=1
+            if Line[j]==0 and Row[k]==0:
+                xdebug(f"({j},{k})は安全マス")
+                res+=1
+    xdebug(f"回答は{res}かな")
     return result
 
 
