@@ -42,28 +42,26 @@ def solver():
     res2=0
     N,M=MI()
     avoidPos=set()
-    kingPos=[]
+    kingPos=list()
+    d=[(2,1),(1,2),(-1,2),(-2,1),
+    (-2,-1),(-1,-2),(1,-2),(2,-1)]
     for _ in range(M):
-        ln,rw = MI()
+        ln,rw=MI()
         avoidPos.add((ln,rw))
-        kingPos.append([ln,rw])
-    d=[[2,1],[1,2],[-1,2],[-2,1],
-    [-2,-1],[-1,-2],[1,-2],[2,-1]]
-    xdebug(f"avoidPos={avoidPos}")
-    xdebug(f"kingPos={kingPos}")
-    xdebug(f"方向={d},数={len(d)}")
+        kingPos.append((ln,rw))
+    xdebug(f"避ける場所 : {avoidPos}")
+    xdebug(f"キングの場所 : {kingPos}")
     for j in range(M):
         kingln,kingrw=kingPos[j]
-        for k in range(8):
-            [dln,drw]=d[k]
-            xdebug(f"({dln},{drw})")
-            newln=dln+kingln
-            newrw=drw+kingrw
-            if 1 <= newln and newln <= N and 1 <= newrw and newrw <= N:
-                avoidPos.add((newln,newrw))
-    xdebug(f"結果危険箇所 : {len(avoidPos)}")
-    res=N*N-len(avoidPos)
-    xdebug(f"答えは{res}")
+        for k in range(len(d)):
+            dln,drw=d[k]
+            newkln=kingln+dln
+            newkrw=kingrw+drw
+            if 1 <= newkln and newkln <= N and 1 <= newkrw and newkrw <= N:
+                avoidPos.add((newkln,newkrw))
+    xdebug(f"本当に避ける場所は -> {len(avoidPos)}マス")
+    avoidCnt=len(avoidPos)
+    res=N*N-avoidCnt
     return res
 
 def resolve():

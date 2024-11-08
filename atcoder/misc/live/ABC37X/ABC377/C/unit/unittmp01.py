@@ -41,30 +41,26 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     res2=0
     N,M=MI()
-    avoidPos=set()
-    kingPos=[]
+    avoidPlace=set()
+    kingPlace=list()
+    APos=8
+    d=[(2,1),(1,2),(-1,2),(-2,1),
+    (-2,-1),(-1,-2),(1,-2),(2,-1)]
     for _ in range(M):
-        ln,rw = MI()
-        avoidPos.add((ln,rw))
-        kingPos.append([ln,rw])
-    d=[[2,1],[1,2],[-1,2],[-2,1],
-    [-2,-1],[-1,-2],[1,-2],[2,-1]]
-    xdebug(f"avoidPos={avoidPos}")
-    xdebug(f"kingPos={kingPos}")
-    xdebug(f"方向={d},数={len(d)}")
+        ln,rw=MI()
+        kingPlace.append((ln,rw))
+        avoidPlace.add((ln,rw))
+    xdebug(f"king={kingPlace}")
+    xdebug(f"NowAvoid={avoidPlace}")
     for j in range(M):
-        kingln,kingrw=kingPos[j]
-        for k in range(8):
-            [dln,drw]=d[k]
-            xdebug(f"({dln},{drw})")
-            newln=dln+kingln
-            newrw=drw+kingrw
-            if 1 <= newln and newln <= N and 1 <= newrw and newrw <= N:
-                avoidPos.add((newln,newrw))
-    xdebug(f"結果危険箇所 : {len(avoidPos)}")
-    res=N*N-len(avoidPos)
-    xdebug(f"答えは{res}")
-    return res
+        kingln,kingrw=kingPlace[j]
+        for k in range(APos):
+            dln,drw=d[k]
+            newln=kingln+dln
+            newrw=kingrw+drw
+            if 1 <= newln and newln <= M:
+
+    return res2
 
 def resolve():
     print(solver())
