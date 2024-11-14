@@ -37,37 +37,42 @@ ppp=pp.pprint
 # Const
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
-
-def dr_minmod(d,q,r):
-    d=d-r
-    rd=(d%q+q)%q
+# d : 提出日
+# q : 回収周期
+# r : 余り
+def algofunc(d,q,r):
     res=0
-    if 0 < rd:
-        res=d+(q-rd)+r
-    else:
-        res=d+r
+    dr=d-r
+    kr=(dr+q-1)//q
+    r0=kr*q
+    res=r0+r
+    xdebug(f"まず 出された日から余り{r}を引きます {dr}")
+    xdebug(f"これを 周期{q}で割ったときの切り上げを求めます {kr}")
+    xdebug(f"ここよりもし 余りなければ {r0}に回収です")
+    xdebug(f"これにあまりを加えると {res}になります")
     return res
 
 def solver():
     res2=0
     N=II()
-    Pat=list()
+    qr = list()
+    pd = list()
     for _ in range(N):
         q,r=MI()
-        Pat.append((q,r))
+        qr.append((q,r))
     Q=II()
     res=list()
-    for j in range(Q):
-        t,d=MI()
-        q,r=Pat[t-1]
-        ans=dr_minmod(d,q,r)
-        xdebug(f"{j+1}番目 {ans}日")
-        res.append(ans)
+    for _ in range(Q):
+        pat,d=MI()
+        q,r=qr[pat-1]
+        x=algofunc(d,q,r)
+        res.append(x)
     return res
 
 def resolve():
     reslist=solver()
-    for j in range(len(reslist)):
+    reslen=len(reslist)
+    for j in range(reslen):
         print(reslist[j])
 
 class TestClass(unittest.TestCase):
