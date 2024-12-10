@@ -1,4 +1,3 @@
-from collections import Counter
 import os
 import sys
 import pprint as pp
@@ -40,42 +39,39 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res="No"
+    res="."
+    N,D=MI()
     S=input().rstrip()
-    Cnt=Counter(S)
-    xdebug(f"Cnt={Cnt}")
-    Dic=dict(Cnt)
-    xdebug(f"Cnt->Dic={Dic}")
-    lenS=len(S)
-    if lenS % 2 == 1:
-        return "No"
-    T=len(S)//2
-    for j in range(T):
-        if S[j*2]!=S[j*2+1]:
-            return "No"
-    value=list(Dic.values())
-    for j in range(len(value)):
-        if value[j]!=0 and value[j]!=2:
-            return "No"
-    return "Yes"
+    C=list()
+    for j in range(len(S)):
+        if S[j]=="@":
+            C.append(j)
+    xdebug(f"C={C}")
+    for _ in range(D):
+        C.pop()
+        xdebug(f"ChangeC={C}")
+    return res
 
 def resolve():
     print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """aabbcc"""
-        expected = """Yes"""
+        input = """5 2
+.@@.@"""
+        expected = """.@..."""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """aab"""
-        expected = """No"""
+        input = """3 3
+@@@"""
+        expected = """..."""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """zzzzzz"""
-        expected = """No"""
+        input = """10 4
+@@@.@@.@@."""
+        expected = """@@@......."""
         self.judge(input, expected)
 
     def judge(self, input, expected):

@@ -1,4 +1,3 @@
-from collections import Counter
 import os
 import sys
 import pprint as pp
@@ -19,7 +18,7 @@ from logging import DEBUG, StreamHandler, getLogger
 
 # 入力のマクロ
 def II(): return int(sys.stdin.readline())
-def SI(): return sys.stdin.readline().strip()
+def SI(): return input().rstrip()
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
@@ -40,42 +39,44 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res="No"
-    S=input().rstrip()
-    Cnt=Counter(S)
-    xdebug(f"Cnt={Cnt}")
-    Dic=dict(Cnt)
-    xdebug(f"Cnt->Dic={Dic}")
-    lenS=len(S)
-    if lenS % 2 == 1:
-        return "No"
-    T=len(S)//2
-    for j in range(T):
-        if S[j*2]!=S[j*2+1]:
-            return "No"
-    value=list(Dic.values())
-    for j in range(len(value)):
-        if value[j]!=0 and value[j]!=2:
-            return "No"
-    return "Yes"
+    res=0
+    N,K=MI()
+    A=LI()
+    S=[0]*(N+1)
+    for j in range(N):
+        S[j+1]=S[j]+A[j]
+    # print(*S)
+    num=dict()
+    for j in range(N+1):
+        D=S[j]-K
+        if D in num:
+            xdebug(f"D={D}がnum内にありました")
+            res+=num[D]
+        else:
+            xdebug(f"D={D}がnum内にありませんでした")
+        if S[j] in num:
+            xdebug(f"S[{j}]={S[j]}はすでにあったので追加します")
+            num[S[j]]+=1
+        else:
+            xdebug(f"S[{j}]={S[j]}は無いので登録します")
+            num[S[j]]=1
+        xdebug(f"現在のnum={num}")
+    return res
 
 def resolve():
     print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """aabbcc"""
-        expected = """Yes"""
+        input = """6 5
+8 -3 5 7 0 -4"""
+        expected = """3"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """aab"""
-        expected = """No"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """zzzzzz"""
-        expected = """No"""
+        input = """2 -1000000000000000
+1000000000 -1000000000"""
+        expected = """0"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

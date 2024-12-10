@@ -1,4 +1,3 @@
-from collections import Counter
 import os
 import sys
 import pprint as pp
@@ -19,7 +18,7 @@ from logging import DEBUG, StreamHandler, getLogger
 
 # 入力のマクロ
 def II(): return int(sys.stdin.readline())
-def SI(): return sys.stdin.readline().strip()
+def SI(): return input().rstrip()
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
@@ -40,42 +39,57 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res="No"
-    S=input().rstrip()
-    Cnt=Counter(S)
-    xdebug(f"Cnt={Cnt}")
-    Dic=dict(Cnt)
-    xdebug(f"Cnt->Dic={Dic}")
-    lenS=len(S)
-    if lenS % 2 == 1:
-        return "No"
-    T=len(S)//2
-    for j in range(T):
-        if S[j*2]!=S[j*2+1]:
-            return "No"
-    value=list(Dic.values())
-    for j in range(len(value)):
-        if value[j]!=0 and value[j]!=2:
-            return "No"
-    return "Yes"
+    res=0
+    N=II()
+    A=LI()
+    D=dict()
+    for j in range(N):
+        x=A[j]
+        if x in D :
+            D[x]+=1
+        else:
+            D[x]=1
+    xdebug(f"D={D}")
+    for X in D.items():
+        k,v=X
+        if k <= v:
+            res+=v-k
+        else:
+            res+=v
+    return res
 
 def resolve():
     print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """aabbcc"""
-        expected = """Yes"""
+        input = """4
+3 3 3 3"""
+        expected = """1"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """aab"""
-        expected = """No"""
+        input = """5
+2 4 1 4 2"""
+        expected = """2"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """zzzzzz"""
-        expected = """No"""
+        input = """6
+1 2 2 3 3 3"""
+        expected = """0"""
+        self.judge(input, expected)
+
+    def test_sample4(self):
+        input = """1
+1000000000"""
+        expected = """1"""
+        self.judge(input, expected)
+
+    def test_sample5(self):
+        input = """8
+2 7 1 8 2 8 1 8"""
+        expected = """5"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
