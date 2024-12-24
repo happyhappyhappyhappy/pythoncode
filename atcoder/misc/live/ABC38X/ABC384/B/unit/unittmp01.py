@@ -39,45 +39,63 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
-    N,K=MI()
-    A=LI()
-    # 累積和
-    S=[0]*(N+1)
-    # 累積和格納辞書
-    nums={}
+    N,R=MI()
     for j in range(N):
-        S[j+1]=S[j]+A[j]
-    xdebug(f"S:{S}")
-    for j in range(N+1):
-        X=S[j]-K
-        xdebug(f"{j}番目累積和 {S[j]}に対してK:{K}を引いた値X:{X}。これが以前の累積和にあるか")
-        if X in nums:
-            xdebug(f"X {X} は以前の累積和に登録されていた。数を足す")
-            res+=nums[X]
-        else:
-            xdebug(f"X {X} は以前の累積和に登録されていない。パス")
-        xdebug(f"{j}番目の累積和 {S[j]}を登録or加算")
-        if S[j] in nums:
-            nums[S[j]]+=1
-        else:
-            nums[S[j]]=1
-    return res
+        xdebug(f"{j+1}回目 現在のレート {R}")
+        Div, A = MI()
+        if Div == 1 :
+            if  1600 <= R and R <= 2799:
+                xdebug(f"{j+1}回目 予定通り Div1のテストに参加します")
+                R+=A
+            else:
+                xdebug(f"{j+1}回目 参加資格がないのでDiv1には参加できません")
+        if Div == 2:
+            if 1200 <= R and R <= 2399:
+                xdebug(f"{j+1}回目 予定通りDiv2テストに参加します")
+                R+=A
+            else:
+                xdebug(f"{j+1}回目 資格がないのでDiv2テストに参加できません")
+    xdebug(f"最終レート {R}")
+    return R
 
 def resolve():
     print(solver())
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """6 5
-8 -3 5 7 0 -4"""
-        expected = """3"""
+        input = """4 1255
+2 900
+1 521
+2 600
+1 52"""
+        expected = """2728"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """2 -1000000000000000
-1000000000 -1000000000"""
-        expected = """0"""
+        input = """2 3031
+1 1000
+2 -1000"""
+        expected = """3031"""
+        self.judge(input, expected)
+
+    def test_sample3(self):
+        input = """15 2352
+2 -889
+2 420
+2 -275
+1 957
+1 -411
+1 -363
+1 151
+2 -193
+2 289
+2 -770
+2 109
+1 345
+2 551
+1 -702
+1 355"""
+        expected = """1226"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
