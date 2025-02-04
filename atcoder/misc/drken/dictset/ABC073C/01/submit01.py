@@ -40,19 +40,14 @@ def solver():
     res = 0
     # algorithm
     N=II()
-    A=LI()
-    D={}
-    for j in range(N):
-        a=A[j]
-        if a in D:
-            D[a]+=1
+    S=set()
+    for _ in range(N):
+        a=II()
+        if a not in S:
+            S.add(a)
         else:
-            D[a]=1
-    for k,v in D.items():
-        if k <= v:
-            res+=(v-k)
-        else:
-            res+=v
+            S.remove(a)
+    res=len(S)
     return res
 
 

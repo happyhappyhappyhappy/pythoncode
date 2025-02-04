@@ -39,20 +39,21 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     res = 0
     # algorithm
-    N=II()
+    N,K=MI()
     A=LI()
     D={}
+    S=[0]*(N+1)
     for j in range(N):
-        a=A[j]
-        if a in D:
-            D[a]+=1
+        S[j+1]=S[j]+A[j]
+    for j in range(N+1):
+        dif=S[j]-K
+        if dif in D:
+            res+=D[dif]
+        ruiseki=S[j]
+        if ruiseki in D:
+            D[ruiseki]+=1
         else:
-            D[a]=1
-    for k,v in D.items():
-        if k <= v:
-            res+=(v-k)
-        else:
-            res+=v
+            D[ruiseki]=1
     return res
 
 

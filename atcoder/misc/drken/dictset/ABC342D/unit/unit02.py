@@ -4,7 +4,7 @@ import pprint as pp
 import unittest
 
 from io import StringIO
-
+# Problem: https://atcoder.jp/contests/abc342/tasks/abc342_d
 # ライブラリのインポート
 # import heapq,copy
 
@@ -42,19 +42,27 @@ def solver():
     res=0
     N=II()
     A=LI()
-    D={}
+    num={}
     for j in range(N):
-        a  = A[j]
-        if a in D:
-            D[a]+=1
+        ai=A[j]
+        k=2
+        while (k*k) <= ai:
+            while (ai % (k*k)) == 0:
+                ai = ai // (k*k)
+            k+=1
+        xdebug(f"No.{j+1}:{A[j]}-> {ai}")
+        if ai in num:
+            num[ai]+=1
         else:
-            D[a]=1
-    xdebug(f"D={D}")
-    for k,v in D.items():
-        if k <= v:
-            res+=(v-k)
-        else:
-            res+=v
+            num[ai]=1
+    if 0 in num:
+        un_zero=N-num[0]
+        res=(N*(N-1))//2-(un_zero*(un_zero-1))//2
+        del num[0]
+    else:
+        res=0
+    for v in num.values():
+        res=res+(v*(v-1))//2
     return res
 
 def resolve():
@@ -62,33 +70,15 @@ def resolve():
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """4
-3 3 3 3"""
-        expected = """1"""
+        input = """5
+0 3 2 8 12"""
+        expected = """6"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """5
-2 4 1 4 2"""
-        expected = """2"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """6
-1 2 2 3 3 3"""
-        expected = """0"""
-        self.judge(input, expected)
-
-    def test_sample4(self):
-        input = """1
-1000000000"""
-        expected = """1"""
-        self.judge(input, expected)
-
-    def test_sample5(self):
         input = """8
-2 7 1 8 2 8 1 8"""
-        expected = """5"""
+2 2 4 6 3 100 100 25"""
+        expected = """7"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

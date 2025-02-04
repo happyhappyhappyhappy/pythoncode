@@ -40,21 +40,23 @@ MINSIZE = -( 1 << 59) + 1
 
 def solver():
     res=0
-    N=II()
+    N,K=MI()
     A=LI()
     D={}
+    S=[0]*(N+1)
     for j in range(N):
-        a  = A[j]
-        if a in D:
-            D[a]+=1
+        S[j+1]=S[j]+A[j]
+    for j in range(N+1):
+        DIF=S[j]-K
+        if DIF in D:
+            xdebug(f"{j+1}番目までの和とK={K}の差{DIF}がありました")
+            res+=D[DIF]
+        if S[j] in D:
+            xdebug(f"{j+1}桁までの累積和 {S[j]}が登録されていました->足します")
+            D[S[j]]+=1
         else:
-            D[a]=1
-    xdebug(f"D={D}")
-    for k,v in D.items():
-        if k <= v:
-            res+=(v-k)
-        else:
-            res+=v
+            xdebug(f"{j+1}桁までの累積和 {S[j]}が登録されていませんでした->追加します")
+            D[S[j]]=1
     return res
 
 def resolve():
@@ -62,33 +64,15 @@ def resolve():
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """4
-3 3 3 3"""
-        expected = """1"""
+        input = """6 5
+8 -3 5 7 0 -4"""
+        expected = """3"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """5
-2 4 1 4 2"""
-        expected = """2"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """6
-1 2 2 3 3 3"""
+        input = """2 -1000000000000000
+1000000000 -1000000000"""
         expected = """0"""
-        self.judge(input, expected)
-
-    def test_sample4(self):
-        input = """1
-1000000000"""
-        expected = """1"""
-        self.judge(input, expected)
-
-    def test_sample5(self):
-        input = """8
-2 7 1 8 2 8 1 8"""
-        expected = """5"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

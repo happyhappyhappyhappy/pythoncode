@@ -46,7 +46,7 @@ def solver():
     for j in range(N):
         S[j+1]=S[j]+A[j]
     # print(*S)
-    num=dict()
+    num={}
     for j in range(N+1):
         D=S[j]-K
         if D in num:

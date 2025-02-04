@@ -41,20 +41,16 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     res=0
     N=II()
-    A=LI()
-    D={}
+    S=set()
     for j in range(N):
-        a  = A[j]
-        if a in D:
-            D[a]+=1
+        a=II()
+        if a not in S:
+            S.add(a)
+            xdebug(f"{j+1}行目 {a}を追加しました")
         else:
-            D[a]=1
-    xdebug(f"D={D}")
-    for k,v in D.items():
-        if k <= v:
-            res+=(v-k)
-        else:
-            res+=v
+            S.remove(a)
+            xdebug(f"{j+1}行目 {a}を削除しました")
+    res=len(S)
     return res
 
 def resolve():
@@ -62,33 +58,31 @@ def resolve():
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """4
-3 3 3 3"""
+        input = """3
+6
+2
+6"""
         expected = """1"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """5
-2 4 1 4 2"""
-        expected = """2"""
+        input = """4
+2
+5
+5
+2"""
+        expected = """0"""
         self.judge(input, expected)
 
     def test_sample3(self):
         input = """6
-1 2 2 3 3 3"""
-        expected = """0"""
-        self.judge(input, expected)
-
-    def test_sample4(self):
-        input = """1
-1000000000"""
-        expected = """1"""
-        self.judge(input, expected)
-
-    def test_sample5(self):
-        input = """8
-2 7 1 8 2 8 1 8"""
-        expected = """5"""
+12
+22
+16
+22
+18
+12"""
+        expected = """2"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

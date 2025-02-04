@@ -1,3 +1,4 @@
+# Problem: https://atcoder.jp/contests/abc342/tasks/abc342_d
 # ライブラリのインポート
 # import heapq,copy
 import pprint as pp
@@ -33,26 +34,31 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
-
-
-
 def solver():
     res = 0
     # algorithm
     N=II()
     A=LI()
-    D={}
+    num={}
     for j in range(N):
-        a=A[j]
-        if a in D:
-            D[a]+=1
+        aj=A[j]
+        k=2
+        while (k*k) <= aj:
+            while aj % (k*k) == 0:
+                aj=aj // (k*k)
+            k=k+1
+        if aj in num:
+            num[aj]+=1
         else:
-            D[a]=1
-    for k,v in D.items():
-        if k <= v:
-            res+=(v-k)
-        else:
-            res+=v
+            num[aj]=1
+    if 0 in num:
+        non_zero=N-num[0]
+        res=(N*(N-1))//2-(non_zero*(non_zero-1))//2
+        del num[0]
+    else:
+        res=0
+    for v in num.values():
+        res=res+(v*(v-1))//2
     return res
 
 
