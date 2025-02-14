@@ -41,20 +41,17 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     res=0
     N=II()
-    D={}
+    num={}
     for _ in range(N):
         s=input().rstrip()
-        ss=sorted(s)
-        tup_ss=tuple(ss)
-        if tup_ss in D:
-            D[tup_ss]+=1
+        ss=tuple(sorted(s))
+        # xdebug(f"{s}->{ss}")
+        if ss in num:
+            num[ss]+=1
         else:
-            D[tup_ss]=1
-    xdebug(f"D={D}")
-    for v in D.values():
-        x = (v*(v-1))//2
-        res+=x
-    xdebug(f"本当の答えは {res}")
+            num[ss]=1
+    for v in num.values():
+        res+=(v*(v-1))//2
     return res
 
 def resolve():
