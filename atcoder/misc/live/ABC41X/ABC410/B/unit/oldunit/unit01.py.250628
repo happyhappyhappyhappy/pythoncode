@@ -42,21 +42,22 @@ def solver():
     res=[1,2,3,4,5]
     N,Q=MI()
     QList=LI()
-    xdebug(f"N={N},Q={Q},QList={QList}")
+    xdebug(f"N={N},Q={Q}")
+    xdebug(f"QList={QList}")
+    BOX=[0]*(N+1)
     res=[]
-    NBox=[0]*(N+1)
-    NBox[0]=MAXSIZE
+    BOX[0]=MAXSIZE
     for x in QList:
         if x == 0:
-            minball=min(NBox)
+            minball=min(BOX)
             for j in range(1,N+1):
-                if NBox[j]==minball:
+                if minball == BOX[j]:
+                    BOX[j]+=1
                     res.append(j)
-                    NBox[j]+=1
                     break
-        else:
+        else :
+            BOX[x]+=1
             res.append(x)
-            NBox[x]+=1
     return res
 
 def resolve():

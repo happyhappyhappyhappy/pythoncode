@@ -35,35 +35,24 @@ MINSIZE = -( 1 << 59) + 1
 
 
 def solver():
-    res = [1,2,3,4,5]
-    N,Q=MI()
-    L=LI()
+    res = [[1,2,3],[4,5],[6]]
+    N=II()
+    D=LI()
+    P=[0]*N
+    for j in range(1,N):
+        P[j]=P[j-1]+D[j-1]
+    # xdebug(f"{P}")
     res=[]
-    box=[0]*(N+1)
-    box[0]=MAXSIZE
-    for x in L:
-        xdebug(f"{x}")
-        if x == 0:
-            minball=min(box)
-            for y in range(1,N+1):
-                if box[y]==minball:
-                    box[y]+=1
-                    res.append(y)
-                    xdebug(f"{y}に追加しました")
-                    break
-        else:
-            res.append(x)
-            xdebug(f"{x}に追加しました")
-            box[x]+=1
-        xdebug(f"{box[1:]}")
-
+    for j in range(N-1):
+        subres=[]
+        for k in range(j+1,N):
+            x=P[k]-P[j]
+            subres.append(x)
+        # xdebug(f"{j}->{subres}")
+        res.append(subres)
     return res
-
 
 if __name__ == "__main__":
     res=solver()
-    print(*res)
-
-  
-
-  
+    for x in res:
+        print(*x)

@@ -39,48 +39,42 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=[1,2,3,4,5]
-    N,Q=MI()
-    xdebug(f"N={N},Q={Q}")
-    L=LI()
-    xdebug(f"L={L}")
-    box=[0]*(N+1)
-    box[0]=MAXSIZE
+    res=[[1,2,3,4,5],[0,1,2]]
+    N=II()
+    D=LI()
+    P=[0]*N
+    for j in range(1,N):
+        P[j]=P[j-1]+D[j-1]
+    xdebug(f"{P}")
+
     res=[]
-    for x in L:
-        if x == 0:
-            boxmin=min(box)
-            for y in range(N+1):
-                if boxmin == box[y]:
-                    box[y]+=1
-                    res.append(y)
-                    break
-        else:
-            box[x]+=1
-            res.append(x)
+    for j in range(N-1):
+        subres=[]
+        for k in range(j+1,N):
+            x=P[k]-P[j]
+            subres.append(x)
+        res.append(subres)
     return res
 
 def resolve():
     res=solver()
-    print(*res)
+    for x in res:
+        print(*x)
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """4 5
-2 0 3 0 0"""
-        expected = """2 1 3 4 1"""
+        input = """5
+5 10 2 3"""
+        expected = """5 15 17 20
+10 12 15
+2 5
+3"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """3 7
-1 1 0 0 0 0 0"""
-        expected = """1 1 2 3 2 3 1"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """6 20
-4 6 0 3 4 2 6 5 2 3 0 3 2 5 0 3 5 0 2 0"""
-        expected = """4 6 1 3 4 2 6 5 2 3 1 3 2 5 1 3 5 4 2 6"""
+        input = """2
+100"""
+        expected = """100"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

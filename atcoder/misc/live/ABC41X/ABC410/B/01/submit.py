@@ -36,6 +36,22 @@ MINSIZE = -( 1 << 59) + 1
 
 def solver():
     res = [1,2,3,4,5]
+    N,Q=MI()
+    QList=LI()
+    res=[]
+    NBox=[0]*(N+1)
+    NBox[0]=MAXSIZE
+    for x in QList:
+        if x == 0:
+            minball=min(NBox)
+            for j in range(1,N+1):
+                if NBox[j]==minball:
+                    res.append(j)
+                    NBox[j]+=1
+                    break
+        else:
+            NBox[x]+=1
+            res.append(x)
     return res
 
 
