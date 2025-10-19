@@ -38,23 +38,24 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+def converter(S):
+    res=[ord(ch)-ord("a") for ch in S]
+    return res
+
 def solver():
-    res=0
-    N=II()
-    A=LI()
-    left=0
-    right=0
-    for j in range(N-1,-1,-1):
-        if A[j]==1:
-            xdebug(f"{j}の右の部屋が開けません。つまり{j+1}->{j}は行けません")
-            right=j
-            break
-    for j in range(N):
-        if A[j]==1:
-            xdebug(f"{j}の右の部屋が開けません。つまり{j}->{j+1}は行けません")
-            left=j
-            break
-    res=right-left
+    res="X"
+    S=input().rstrip()
+    posList=converter(S)
+    xdebug(f"pos={posList}")
+    box=[0]*26
+    for x in posList:
+        box[x]+=1
+    xdebug(box)
+    for pos in range(26):
+        if box[pos]==1:
+            res=chr(ord("a")+pos)
+            xdebug(f"回答は {res}")
+
     return res
 
 def resolve():
@@ -65,21 +66,18 @@ def resolve():
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """5
-0 1 0 0 1"""
-        expected = """3"""
+        input = """odd"""
+        expected = """o"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """3
-1 0 1"""
-        expected = """2"""
+        input = """dad"""
+        expected = """a"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """8
-0 0 1 1 0 1 0 0"""
-        expected = """3"""
+        input = """wwwwwwwwwv"""
+        expected = """v"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
