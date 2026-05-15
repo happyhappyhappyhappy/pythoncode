@@ -39,50 +39,46 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
-    H,W=MI()
-    G=[]
-    for _ in range(H):
-        line=input()
-        G.append(line)
-    xdebug(G)
-    for h1 in range(H):
-        for h2 in range(h1+1,H+1):
-            for w1 in range(W):
-                for w2 in range(w1+1,W+1):
-                    flag=True
-                    for j in range(h1,h2):
-                        for k in range(w1,w2):
-                            posh=h1+h2-j-1
-                            posw=w1+w2-k-1
-                            if G[posh][posw] != G[j][k]:
-                                flag=False
-                    if flag is True:
-                        res+=1
+    res=[]
+    H,W,Q=MI()
+    for j in range(Q):
+        xdebug(f"{j+1}回目")
+        xdebug(f"縦 {H} 横 {W}")
+        Queue,x=MI()
+        eat=0
+        if Queue == 1:
+            xdebug(f"下 {x} を削除します")
+            H=H-x
+            xdebug(f"削除したのは {x*W} 個")
+            eat=x*W
+        else:
+            xdebug(f"右 {x}を 削除します")
+            W=W-x
+            xdebug(f"削除したのは {x*H} 個")
+            eat=x*H
+        res.append(eat)
     return res
 
 def resolve():
     res=solver()
-    print(res)
+    for x in res:
+        print(x)
 
 
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """3 2
-.#
-#.
-##"""
-        expected = """10"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """4 5
-.#.#.
-####.
-##..#
-....#"""
-        expected = """54"""
+        input = """7 9 5
+2 4
+1 3
+2 1
+2 1
+1 3"""
+        expected = """28
+15
+4
+4
+9"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

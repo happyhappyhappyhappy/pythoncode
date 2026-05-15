@@ -1,12 +1,7 @@
-import os
-import sys
-import pprint as pp
-import unittest
-
-from io import StringIO
-
 # ライブラリのインポート
 # import heapq,copy
+import pprint as pp
+import sys
 
 # from collections import deque
 # pypy3用
@@ -18,7 +13,7 @@ from logging import DEBUG, StreamHandler, getLogger
 
 # 入力のマクロ
 def II(): return int(sys.stdin.readline())
-def SI(): return input().rstrip()
+def SI(): return sys.stdin.readline().strip()
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
@@ -38,64 +33,28 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+
 def solver():
-    res=0
+    res = 0
     H,W=MI()
     G=[]
     for _ in range(H):
-        line=input()
+        line = input()
         G.append(line)
-    xdebug(G)
     for h1 in range(H):
-        for h2 in range(h1+1,H+1):
+        for h2 in range(1+h1,H+1):
             for w1 in range(W):
-                for w2 in range(w1+1,W+1):
+                for w2 in range(1+w1,W+1):
                     flag=True
                     for j in range(h1,h2):
                         for k in range(w1,w2):
-                            posh=h1+h2-j-1
-                            posw=w1+w2-k-1
-                            if G[posh][posw] != G[j][k]:
+                            if G[h1+h2-j-1][w1+w2-k-1]!=G[j][k]:
                                 flag=False
                     if flag is True:
                         res+=1
     return res
 
-def resolve():
-    res=solver()
-    print(res)
-
-
-
-class TestClass(unittest.TestCase):
-    def test_sample1(self):
-        input = """3 2
-.#
-#.
-##"""
-        expected = """10"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """4 5
-.#.#.
-####.
-##..#
-....#"""
-        expected = """54"""
-        self.judge(input, expected)
-
-    def judge(self, input, expected):
-        stdout, stdin = sys.stdout, sys.stdin
-        sys.stdout, sys.stdin = StringIO(), StringIO(input)
-        resolve()
-        sys.stdout.seek(0)
-        actual = sys.stdout.read()[:-1]
-        sys.stdout, sys.stdin = stdout, stdin
-        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
-    if "ATCODER" in os.environ:
-        resolve()
-    else:
-        unittest.main(verbosity=2)
+    res=solver()
+    print(res)

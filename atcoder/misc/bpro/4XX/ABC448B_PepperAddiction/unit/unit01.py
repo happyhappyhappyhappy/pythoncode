@@ -40,25 +40,14 @@ MINSIZE = -( 1 << 59) + 1
 
 def solver():
     res=0
-    H,W=MI()
-    G=[]
-    for _ in range(H):
-        line=input()
-        G.append(line)
-    xdebug(G)
-    for h1 in range(H):
-        for h2 in range(h1+1,H+1):
-            for w1 in range(W):
-                for w2 in range(w1+1,W+1):
-                    flag=True
-                    for j in range(h1,h2):
-                        for k in range(w1,w2):
-                            posh=h1+h2-j-1
-                            posw=w1+w2-k-1
-                            if G[posh][posw] != G[j][k]:
-                                flag=False
-                    if flag is True:
-                        res+=1
+    N,M=MI()
+    C=LI()
+    G=[0]*M
+    for _ in range(N):
+        K,use=MI()
+        G[K-1]+=use
+    for j in range(M):
+        res+=min(C[j],G[j])
     return res
 
 def resolve():
@@ -69,20 +58,44 @@ def resolve():
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """3 2
-.#
-#.
-##"""
-        expected = """10"""
+        input = """7 5
+4 4 8 3 7
+1 2
+2 3
+5 2
+4 10
+2 3
+5 4
+2 3"""
+        expected = """15"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """4 5
-.#.#.
-####.
-##..#
-....#"""
-        expected = """54"""
+        input = """1 1
+1
+1 1"""
+        expected = """1"""
+        self.judge(input, expected)
+
+    def test_sample3(self):
+        input = """15 10
+7 94 100 82 63 81 75 2 76 73
+10 44
+5 77
+10 47
+7 32
+2 82
+5 90
+3 37
+6 70
+6 28
+3 25
+2 26
+10 56
+1 69
+5 46
+7 26"""
+        expected = """438"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
