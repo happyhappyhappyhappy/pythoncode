@@ -39,48 +39,47 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    N=II()
-    res=[[0]*N for _ in range(N)]
-    r=0
-    c=(N-1)//2
-    K=1
-    res[r][c]=K
-    for _ in range(1,N*N):
-        K+=1
-        r1=(r-1)%N
-        c1=(c+1)%N
-        if res[r1][c1] == 0:
-            res[r1][c1]=K
+    N,M=MI()
+    res=[0]*M
+    db=[[0]*2 for _ in range(M)]
+    for _ in range(N):
+        n1,g=MI()
+        db[n1-1][0]+=1
+        db[n1-1][1]+=g
+    xdebug(db)
+    for j in range(M):
+        if db[j][0]!=0:
+            res[j]=db[j][1]/db[j][0]
         else:
-            r1=(r+1)%N
-            c1=c
-            res[r1][c1]=K
-        r=r1
-        c=c1
+            res[j]=0.0
+    xdebug(res)
     return res
 
 def resolve():
     res=solver()
-    for line in res:
-        print(*line)
+    for x in res:
+        print(x)
 
 
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """3"""
-        expected = """8 1 6
-3 5 7
-4 9 2"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """5"""
-        expected = """17 24 1 8 15
-23 5 7 14 16
-4 6 13 20 22
-10 12 19 21 3
-11 18 25 2 9"""
+        input = """10 5
+4 92
+1 16
+3 77
+4 99
+2 89
+3 8
+1 40
+5 56
+1 40
+4 77"""
+        expected = """32.00000000000000000000
+89.00000000000000000000
+42.50000000000000000000
+89.33333333333333333333
+56.00000000000000000000"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

@@ -40,47 +40,50 @@ MINSIZE = -( 1 << 59) + 1
 
 def solver():
     N=II()
-    res=[[0]*N for _ in range(N)]
-    r=0
-    c=(N-1)//2
-    K=1
-    res[r][c]=K
-    for _ in range(1,N*N):
-        K+=1
-        r1=(r-1)%N
-        c1=(c+1)%N
-        if res[r1][c1] == 0:
-            res[r1][c1]=K
-        else:
-            r1=(r+1)%N
-            c1=c
-            res[r1][c1]=K
-        r=r1
-        c=c1
+    res=[-1]*N
+    A=LI()
+    for j in range(1,N):
+        nowTall=A[j]
+        for k in range(j-1,-1,-1):
+            if nowTall < A[k]:
+                res[j]=(k+1)
+                break
     return res
 
 def resolve():
     res=solver()
-    for line in res:
-        print(*line)
+    for x in res:
+        print(x)
 
 
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """3"""
-        expected = """8 1 6
-3 5 7
-4 9 2"""
+        input = """4
+4 3 2 5"""
+        expected = """-1
+1
+2
+-1"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """5"""
-        expected = """17 24 1 8 15
-23 5 7 14 16
-4 6 13 20 22
-10 12 19 21 3
-11 18 25 2 9"""
+        input = """3
+7 7 7"""
+        expected = """-1
+-1
+-1"""
+        self.judge(input, expected)
+
+    def test_sample3(self):
+        input = """6
+31 9 17 10 2 9"""
+        expected = """-1
+1
+1
+3
+4
+4"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

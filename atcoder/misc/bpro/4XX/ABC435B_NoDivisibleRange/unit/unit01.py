@@ -39,48 +39,45 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
+    res=0
     N=II()
-    res=[[0]*N for _ in range(N)]
-    r=0
-    c=(N-1)//2
-    K=1
-    res[r][c]=K
-    for _ in range(1,N*N):
-        K+=1
-        r1=(r-1)%N
-        c1=(c+1)%N
-        if res[r1][c1] == 0:
-            res[r1][c1]=K
-        else:
-            r1=(r+1)%N
-            c1=c
-            res[r1][c1]=K
-        r=r1
-        c=c1
+    A=LI()
+    for j in range(N):
+        for k in range(j,N):
+            sumL=0
+            for m in range(j,k+1):
+                sumL+=A[m]
+            # xdebug(f"({j},{k})までの合計は{sumL}")
+            flag=True
+            for m in range(j,k+1):
+                mod=sumL % A[m]
+                if mod == 0:
+                    xdebug(f"({j},{k})についてA[{m}]が {sumL}の約数である")
+                    flag=False
+                    break
+            if flag is True:
+                xdebug(f"({j},{k})についてはすべての構成する数が約数で無かった")
+                res+=1
+                xdebug(f"{res}個目")
     return res
 
 def resolve():
     res=solver()
-    for line in res:
-        print(*line)
+    print(res)
 
 
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """3"""
-        expected = """8 1 6
-3 5 7
-4 9 2"""
+        input = """5
+8 6 10 5 7"""
+        expected = """6"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """5"""
-        expected = """17 24 1 8 15
-23 5 7 14 16
-4 6 13 20 22
-10 12 19 21 3
-11 18 25 2 9"""
+        input = """3
+1 1 1"""
+        expected = """0"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

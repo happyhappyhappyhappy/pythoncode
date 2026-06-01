@@ -1,12 +1,7 @@
-import os
-import sys
-import pprint as pp
-import unittest
-
-from io import StringIO
-
 # ライブラリのインポート
 # import heapq,copy
+import pprint as pp
+import sys
 
 # from collections import deque
 # pypy3用
@@ -18,7 +13,7 @@ from logging import DEBUG, StreamHandler, getLogger
 
 # 入力のマクロ
 def II(): return int(sys.stdin.readline())
-def SI(): return input().rstrip()
+def SI(): return sys.stdin.readline().strip()
 def MI(): return map(int, sys.stdin.readline().split())
 def LI(): return list(map(int, sys.stdin.readline().split()))
 def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
@@ -38,6 +33,7 @@ ppp=pp.pprint
 MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
+
 def solver():
     N=II()
     res=[[0]*N for _ in range(N)]
@@ -49,51 +45,16 @@ def solver():
         K+=1
         r1=(r-1)%N
         c1=(c+1)%N
-        if res[r1][c1] == 0:
-            res[r1][c1]=K
-        else:
+        if res[r1][c1]!=0:
             r1=(r+1)%N
             c1=c
-            res[r1][c1]=K
         r=r1
         c=c1
+        res[r][c]=K
     return res
 
-def resolve():
+
+if __name__ == "__main__":
     res=solver()
     for line in res:
         print(*line)
-
-
-
-class TestClass(unittest.TestCase):
-    def test_sample1(self):
-        input = """3"""
-        expected = """8 1 6
-3 5 7
-4 9 2"""
-        self.judge(input, expected)
-
-    def test_sample2(self):
-        input = """5"""
-        expected = """17 24 1 8 15
-23 5 7 14 16
-4 6 13 20 22
-10 12 19 21 3
-11 18 25 2 9"""
-        self.judge(input, expected)
-
-    def judge(self, input, expected):
-        stdout, stdin = sys.stdout, sys.stdin
-        sys.stdout, sys.stdin = StringIO(), StringIO(input)
-        resolve()
-        sys.stdout.seek(0)
-        actual = sys.stdout.read()[:-1]
-        sys.stdout, sys.stdin = stdout, stdin
-        self.assertEqual(expected, actual)
-
-if __name__ == "__main__":
-    if "ATCODER" in os.environ:
-        resolve()
-    else:
-        unittest.main(verbosity=2)
