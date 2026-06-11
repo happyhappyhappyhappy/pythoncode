@@ -1,0 +1,58 @@
+# ライブラリのインポート
+# import heapq,copy
+import pprint as pp
+import sys
+
+# from collections import deque
+# pypy3用
+# import pypyjit
+# 再帰制御解放
+# pypyjit.set_param('max_unroll_recursion=-1')
+# sys.setrecursionlimit(10**6)
+from logging import DEBUG, StreamHandler, getLogger
+
+# 入力のマクロ
+def II(): return int(sys.stdin.readline())
+def SI(): return sys.stdin.readline().strip()
+def MI(): return map(int, sys.stdin.readline().split())
+def LI(): return list(map(int, sys.stdin.readline().split()))
+def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
+
+# デバッグ出力の作成
+logger = getLogger(__name__)
+handler = StreamHandler()
+handler.setLevel(DEBUG)
+logger.setLevel(DEBUG)
+logger.addHandler(handler)
+logger.propagate = False
+
+# クラス+メソッドを一関数
+xdebug=logger.debug
+ppp=pp.pprint
+# Const
+MAXSIZE = ( 1 << 59 ) -1
+MINSIZE = -( 1 << 59) + 1
+
+
+def solver():
+    res = []
+    T=II()
+    for _ in range(T):
+        X1,Y1,R1,X2,Y2,R2 = MI()
+        Rmin_r=R1-R2
+        Rmin=Rmin_r*Rmin_r
+        D=(X2-X1)*(X2-X1)+(Y2-Y1)*(Y2-Y1)
+        Rmax_r=R1+R2
+        Rmax=Rmax_r*Rmax_r
+        if Rmin <= D <= Rmax:
+            res.append("Yes")
+        else:
+            res.append("No")
+    return res
+
+
+if __name__ == "__main__":
+    res=solver()
+    for x in res:
+        print(x)
+
