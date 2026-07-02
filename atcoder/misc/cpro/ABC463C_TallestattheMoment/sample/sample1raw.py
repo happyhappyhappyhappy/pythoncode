@@ -19,10 +19,12 @@ for i in range(N-1, -1, -1):
     current_max = max(H_LIST[i], current_max)
     max_list.append(current_max)
 max_list.reverse()
-
+print(max_list)
 # Queryを処理
 # 時刻t 時点での最高身長をprintする
+print(L_LIST)
 for i in range(len(T)):
     t = T[i]
     index = bisect.bisect_right(L_LIST, t)
+    print(f"{t}のインデックスは {index}です")
     print(max_list[index])
