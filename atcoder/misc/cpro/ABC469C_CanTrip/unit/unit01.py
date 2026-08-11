@@ -39,57 +39,49 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=MAXSIZE
-    N,_=MI()
-    A=LI()
-    B=LI()
-    # A[N-1]に修正しない場合のシミュレーション用リスト
-    A1=A.copy()
-    # A[N-1]に修正をかけた場合のシミュレーション用リスト
-    A2=A.copy()
-    # A[N-1]に修正をかけないケース
-    pat1=0
-    for j in range(N-1,0,-1):
-        if ((A1[j]+A1[j-1])%2) != B[j-1]:
-            A1[j-1]+=1
-            pat1+=1
-    res=min(pat1,res)
-    # A[N-1]に修正をかけるケース
-    A2[N-1]+=1
-    pat2=1
-    for j in range(N-1,0,-1):
-        if ((A2[j]+A2[j-1])%2)!=B[j-1]:
-            A2[j-1]+=1
-            pat2+=1
-    res=min(pat2,res)
-    return res
+    res=[]
+    xpos=[]
+    N=II()
+    S=input()
+    for j in range(N):
+        if S[j] == "x":
+            xpos=[*xpos,j+1]
+    xdebug(xpos)
+    allN=N-len(xpos)
+    for _ in range(allN):
+        xpos=[*xpos,N]
+    return xpos
 
 def resolve():
     res=solver()
-    print(res)
+    for x in res:
+        print(x)
 
 
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """3 2
-1 1 1
-1 1"""
-        expected = """1"""
+        input = """5
+oxoxo"""
+        expected = """2
+4
+5
+5
+5"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """2 2
-1 1
-0"""
-        expected = """0"""
+        input = """3
+ooo"""
+        expected = """3
+3
+3"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """10 2
-0 0 0 1 1 0 1 0 1 0
-0 1 0 1 0 1 0 1 0"""
-        expected = """4"""
+        input = """1
+x"""
+        expected = """1"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
