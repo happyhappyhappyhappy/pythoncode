@@ -39,13 +39,33 @@ MAXSIZE = ( 1 << 59 ) -1
 MINSIZE = -( 1 << 59) + 1
 
 def solver():
-    res=0
-    N=II()
-    S=input()
-    res=[x+1 for x in range(N) if S[x]=="x"]
-    xdebug(res)
-    follow=[N for _ in range(N-len(res))]
-    res+=follow
+    res=[]
+    N,Q=MI()
+    L=[0]*N
+    XOR=0
+    S=set()
+    for _ in range(Q):
+        x=list(map(int,input().split()))
+        if x[0] == 1:
+            pos=x[1]
+            pos=pos-1
+            A=L[pos]
+            L[pos]+=1
+            XOR=XOR^A
+            XOR=XOR^(A+1)
+            S.add(pos)
+        else:
+            delL=[]
+            for x in S:
+                A=L[x]
+                if A == 1:
+                    delL.extend([x])
+                XOR=XOR^A
+                XOR=XOR^(A-1)
+                L[x]-=1
+            for x in delL:
+                S.remove(x)
+        res.extend([XOR])
     return res
 
 def resolve():
@@ -57,27 +77,37 @@ def resolve():
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """5
-oxoxo"""
-        expected = """2
-4
-5
-5
-5"""
+        input = """2 5
+1 2
+1 2
+1 1
+2
+2"""
+        expected = """1
+2
+3
+1
+0"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """3
-ooo"""
-        expected = """3
-3
-3"""
-        self.judge(input, expected)
-
-    def test_sample3(self):
-        input = """1
-x"""
-        expected = """1"""
+        input = """3 8
+1 2
+1 3
+1 1
+1 2
+1 1
+2
+1 3
+1 1"""
+        expected = """1
+0
+1
+2
+1
+0
+1
+2"""
         self.judge(input, expected)
 
     def judge(self, input, expected):

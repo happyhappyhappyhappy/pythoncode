@@ -3,6 +3,7 @@ import sys
 import pprint as pp
 import unittest
 
+from collections import Counter
 from io import StringIO
 
 # ライブラリのインポート
@@ -41,43 +42,37 @@ MINSIZE = -( 1 << 59) + 1
 def solver():
     res=0
     N=II()
-    S=input()
-    res=[x+1 for x in range(N) if S[x]=="x"]
-    xdebug(res)
-    follow=[N for _ in range(N-len(res))]
-    res+=follow
+    C=LI()
+    CCnt=Counter(C)
+    # xdebug(CCnt)
+    for v in CCnt.values():
+        res=max(res,v)
+    res=N-res
     return res
 
 def resolve():
     res=solver()
-    for x in res:
-        print(x)
+    print(res)
 
 
 
 class TestClass(unittest.TestCase):
     def test_sample1(self):
-        input = """5
-oxoxo"""
-        expected = """2
-4
-5
-5
-5"""
+        input = """4
+3 1 2 1"""
+        expected = """2"""
         self.judge(input, expected)
 
     def test_sample2(self):
-        input = """3
-ooo"""
-        expected = """3
-3
-3"""
+        input = """5
+3 3 3 3 3"""
+        expected = """0"""
         self.judge(input, expected)
 
     def test_sample3(self):
-        input = """1
-x"""
-        expected = """1"""
+        input = """9
+4 2 3 3 4 1 2 7 1"""
+        expected = """7"""
         self.judge(input, expected)
 
     def judge(self, input, expected):
