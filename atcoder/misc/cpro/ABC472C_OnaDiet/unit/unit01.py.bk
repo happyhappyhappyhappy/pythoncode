@@ -1,0 +1,118 @@
+import os
+import sys
+import pprint as pp
+import unittest
+
+from io import StringIO
+
+# ライブラリのインポート
+# import heapq,copy
+
+# from collections import deque
+# pypy3用
+# import pypyjit
+# 再帰制御解放
+# pypyjit.set_param('max_unroll_recursion=-1')
+# sys.setrecursionlimit(10**6)
+from logging import DEBUG, StreamHandler, getLogger
+
+# 入力のマクロ
+def II(): return int(sys.stdin.readline())
+def SI(): return input().rstrip()
+def MI(): return map(int, sys.stdin.readline().split())
+def LI(): return list(map(int, sys.stdin.readline().split()))
+def LLI(rows_number:int): return [LI() for _ in range(rows_number)]
+
+# デバッグ出力の作成
+logger = getLogger(__name__)
+handler = StreamHandler()
+handler.setLevel(DEBUG)
+logger.setLevel(DEBUG)
+logger.addHandler(handler)
+logger.propagate = False
+
+# クラス+メソッドを一関数
+xdebug=logger.debug
+ppp=pp.pprint
+# Const
+MAXSIZE = ( 1 << 59 ) -1
+MINSIZE = -( 1 << 59) + 1
+
+def solver():
+    res=[]
+    N,M,K=MI()
+    A=LI()
+    Sig=0
+    for j in range(N):
+        xdebug(f"--- {j} 日目 ---")
+        if M <= j:
+            Sig=Sig-A[j-M]
+        if Sig+A[j] <= K:
+            xdebug(f"{j}日目のデータを取り入れます")
+            Sig=Sig+A[j]
+            res.extend(["Yes"])
+        else:
+            xdebug(f"{j}日目のデータは含まない")
+            A[j]=0
+            res.extend(["No"])
+    return res
+
+def resolve():
+    res=solver()
+    for r in res:
+        print(r)
+
+
+
+class TestClass(unittest.TestCase):
+    def test_sample1(self):
+        input = """5 3 83
+48 73 59 90 21"""
+        expected = """Yes
+No
+No
+No
+Yes"""
+        self.judge(input, expected)
+
+    def test_sample2(self):
+        input = """7 4 728
+187 816 349 609 255 308 175"""
+        expected = """Yes
+No
+Yes
+No
+Yes
+No
+Yes"""
+        self.judge(input, expected)
+
+    def test_sample3(self):
+        input = """10 3 1368290936
+216519459 804733999 297250023 775422599 287963235 999315644 354987425 974810607 653940822 117157941"""
+        expected = """Yes
+Yes
+Yes
+No
+Yes
+Yes
+No
+No
+Yes
+Yes"""
+        self.judge(input, expected)
+
+    def judge(self, input, expected):
+        stdout, stdin = sys.stdout, sys.stdin
+        sys.stdout, sys.stdin = StringIO(), StringIO(input)
+        resolve()
+        sys.stdout.seek(0)
+        actual = sys.stdout.read()[:-1]
+        sys.stdout, sys.stdin = stdout, stdin
+        self.assertEqual(expected, actual)
+
+if __name__ == "__main__":
+    if "ATCODER" in os.environ:
+        resolve()
+    else:
+        unittest.main(verbosity=2)
